@@ -38,7 +38,7 @@
       "status": "active",
       "createdAt": "2026-10-15T18:17:57.099Z",
       "_id": "6ad118d5bd9c2a6708aebd8b",
-      "updatedAt": "2026-10-15T19:45:44.769Z"
+      "updatedAt": "2026-10-15T19:58:43.349Z"
     },
     {
       "name": "উইমেনস ফ্যাশন",
@@ -48,7 +48,7 @@
       "status": "active",
       "createdAt": "2026-10-15T18:17:57.099Z",
       "_id": "6ad118d5bd9c2a6708aebd8c",
-      "updatedAt": "2026-10-15T19:45:44.770Z"
+      "updatedAt": "2026-10-15T19:58:43.349Z"
     },
     {
       "name": "হোম ও লিভিং",
@@ -58,7 +58,7 @@
       "status": "active",
       "createdAt": "2026-10-15T18:17:57.099Z",
       "_id": "6ad118d5bd9c2a6708aebd8d",
-      "updatedAt": "2026-10-15T19:45:44.772Z"
+      "updatedAt": "2026-10-15T19:58:43.350Z"
     },
     {
       "name": "অর্গানিক ফুড",
@@ -68,7 +68,7 @@
       "status": "active",
       "createdAt": "2026-10-15T18:17:57.099Z",
       "_id": "6ad118d5bd9c2a6708aebd8e",
-      "updatedAt": "2026-10-15T19:45:44.772Z"
+      "updatedAt": "2026-10-15T19:58:43.359Z"
     },
     {
       "slug": "gadgets",
@@ -78,7 +78,7 @@
       "status": "active",
       "_id": "6ad12b36a4fcf1a2baec6e35",
       "createdAt": "2026-10-15T19:36:22.226Z",
-      "updatedAt": "2026-10-15T19:45:44.770Z"
+      "updatedAt": "2026-10-15T19:58:43.350Z"
     },
     {
       "slug": "home-appliances",
@@ -88,7 +88,7 @@
       "status": "active",
       "_id": "6ad12b36a4fcf1a2baec6e36",
       "createdAt": "2026-10-15T19:36:22.227Z",
-      "updatedAt": "2026-10-15T19:45:44.771Z"
+      "updatedAt": "2026-10-15T19:58:43.350Z"
     }
   ],
   "products": [
@@ -286,5 +286,49 @@
       "_id": "6ad118d5bd9c2a6708aebd94"
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "orderReference": "BC-937883-B7",
+      "confirmationTokenHash": "eba3f33accd3021d73819e7487c84757ec101ae5b1d7ea3fdd23f7641545f8bf",
+      "customer": {
+        "name": "রাশেদ খান",
+        "phone": "01812345678",
+        "address": "রোড ৪, সেক্টর ৭, উত্তরা, ঢাকা",
+        "district": "ঢাকা"
+      },
+      "items": [
+        {
+          "productId": "6ad118d5bd9c2a6708aebd8f",
+          "productName": "এক্সক্লুসিভ অ্যামব্রয়ডারি প্রিমিয়াম কোটি সেট (Exclusive Embroidered Koti Set)",
+          "slug": "exclusive-embroidered-koti-set",
+          "unitPrice": 1850,
+          "quantity": 3,
+          "subtotal": 5550
+        }
+      ],
+      "subtotal": 5550,
+      "discount": 0,
+      "deliveryCharge": 70,
+      "deliveryZone": "inside_dhaka",
+      "total": 5620,
+      "paymentMethod": "cash_on_delivery",
+      "paymentStatus": "unpaid",
+      "orderStatus": "shipped",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-15T19:58:44.281Z",
+          "note": "অর্ডার প্লেস করা হয়েছে"
+        },
+        {
+          "status": "shipped",
+          "timestamp": "2026-10-15T19:58:44.282Z",
+          "note": "কুরিয়ারে পাঠানো হয়েছে"
+        }
+      ],
+      "createdAt": "2026-10-15T19:58:44.281Z",
+      "_id": "6ad130741fa2a79e1d1cd525",
+      "updatedAt": "2026-10-15T19:58:44.282Z"
+    }
+  ]
 }
