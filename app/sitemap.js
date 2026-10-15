@@ -5,7 +5,7 @@ import { getCollection } from '@/lib/mongodb';
 import { initDatabase } from '@/lib/db-init';
 
 export default async function sitemap() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bichitrashop.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bichitrashop.vercel.app/';
 
   const staticPages = [
     {

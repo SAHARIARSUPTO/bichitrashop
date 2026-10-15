@@ -2,7 +2,7 @@
 // Technical SEO: Configurable robots.txt with dedicated rules for Googlebot, Bingbot, and general web crawlers
 
 export default function robots() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bichitrashop.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bichitrashop.vercel.app/';
 
   return {
     rules: [
