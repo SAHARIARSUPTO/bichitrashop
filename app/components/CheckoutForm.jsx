@@ -20,7 +20,10 @@ export default function CheckoutForm({ product, initialVariant = null, onSuccess
   const [quantity, setQuantity] = useState(1);
   const [selectedVariant, setSelectedVariant] = useState(initialVariant || {
     size: product?.variants?.sizes?.[0] || '',
-    color: product?.variants?.colors?.[0] || ''
+    color: product?.variants?.colors?.[0] || '',
+    capacity: product?.variants?.capacities?.[0] || '',
+    weight: product?.variants?.weights?.[0] || '',
+    warranty: product?.variants?.warranty || ''
   });
 
   const [loading, setLoading] = useState(false);
@@ -188,7 +191,7 @@ export default function CheckoutForm({ product, initialVariant = null, onSuccess
           </div>
         </div>
 
-        {/* Variants (If Product has Sizes or Colors) */}
+        {/* Variants: Fashion Sizes */}
         {product.variants?.sizes && product.variants.sizes.length > 0 && (
           <div className="mb-4">
             <label className="block text-xs font-bold text-[#0F2417] mb-1.5">
@@ -200,7 +203,7 @@ export default function CheckoutForm({ product, initialVariant = null, onSuccess
                   key={size}
                   type="button"
                   onClick={() => setSelectedVariant({ ...selectedVariant, size })}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold border transition-all ${
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold border transition-all cursor-pointer ${
                     selectedVariant.size === size
                       ? 'bg-[#08542C] text-white border-[#08542C] shadow-xs'
                       : 'bg-white text-[#4B6354] border-[#E2ECE3] hover:border-[#08542C]'
@@ -213,8 +216,59 @@ export default function CheckoutForm({ product, initialVariant = null, onSuccess
           </div>
         )}
 
+        {/* Variants: Appliance Capacities / Power */}
+        {product.variants?.capacities && product.variants.capacities.length > 0 && (
+          <div className="mb-4">
+            <label className="block text-xs font-bold text-[#0F2417] mb-1.5">
+              ক্যাপাসিটি / পাওয়ার নির্বাচন করুন:
+            </label>
+            <div className="flex flex-wrap gap-2">
+              {product.variants.capacities.map((cap) => (
+                <button
+                  key={cap}
+                  type="button"
+                  onClick={() => setSelectedVariant({ ...selectedVariant, capacity: cap })}
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold border transition-all cursor-pointer ${
+                    selectedVariant.capacity === cap
+                      ? 'bg-[#08542C] text-white border-[#08542C] shadow-xs'
+                      : 'bg-white text-[#4B6354] border-[#E2ECE3] hover:border-[#08542C]'
+                  }`}
+                >
+                  {cap}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Variants: Organic Food Weights / Pack Sizes */}
+        {product.variants?.weights && product.variants.weights.length > 0 && (
+          <div className="mb-4">
+            <label className="block text-xs font-bold text-[#0F2417] mb-1.5">
+              ওজন / প্যাক সাইজ নির্বাচন করুন:
+            </label>
+            <div className="flex flex-wrap gap-2">
+              {product.variants.weights.map((wt) => (
+                <button
+                  key={wt}
+                  type="button"
+                  onClick={() => setSelectedVariant({ ...selectedVariant, weight: wt })}
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold border transition-all cursor-pointer ${
+                    selectedVariant.weight === wt
+                      ? 'bg-[#08542C] text-white border-[#08542C] shadow-xs'
+                      : 'bg-white text-[#4B6354] border-[#E2ECE3] hover:border-[#08542C]'
+                  }`}
+                >
+                  {wt}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Variants: Colors */}
         {product.variants?.colors && product.variants.colors.length > 0 && (
-          <div className="mb-6">
+          <div className="mb-4">
             <label className="block text-xs font-bold text-[#0F2417] mb-1.5">
               কালার নির্বাচন করুন:
             </label>
@@ -224,7 +278,7 @@ export default function CheckoutForm({ product, initialVariant = null, onSuccess
                   key={color}
                   type="button"
                   onClick={() => setSelectedVariant({ ...selectedVariant, color })}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold border transition-all ${
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold border transition-all cursor-pointer ${
                     selectedVariant.color === color
                       ? 'bg-[#08542C] text-white border-[#08542C] shadow-xs'
                       : 'bg-white text-[#4B6354] border-[#E2ECE3] hover:border-[#08542C]'
@@ -234,6 +288,14 @@ export default function CheckoutForm({ product, initialVariant = null, onSuccess
                 </button>
               ))}
             </div>
+          </div>
+        )}
+
+        {/* Warranty Assurance Pill */}
+        {product.variants?.warranty && (
+          <div className="mb-5 p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs font-bold flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4 text-emerald-700 stroke-[2] shrink-0" />
+            <span>অফিসিয়াল নিশ্চয়তা: {product.variants.warranty}</span>
           </div>
         )}
 

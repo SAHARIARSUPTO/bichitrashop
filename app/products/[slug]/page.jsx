@@ -202,6 +202,8 @@ export default async function ProductDetailPage({ params }) {
               <Link href={`/products?category=${product.category}`} className="hover:text-black">
                 {product.category === 'mens-fashion' ? 'মেনস ফ্যাশন' :
                  product.category === 'womens-fashion' ? 'উইমেনস ফ্যাশন' :
+                 product.category === 'gadgets' ? 'স্মার্ট গ্যাজেটস' :
+                 product.category === 'home-appliances' ? 'হোম ও কিচেন অ্যাপ্লায়েন্স' :
                  product.category === 'home-living' ? 'হোম ও লিভিং' :
                  product.category === 'organic-food' ? 'অর্গানিক ফুড' : product.category}
               </Link>
@@ -228,6 +230,13 @@ export default async function ProductDetailPage({ params }) {
                   <span>ক্যাশ অন ডেলিভারি</span>
                 </span>
                 
+                {product.variants?.warranty && (
+                  <span className="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-900 text-xs font-bold border border-emerald-200 inline-flex items-center gap-1.5">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-700 stroke-[2]" />
+                    <span>{product.variants.warranty}</span>
+                  </span>
+                )}
+
                 {product.featured && (
                   <span className="px-2.5 py-1 rounded-full bg-zinc-100 text-zinc-900 text-xs font-bold border border-zinc-200 inline-flex items-center gap-1.5">
                     <Flame className="w-3.5 h-3.5 text-black stroke-[2]" />

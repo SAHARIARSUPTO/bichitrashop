@@ -26,8 +26,9 @@ export async function PATCH(request, { params }) {
 
     const parseResult = orderStatusUpdateSchema.safeParse(body);
     if (!parseResult.success) {
+      const err = parseResult.error.issues?.[0]?.message || parseResult.error.errors?.[0]?.message || 'অবৈধ স্ট্যাটাস।';
       return Response.json(
-        { success: false, error: parseResult.error.errors[0]?.message || 'অবৈধ স্ট্যাটাস।' },
+        { success: false, error: err },
         { status: 400 }
       );
     }

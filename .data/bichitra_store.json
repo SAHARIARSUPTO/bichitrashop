@@ -7,21 +7,21 @@
         "outside_dhaka": 130
       },
       "contact": {
-        "phone": "+880 1761674164",
+        "phone": "+880 1700-000000",
         "email": "support@bichitrashop.com",
         "address": "Mirpur, Dhaka-1216, Bangladesh"
       },
-      "announcement": "ক্যাশ অন ডেলিভারি সুবিধা সারা বাংলাদেশে! পণ্য হাতে পেয়ে মূল্য পরিশোধের নিশ্চয়তা।",
+      "announcement": "🎉 ক্যাশ অন ডেলিভারি সুবিধা সারা বাংলাদেশে! পণ্য হাতে পেয়ে মূল্য পরিশোধের নিশ্চয়তা।",
       "createdAt": "2026-10-15T18:17:56.858Z",
       "_id": "6ad118d4bd9c2a6708aebd89",
-      "updatedAt": "2026-10-15T19:22:48.295Z",
+      "updatedAt": "2026-10-15T19:39:12.485Z",
       "heroBanners": [
         {
           "id": 1,
-          "title": "এক্সক্লুসিভ অ্যামব্রয়ডারি প্রিমিয়াম কোটি সেট",
+          "title": "এক্সক্লুসিভ অ্যামব্রয়ডারি প্রিমিয়াম কোটি ও পাঞ্জাবি সেট",
           "subtitle": "পারিবারিক অনুষ্ঠান ও উৎসবের জন্য আরামদায়ক সিল্ক-কটন ব্লেন্ড এবং নিখুঁত হ্যান্ডক্রাফটেড ফিনিশিং",
           "badge": "ফেস্টিভ অফার",
-          "tag": "মেনস কালেকশন",
+          "tag": "মেনস ফ্যাশন",
           "price": 1850,
           "comparePrice": 2450,
           "discount": "৳৬০০ ছাড় (২৫%)",
@@ -31,8 +31,8 @@
         },
         {
           "id": 2,
-          "title": "দুবাই চেরি জর্জেট পার্টি আবায়া ও বোরকা",
-          "subtitle": "মার্জিত ডিজাইন, শতভাগ পাকা রঙ ও আরামদায়ক দুবাই চেরি জর্জেট ফেব্রিক কালেকশন",
+          "title": "দুবাই চেরি জর্জেট পার্টি আবায়া ও বোরকা কালেকশন",
+          "subtitle": "মার্জিত ডিজাইন, শতভাগ পাকা রঙ ও আরামদায়ক প্রিমিয়াম দুবাই চেরি জর্জেট ফেব্রিক",
           "badge": "নতুন কালেকশন",
           "tag": "উইমেনস ফ্যাশন",
           "price": 2250,
@@ -44,8 +44,34 @@
         },
         {
           "id": 3,
-          "title": "খাঁটি সুন্দরবনের মধু ও ঘানির সরিষার তেল",
-          "subtitle": "প্রাকৃতিক মৌচাকের কাঁচা মধু এবং দেশি কাঠের ঘানিতে ভাঙানো প্রথম চাপের সরিষার তেল কম্বো",
+          "title": "স্মার্ট ওয়্যারলেস ব্লুটুথ ইয়ারবাডস ও অডিও গ্যাজেটস",
+          "subtitle": "ডিপ বাস, নয়েজ ক্যান্সেলেশন এবং ২০ ঘণ্টার লং ব্যাটারি ব্যাকআপযুক্ত ডিজিটাল ডিসপ্লে গ্যাজেট",
+          "badge": "স্মার্ট গ্যাজেটস",
+          "tag": "গেজেটস অফার",
+          "price": 890,
+          "comparePrice": 1350,
+          "discount": "৳৪৬০ ছাড় (৩৪%)",
+          "slug": "wireless-stereo-earbuds",
+          "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=1600&q=80",
+          "active": true
+        },
+        {
+          "id": 4,
+          "title": "মাল্টিফাংশন হোম ও কিচেন অ্যাপ্লায়েন্স",
+          "subtitle": "আধুনিক গৃহস্থালির সহজ রান্নাবান্না ও লাইফস্টাইলের জন্য প্রিমিয়াম ইলেকট্রিক ব্লেন্ডার ও কিচেন গ্যাজেট",
+          "badge": "হোম ও কিচেন",
+          "tag": "অ্যাপ্লায়েন্স",
+          "price": 1950,
+          "comparePrice": 2600,
+          "discount": "৳৬৫০ ছাড় (২৫%)",
+          "slug": "multi-function-foldable-laptop-table",
+          "image": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1600&q=80",
+          "active": true
+        },
+        {
+          "id": 5,
+          "title": "সুন্দরবনের প্রাকৃতিক কাঁচা মধু ও ঘানির সরিষার তেল",
+          "subtitle": "প্রাকৃতিক মৌচাকের খাঁটি মধু এবং দেশি কাঠের ঘানিতে ভাঙানো প্রথম চাপের ঝাঁঝালো সরিষার তেল কম্বো",
           "badge": "১০০% খাঁটি পণ্য",
           "tag": "অর্গানিক ফুড",
           "price": 980,
@@ -53,19 +79,6 @@
           "discount": "৳২৭০ ছাড় (২২%)",
           "slug": "sundarban-raw-honey-mustard-oil-bundle",
           "image": "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=1600&q=80",
-          "active": true
-        },
-        {
-          "id": 4,
-          "title": "মাল্টিফাংশন ফোল্ডেবল ল্যাপটপ টেবিল",
-          "subtitle": "বিছানা বা সোফায় বসে আরামদায়ক পড়াশোনা ও অফিস কাজের জন্য মজবুত ফোল্ডিং টেবিল",
-          "badge": "স্মার্ট লাইফস্টাইল",
-          "tag": "হোম ও গ্যাজেট",
-          "price": 750,
-          "comparePrice": 1050,
-          "discount": "৳৩০০ ছাড় (২৯%)",
-          "slug": "multi-function-foldable-laptop-table",
-          "image": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80",
           "active": true
         }
       ]
@@ -78,9 +91,9 @@
       "role": "superadmin",
       "name": "Bichitra Shop Administrator",
       "createdAt": "2026-10-15T18:17:57.099Z",
-      "updatedAt": "2026-10-15T19:22:33.271Z",
+      "updatedAt": "2026-10-15T18:45:31.878Z",
       "_id": "6ad118d5bd9c2a6708aebd8a",
-      "lastLoginAt": "2026-10-15T19:22:33.271Z"
+      "lastLoginAt": "2026-10-15T18:45:31.878Z"
     }
   ],
   "categories": [
@@ -92,7 +105,7 @@
       "status": "active",
       "createdAt": "2026-10-15T18:17:57.099Z",
       "_id": "6ad118d5bd9c2a6708aebd8b",
-      "updatedAt": "2026-10-15T18:17:57.100Z"
+      "updatedAt": "2026-10-15T19:39:19.274Z"
     },
     {
       "name": "উইমেনস ফ্যাশন",
@@ -102,7 +115,7 @@
       "status": "active",
       "createdAt": "2026-10-15T18:17:57.099Z",
       "_id": "6ad118d5bd9c2a6708aebd8c",
-      "updatedAt": "2026-10-15T18:17:57.100Z"
+      "updatedAt": "2026-10-15T19:39:19.275Z"
     },
     {
       "name": "হোম ও লিভিং",
@@ -112,7 +125,7 @@
       "status": "active",
       "createdAt": "2026-10-15T18:17:57.099Z",
       "_id": "6ad118d5bd9c2a6708aebd8d",
-      "updatedAt": "2026-10-15T18:17:57.100Z"
+      "updatedAt": "2026-10-15T19:39:19.276Z"
     },
     {
       "name": "অর্গানিক ফুড",
@@ -122,7 +135,27 @@
       "status": "active",
       "createdAt": "2026-10-15T18:17:57.099Z",
       "_id": "6ad118d5bd9c2a6708aebd8e",
-      "updatedAt": "2026-10-15T18:17:57.101Z"
+      "updatedAt": "2026-10-15T19:39:19.277Z"
+    },
+    {
+      "slug": "gadgets",
+      "name": "স্মার্ট গ্যাজেটস",
+      "description": "ব্লুটুথ ইয়ারবাডস, স্মার্টওয়াচ ও টেক গ্যাজেটস",
+      "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=600&q=80",
+      "status": "active",
+      "_id": "6ad12b36a4fcf1a2baec6e35",
+      "createdAt": "2026-10-15T19:36:22.226Z",
+      "updatedAt": "2026-10-15T19:39:19.275Z"
+    },
+    {
+      "slug": "home-appliances",
+      "name": "হোম ও কিচেন অ্যাপ্লায়েন্স",
+      "description": "ব্লেন্ডার, ইলেকট্রিক কেটলি ও আধুনিক গৃহস্থালি সরঞ্জাম",
+      "image": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80",
+      "status": "active",
+      "_id": "6ad12b36a4fcf1a2baec6e36",
+      "createdAt": "2026-10-15T19:36:22.227Z",
+      "updatedAt": "2026-10-15T19:39:19.276Z"
     }
   ],
   "products": [
@@ -151,7 +184,7 @@
           "ক্লাসিক ব্ল্যাক"
         ]
       },
-      "stockQuantity": 40,
+      "stockQuantity": 45,
       "status": "published",
       "featured": true,
       "seo": {
@@ -159,7 +192,7 @@
         "description": "আকর্ষণীয় অফারে কিনুন এক্সক্লুসিভ কোটি সেট। ক্যাশ অন ডেলিভারি সারা বাংলাদেশে। বিচিত্র শপ।"
       },
       "createdAt": "2026-10-15T18:17:57.101Z",
-      "updatedAt": "2026-10-15T19:22:32.942Z",
+      "updatedAt": "2026-10-15T18:17:57.101Z",
       "_id": "6ad118d5bd9c2a6708aebd8f"
     },
     {
@@ -295,7 +328,7 @@
       "slug": "wireless-stereo-earbuds",
       "shortDescription": "ডিপ বাস, অ্যাক্টিভ নয়েজ ক্যান্সেলেশন এবং ২০ ঘণ্টার লং ব্যাটারি ব্যাকআপযুক্ত ডিজিটাল ডিসপ্লে ইয়ারবাডস।",
       "description": "ক্রিস্টাল ক্লিয়ার কলিং এবং পাওয়ারফুল সাউন্ড কোয়ালিটির ব্লুটুথ ৫.৩ ওয়্যারলেস ইয়ারবাডস।\nডিজিটাল ব্যাটারি পার্সেন্টেজ ডিসপ্লে।\n\nফিচার:\n• এইচডি স্টেরিও সাউন্ড উইথ ডিপ বাস\n• টাচ কন্ট্রোল ফিচার\n• সোয়েট অ্যান্ড ওয়াটার রেজিস্ট্যান্ট\n• চার্জিং কেসসহ ২০ ঘণ্টার প্লেব্যাক",
-      "category": "home-living",
+      "category": "gadgets",
       "price": 890,
       "compareAtPrice": 1350,
       "images": [
@@ -316,275 +349,89 @@
         "description": "হাই-কোয়ালিটি সাউন্ড ও ডিজিটাল ডিসপ্লে ব্লুটুথ ইয়ারবাডস। ক্যাশ অন ডেলিভারি।"
       },
       "createdAt": "2026-10-15T18:17:57.101Z",
-      "updatedAt": "2026-10-15T18:17:57.103Z",
-      "_id": "6ad118d5bd9c2a6708aebd94"
+      "updatedAt": "2026-10-15T19:39:12.483Z",
+      "_id": "6ad118d5bd9c2a6708aebd94",
+      "variants.warranty": "৬ মাস রিপ্লেসমেন্ট ওয়ারেন্টি",
+      "variants.specs": "ব্লুটুথ ৫.৩, ২০ ঘণ্টা ব্যাকআপ, এইচডি ডিপ বাস"
+    },
+    {
+      "name": "প্রিমিয়াম ২ লিটার স্টেইনলেস স্টিল ইলেকট্রিক কেটলি (Electric Fast Heating Kettle)",
+      "slug": "electric-fast-heating-stainless-kettle",
+      "shortDescription": "অটো শাট-অফ, ওভারহিট প্রোটেকশন ও দ্রুত পানি গরম করার স্টেইনলেস স্টিল ইলেকট্রিক কেটলি।",
+      "description": "প্রতিদিনের চা, কফি বা গরম পানির জন্য আধুনিক ও নিরাপদ ইলেকট্রিক কেটলি। \nউচ্চমানের ফুড গ্রেড স্টেইনলেস স্টিল দিয়ে তৈরি, যা সম্পূর্ণ মরিচারোধী ও টেকসই।\n\nমূল বৈশিষ্ট্য:\n• ক্যাপাসিটি: ২.০ লিটার\n• পাওয়ার: ১৫০০ ওয়াট দ্রুত হিটিং\n• অটোমেটিক শাট-অফ প্রযুক্তি (পানি ফুটলে নিজে থেকেই বন্ধ হয়ে যায়)\n• ড্রাই বয়েল প্রোটেকশন\n• ৩৬০ ডিগ্রি রোটেটিং বেস ও কর্ডলেস ব্যবহার\n• ১ বছর অফিসিয়াল সার্ভিস ওয়ারেন্টি",
+      "category": "home-appliances",
+      "price": 950,
+      "compareAtPrice": 1350,
+      "images": [
+        "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80"
+      ],
+      "variants": {
+        "capacities": [
+          "2.0 Litre (1500W)"
+        ],
+        "colors": [
+          "সিলভার-ব্ল্যাক",
+          "মেটালিক রেড"
+        ],
+        "warranty": "১ বছর অফিসিয়াল সার্ভিস ওয়ারেন্টি",
+        "specs": "১৫০০W পাওয়ার, অটো শাট-অফ, ফুড গ্রেড স্টিল"
+      },
+      "stockQuantity": 40,
+      "status": "published",
+      "featured": true,
+      "seo": {
+        "title": "২ লিটার স্টেইনলেস স্টিল ইলেকট্রিক কেটলি | Bichitra Shop",
+        "description": "দ্রুত পানি গরম করার জন্য প্রিমিয়াম ইলেকট্রিক কেটলি। ক্যাশ অন ডেলিভারি সারা বাংলাদেশে।"
+      },
+      "createdAt": "2026-10-15T19:39:12.484Z",
+      "updatedAt": "2026-10-15T19:39:12.484Z",
+      "_id": "6ad12be0f69a1a44a57081da"
     }
   ],
   "orders": [
     {
-      "orderReference": "BC-402580-11",
-      "confirmationTokenHash": "4b9c2c77becdb633711ed1bea061d1880ee15aaadc97d6849b87c52ff4047e83",
-      "idempotencyKey": null,
+      "orderReference": "BC-124276-62",
+      "confirmationTokenHash": "b4171fa7edd05b32d88c4d0be33686c1ce922530613582770da5f0e55654d4d5",
       "customer": {
-        "name": "সাকিব আল হাসান",
-        "phone": "01711223344",
-        "address": "বাড়ি ৫, রোড ২, মিরপুর ২",
-        "district": "ঢাকা (Dhaka)",
-        "email": null,
-        "notes": ""
+        "name": "রাশেদ খান",
+        "phone": "01812345678",
+        "address": "রোড ৪, সেক্টর ৭, উত্তরা, ঢাকা",
+        "district": "ঢাকা"
       },
       "items": [
         {
           "productId": "6ad118d5bd9c2a6708aebd8f",
           "productName": "এক্সক্লুসিভ অ্যামব্রয়ডারি প্রিমিয়াম কোটি সেট (Exclusive Embroidered Koti Set)",
           "slug": "exclusive-embroidered-koti-set",
-          "image": "https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=800&q=80",
           "unitPrice": 1850,
-          "quantity": 1,
-          "variant": {
-            "size": "L (40)",
-            "color": "রয়েল নেভি ব্লু"
-          },
-          "subtotal": 1850
+          "quantity": 3,
+          "subtotal": 5550
         }
       ],
-      "subtotal": 1850,
+      "subtotal": 5550,
       "discount": 0,
       "deliveryCharge": 70,
       "deliveryZone": "inside_dhaka",
-      "total": 1920,
-      "currency": "BDT",
+      "total": 5620,
       "paymentMethod": "cash_on_delivery",
       "paymentStatus": "unpaid",
-      "orderStatus": "confirmed",
+      "orderStatus": "shipped",
       "statusHistory": [
         {
           "status": "pending",
-          "timestamp": "2026-10-15T18:47:22.806Z",
-          "note": "অর্ডার সফলভাবে প্লেস করা হয়েছে (Cash on Delivery)"
+          "timestamp": "2026-10-15T19:39:19.981Z",
+          "note": "অর্ডার প্লেস করা হয়েছে"
         },
         {
-          "status": "confirmed",
-          "timestamp": "2026-10-15T18:47:25.579Z",
-          "updatedBy": "admin@bichitrashop.com",
-          "note": "কাস্টমারের সাথে কথা বলে অর্ডার নিশ্চিত করা হয়েছে।"
+          "status": "shipped",
+          "timestamp": "2026-10-15T19:39:19.982Z",
+          "note": "কুরিয়ারে পাঠানো হয়েছে"
         }
       ],
-      "createdAt": "2026-10-15T18:47:22.806Z",
-      "updatedAt": "2026-10-15T18:47:25.579Z",
-      "_id": "6ad11fbaa4fcf1a2baec6e30"
-    },
-    {
-      "orderReference": "BC-783025-7D",
-      "confirmationTokenHash": "3bd5cd267e4625d3dc36b6136c80eb0562aeb6f88bd3557fe524654e974dd7ff",
-      "idempotencyKey": null,
-      "customer": {
-        "name": "সাকিব আল হাসান",
-        "phone": "01711223344",
-        "address": "বাড়ি ৫, রোড ২, মিরপুর ২",
-        "district": "ঢাকা (Dhaka)",
-        "email": null,
-        "notes": ""
-      },
-      "items": [
-        {
-          "productId": "6ad118d5bd9c2a6708aebd8f",
-          "productName": "এক্সক্লুসিভ অ্যামব্রয়ডারি প্রিমিয়াম কোটি সেট (Exclusive Embroidered Koti Set)",
-          "slug": "exclusive-embroidered-koti-set",
-          "image": "https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=800&q=80",
-          "unitPrice": 1850,
-          "quantity": 1,
-          "variant": {
-            "size": "L (40)",
-            "color": "রয়েল নেভি ব্লু"
-          },
-          "subtotal": 1850
-        }
-      ],
-      "subtotal": 1850,
-      "discount": 0,
-      "deliveryCharge": 70,
-      "deliveryZone": "inside_dhaka",
-      "total": 1920,
-      "currency": "BDT",
-      "paymentMethod": "cash_on_delivery",
-      "paymentStatus": "unpaid",
-      "orderStatus": "confirmed",
-      "statusHistory": [
-        {
-          "status": "pending",
-          "timestamp": "2026-10-15T18:57:48.240Z",
-          "note": "অর্ডার সফলভাবে প্লেস করা হয়েছে (Cash on Delivery)"
-        },
-        {
-          "status": "confirmed",
-          "timestamp": "2026-10-15T18:57:48.634Z",
-          "updatedBy": "admin@bichitrashop.com",
-          "note": "কাস্টমারের সাথে কথা বলে অর্ডার নিশ্চিত করা হয়েছে।"
-        }
-      ],
-      "createdAt": "2026-10-15T18:57:48.240Z",
-      "updatedAt": "2026-10-15T18:57:48.634Z",
-      "_id": "6ad1222ca4fcf1a2baec6e31"
-    },
-    {
-      "orderReference": "BC-543772-BA",
-      "confirmationTokenHash": "c4441223b8caa0802101abdbc906e65b09cd51b205519a7e31258386ee68f82e",
-      "idempotencyKey": null,
-      "customer": {
-        "name": "সাকিব আল হাসান",
-        "phone": "01711223344",
-        "address": "বাড়ি ৫, রোড ২, মিরপুর ২",
-        "district": "ঢাকা (Dhaka)",
-        "email": null,
-        "notes": ""
-      },
-      "items": [
-        {
-          "productId": "6ad118d5bd9c2a6708aebd8f",
-          "productName": "এক্সক্লুসিভ অ্যামব্রয়ডারি প্রিমিয়াম কোটি সেট (Exclusive Embroidered Koti Set)",
-          "slug": "exclusive-embroidered-koti-set",
-          "image": "https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=800&q=80",
-          "unitPrice": 1850,
-          "quantity": 1,
-          "variant": {
-            "size": "L (40)",
-            "color": "রয়েল নেভি ব্লু"
-          },
-          "subtotal": 1850
-        }
-      ],
-      "subtotal": 1850,
-      "discount": 0,
-      "deliveryCharge": 70,
-      "deliveryZone": "inside_dhaka",
-      "total": 1920,
-      "currency": "BDT",
-      "paymentMethod": "cash_on_delivery",
-      "paymentStatus": "unpaid",
-      "orderStatus": "confirmed",
-      "statusHistory": [
-        {
-          "status": "pending",
-          "timestamp": "2026-10-15T19:08:34.073Z",
-          "note": "অর্ডার সফলভাবে প্লেস করা হয়েছে (Cash on Delivery)"
-        },
-        {
-          "status": "confirmed",
-          "timestamp": "2026-10-15T19:08:34.479Z",
-          "updatedBy": "admin@bichitrashop.com",
-          "note": "কাস্টমারের সাথে কথা বলে অর্ডার নিশ্চিত করা হয়েছে।"
-        }
-      ],
-      "createdAt": "2026-10-15T19:08:34.073Z",
-      "updatedAt": "2026-10-15T19:08:34.479Z",
-      "_id": "6ad124b2a4fcf1a2baec6e32"
-    },
-    {
-      "orderReference": "BC-695820-6E",
-      "confirmationTokenHash": "e8ac54bf8ef77d8ee029bd32baceab7829a225a3d9a8b0388fe1a50f94e34b9a",
-      "idempotencyKey": null,
-      "customer": {
-        "name": "সাকিব আল হাসান",
-        "phone": "01711223344",
-        "address": "বাড়ি ৫, রোড ২, মিরপুর ২",
-        "district": "ঢাকা (Dhaka)",
-        "email": null,
-        "notes": ""
-      },
-      "items": [
-        {
-          "productId": "6ad118d5bd9c2a6708aebd8f",
-          "productName": "এক্সক্লুসিভ অ্যামব্রয়ডারি প্রিমিয়াম কোটি সেট (Exclusive Embroidered Koti Set)",
-          "slug": "exclusive-embroidered-koti-set",
-          "image": "https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=800&q=80",
-          "unitPrice": 1850,
-          "quantity": 1,
-          "variant": {
-            "size": "L (40)",
-            "color": "রয়েল নেভি ব্লু"
-          },
-          "subtotal": 1850
-        }
-      ],
-      "subtotal": 1850,
-      "discount": 0,
-      "deliveryCharge": 70,
-      "deliveryZone": "inside_dhaka",
-      "total": 1920,
-      "currency": "BDT",
-      "paymentMethod": "cash_on_delivery",
-      "paymentStatus": "unpaid",
-      "orderStatus": "confirmed",
-      "statusHistory": [
-        {
-          "status": "pending",
-          "timestamp": "2026-10-15T19:19:39.627Z",
-          "note": "অর্ডার সফলভাবে প্লেস করা হয়েছে (Cash on Delivery)"
-        },
-        {
-          "status": "confirmed",
-          "timestamp": "2026-10-15T19:19:40.040Z",
-          "updatedBy": "admin@bichitrashop.com",
-          "note": "কাস্টমারের সাথে কথা বলে অর্ডার নিশ্চিত করা হয়েছে।"
-        }
-      ],
-      "createdAt": "2026-10-15T19:19:39.627Z",
-      "updatedAt": "2026-10-15T19:19:40.040Z",
-      "_id": "6ad1274ba4fcf1a2baec6e33"
-    },
-    {
-      "orderReference": "BC-246179-EA",
-      "confirmationTokenHash": "83edaf99547e2e51c24a1f50dd65f5b170058244cc8d1946a39c659b27beed4f",
-      "idempotencyKey": null,
-      "customer": {
-        "name": "সাকিব আল হাসান",
-        "phone": "01711223344",
-        "address": "বাড়ি ৫, রোড ২, মিরপুর ২",
-        "district": "ঢাকা (Dhaka)",
-        "email": null,
-        "notes": ""
-      },
-      "items": [
-        {
-          "productId": "6ad118d5bd9c2a6708aebd8f",
-          "productName": "এক্সক্লুসিভ অ্যামব্রয়ডারি প্রিমিয়াম কোটি সেট (Exclusive Embroidered Koti Set)",
-          "slug": "exclusive-embroidered-koti-set",
-          "image": "https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=800&q=80",
-          "unitPrice": 1850,
-          "quantity": 1,
-          "variant": {
-            "size": "L (40)",
-            "color": "রয়েল নেভি ব্লু"
-          },
-          "subtotal": 1850
-        }
-      ],
-      "subtotal": 1850,
-      "discount": 0,
-      "deliveryCharge": 70,
-      "deliveryZone": "inside_dhaka",
-      "total": 1920,
-      "currency": "BDT",
-      "paymentMethod": "cash_on_delivery",
-      "paymentStatus": "unpaid",
-      "orderStatus": "confirmed",
-      "statusHistory": [
-        {
-          "status": "pending",
-          "timestamp": "2026-10-15T19:22:32.941Z",
-          "note": "অর্ডার সফলভাবে প্লেস করা হয়েছে (Cash on Delivery)"
-        },
-        {
-          "status": "confirmed",
-          "timestamp": "2026-10-15T19:22:33.360Z",
-          "updatedBy": "admin@bichitrashop.com",
-          "note": "কাস্টমারের সাথে কথা বলে অর্ডার নিশ্চিত করা হয়েছে।"
-        }
-      ],
-      "createdAt": "2026-10-15T19:22:32.941Z",
-      "updatedAt": "2026-10-15T19:22:33.360Z",
-      "_id": "6ad127f8a4fcf1a2baec6e34"
+      "createdAt": "2026-10-15T19:39:19.981Z",
+      "_id": "6ad12be79eb831f88a0b6d74",
+      "updatedAt": "2026-10-15T19:39:19.982Z"
     }
   ]
 }

@@ -23,6 +23,7 @@ import {
   ArrowDown
 } from 'lucide-react';
 import { DEFAULT_HERO_BANNERS, SAMPLE_BANNER_IMAGES } from '@/lib/banners';
+import ImageUploader from '@/app/components/ImageUploader';
 
 
 export default function SettingsManager({ initialSettings = {} }) {
@@ -303,44 +304,20 @@ export default function SettingsManager({ initialSettings = {} }) {
 
                   {/* Banner Fields Grid */}
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
-                    {/* Left: Image URL & Preview (5 cols) */}
+                    {/* Left: Cloudinary Image Uploader & Preview (5 cols) */}
                     <div className="lg:col-span-5 space-y-3">
-                      <div>
-                        <label className="block text-xs font-bold text-zinc-900 mb-1">
-                          ব্যানার ছবির লিংক (Image URL)
-                        </label>
-                        <input
-                          type="url"
-                          value={banner.image || ''}
-                          onChange={(e) => handleBannerChange(index, 'image', e.target.value)}
-                          placeholder="https://images.unsplash.com/..."
-                          className="w-full px-3 py-2 rounded-xl border border-zinc-200 text-xs focus:border-zinc-900 outline-none bg-zinc-50"
-                        />
-                      </div>
-
-                      {/* Image Preview Box */}
-                      <div className="relative aspect-16/9 rounded-xl overflow-hidden bg-zinc-100 border border-zinc-200">
-                        {banner.image ? (
-                          <Image
-                            src={banner.image}
-                            alt={banner.title || 'Banner Preview'}
-                            fill
-                            sizes="(max-width: 768px) 100vw, 400px"
-                            className="object-cover"
-                            unoptimized
-                          />
-                        ) : (
-                          <div className="flex flex-col items-center justify-center h-full text-zinc-400 text-xs gap-1">
-                            <ImageIcon className="w-6 h-6 stroke-[1.5]" />
-                            <span>ছবির প্রিভিউ</span>
-                          </div>
-                        )}
-                      </div>
+                      <ImageUploader
+                        value={banner.image || ''}
+                        onChange={(newUrl) => handleBannerChange(index, 'image', newUrl)}
+                        multiple={false}
+                        folder="bichitra_shop/banners"
+                        label="ব্যানার ছবি (Cloudinary ফাইল আপলোড বা লিংক)"
+                      />
 
                       {/* Quick Sample Image Picker */}
-                      <div>
+                      <div className="pt-1">
                         <span className="text-[11px] font-bold text-zinc-500 block mb-1">
-                          প্রস্তাবিত ছবি নির্বাচন করুন:
+                          অথবা প্রস্তাবিত ছবি নির্বাচন করুন:
                         </span>
                         <div className="flex flex-wrap gap-1.5">
                           {SAMPLE_BANNER_IMAGES.map((sample, sIdx) => (
@@ -348,7 +325,7 @@ export default function SettingsManager({ initialSettings = {} }) {
                               key={sIdx}
                               type="button"
                               onClick={() => handleBannerChange(index, 'image', sample.url)}
-                              className="text-[10px] font-semibold px-2 py-1 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors border border-zinc-200"
+                              className="text-[10px] font-semibold px-2 py-1 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors border border-zinc-200 cursor-pointer"
                             >
                               {sample.label}
                             </button>

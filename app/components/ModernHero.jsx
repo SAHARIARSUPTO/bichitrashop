@@ -22,7 +22,9 @@ import {
   PackageCheck,
   RotateCcw,
   LayoutGrid,
-  CheckCircle2
+  CheckCircle2,
+  Tv,
+  Utensils
 } from 'lucide-react';
 import { formatBDT } from '@/lib/pricing';
 import { DEFAULT_HERO_BANNERS } from '@/lib/banners';
@@ -56,9 +58,9 @@ export default function ModernHero({ categories = [], banners = [] }) {
     { name: 'কোটি সেট', href: '/products/exclusive-embroidered-koti-set', icon: Shirt },
     { name: 'পাঞ্জাবি', href: '/products/traditional-jamdani-cotton-panjabi', icon: Sparkles },
     { name: 'বোরকা ও আবায়া', href: '/products/luxury-dubai-cherry-georgette-abaya', icon: Tag },
+    { name: 'স্মার্ট গ্যাজেট', href: '/products?category=gadgets', icon: Headphones },
+    { name: 'হোম অ্যাপ্লায়েন্স', href: '/products?category=home-appliances', icon: Utensils },
     { name: 'খাঁটি মধু ও তেল', href: '/products/sundarban-raw-honey-mustard-oil-bundle', icon: Leaf },
-    { name: 'ল্যাপটপ টেবিল', href: '/products/multi-function-foldable-laptop-table', icon: Laptop },
-    { name: 'ব্লুটুথ ইয়ারবাডস', href: '/products/wireless-stereo-earbuds', icon: Headphones },
     { name: 'ফ্রি ডেলিভারি অফার', href: '/products', icon: Truck, highlight: true }
   ];
 
@@ -81,6 +83,22 @@ export default function ModernHero({ categories = [], banners = [] }) {
       desc: "দুবাই চেরি জর্জেট পার্টি আবায়া"
     },
     {
+      name: "স্মার্ট গ্যাজেটস ও অডিও",
+      href: "/products?category=gadgets",
+      icon: Headphones,
+      badge: "ট্রেন্ডিং",
+      badgeColor: "bg-blue-600 text-white",
+      desc: "ব্লুটুথ ইয়ারবাডস, স্মার্টওয়াচ"
+    },
+    {
+      name: "হোম ও কিচেন অ্যাপ্লায়েন্স",
+      href: "/products?category=home-appliances",
+      icon: Utensils,
+      badge: "জনপ্রিয়",
+      badgeColor: "bg-emerald-700 text-white",
+      desc: "ব্লেন্ডার, ইলেকট্রিক কেটলি, কুকার"
+    },
+    {
       name: "খাঁটি অর্গানিক ফুড ও মধু",
       href: "/products?category=organic-food",
       icon: Leaf,
@@ -93,12 +111,6 @@ export default function ModernHero({ categories = [], banners = [] }) {
       href: "/products?category=home-living",
       icon: Laptop,
       desc: "ফোল্ডেবল ল্যাপটপ টেবিল"
-    },
-    {
-      name: "অডিও ও স্মার্ট গ্যাজেটস",
-      href: "/products?category=home-living",
-      icon: Headphones,
-      desc: "ওয়্যারলেস ব্লুটুথ ইয়ারবাডস"
     },
     {
       name: "বিশেষ ডিসকাউন্ট অফার",
@@ -225,19 +237,21 @@ export default function ModernHero({ categories = [], banners = [] }) {
                     currentSlide === idx ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
                   }`}
                 >
-                  {/* Background Banner Image with Dark Gradient Overlay */}
-                  <div className="absolute inset-0 bg-zinc-950">
+                  {/* Background Banner Image - Bright, Sharp & Prominently Visible */}
+                  <div className="absolute inset-0 bg-zinc-950 overflow-hidden">
                     {slide.image && (
                       <Image
                         src={slide.image}
                         alt={slide.title || 'Banner'}
                         fill
                         sizes="(max-width: 1024px) 100vw, 75vw"
-                        className="object-cover object-center opacity-45 mix-blend-overlay"
+                        className="object-cover object-center"
                         priority={idx === 0}
+                        unoptimized
                       />
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/30" />
+                    {/* Contrast Gradient: Darkened smoothly on the text side only, completely clear on right */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/75 to-black/30 md:bg-gradient-to-r md:from-black/95 md:via-black/70 md:via-45% md:to-transparent" />
                   </div>
 
                   {/* Banner Slide Content (Wide layout with generous spacing) */}
@@ -256,11 +270,11 @@ export default function ModernHero({ categories = [], banners = [] }) {
                         )}
                       </div>
 
-                      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight drop-shadow-xs line-clamp-2">
+                      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight drop-shadow-sm line-clamp-2">
                         {slide.title}
                       </h2>
 
-                      <p className="text-xs sm:text-sm text-white/90 leading-relaxed line-clamp-2 sm:line-clamp-3">
+                      <p className="text-xs sm:text-sm text-white/95 leading-relaxed line-clamp-2 sm:line-clamp-3 drop-shadow-xs">
                         {slide.subtitle}
                       </p>
                     </div>
@@ -268,7 +282,7 @@ export default function ModernHero({ categories = [], banners = [] }) {
                     <div className="space-y-3 pt-3">
                       {/* Price and Savings Pill */}
                       {slide.price && (
-                        <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/20">
+                        <div className="inline-flex items-center gap-3 bg-black/40 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/20">
                           <div>
                             <span className="text-[10px] text-white/80 uppercase tracking-wider block font-semibold">
                               অফার মূল্য
@@ -304,7 +318,7 @@ export default function ModernHero({ categories = [], banners = [] }) {
 
                         <Link
                           href={slide.slug?.startsWith('/') ? slide.slug : `/products/${slide.slug || ''}`}
-                          className="inline-flex items-center gap-1.5 px-4 py-2.5 sm:px-5 sm:py-3 rounded-xl bg-white/15 hover:bg-white/25 border border-white/25 text-white font-semibold text-xs sm:text-sm transition-colors"
+                          className="inline-flex items-center gap-1.5 px-4 py-2.5 sm:px-5 sm:py-3 rounded-xl bg-white/15 hover:bg-white/25 border border-white/25 text-white font-semibold text-xs sm:text-sm transition-colors backdrop-blur-xs"
                         >
                           <span>বিস্তারিত দেখুন</span>
                           <ArrowRight className="w-4 h-4 text-white" />
@@ -319,14 +333,14 @@ export default function ModernHero({ categories = [], banners = [] }) {
               <button
                 onClick={prevSlide}
                 aria-label="Previous Slide"
-                className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-colors backdrop-blur-xs"
+                className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center transition-colors backdrop-blur-xs cursor-pointer"
               >
                 <ChevronLeft className="w-5 h-5 text-white" />
               </button>
               <button
                 onClick={nextSlide}
                 aria-label="Next Slide"
-                className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-colors backdrop-blur-xs"
+                className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center transition-colors backdrop-blur-xs cursor-pointer"
               >
                 <ChevronRight className="w-5 h-5 text-white" />
               </button>
@@ -338,7 +352,7 @@ export default function ModernHero({ categories = [], banners = [] }) {
                     key={i}
                     onClick={() => setCurrentSlide(i)}
                     aria-label={`Go to slide ${i + 1}`}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                    className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                       currentSlide === i ? 'w-6 bg-white' : 'w-1.5 bg-white/40 hover:bg-white'
                     }`}
                   />
@@ -352,7 +366,7 @@ export default function ModernHero({ categories = [], banners = [] }) {
               <div className="bg-white p-3.5 sm:p-4 rounded-xl border border-zinc-200 shadow-2xs flex items-center justify-between gap-3">
                 <div className="space-y-1 min-w-0">
                   <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-zinc-100 border border-zinc-200 text-zinc-900 text-[10px] font-bold">
-                    <PackageCheck className="w-3 h-3 text-black stroke-[2]" />
+                    <PackageCheck className="w-3.5 h-3.5 text-black stroke-[2]" />
                     <span>ক্যাশ অন ডেলিভারি</span>
                   </div>
                   <h4 className="font-bold text-xs sm:text-sm text-zinc-900 truncate">
@@ -377,7 +391,7 @@ export default function ModernHero({ categories = [], banners = [] }) {
               <div className="bg-zinc-50 p-3.5 sm:p-4 rounded-xl border border-zinc-200 shadow-2xs flex items-center justify-between gap-3">
                 <div className="space-y-1 min-w-0">
                   <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-white border border-zinc-200 text-zinc-900 text-[10px] font-bold">
-                    <Truck className="w-3 h-3 text-black stroke-[2]" />
+                    <Truck className="w-3.5 h-3.5 text-black stroke-[2]" />
                     <span>ফ্রি শিপিং</span>
                   </div>
                   <h4 className="font-bold text-xs sm:text-sm text-zinc-900 truncate">

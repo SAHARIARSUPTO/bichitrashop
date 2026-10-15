@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { formatBDT } from '@/lib/pricing';
+import ImageUploader from '@/app/components/ImageUploader';
 import {
   Plus,
   Search,
@@ -19,14 +20,37 @@ import {
   Sparkles,
   AlertTriangle,
   Globe,
-  Upload
+  Upload,
+  ShieldCheck,
+  Tag,
+  Sliders,
+  Layers,
+  Cpu,
+  Utensils,
+  Shirt,
+  Leaf,
+  Laptop
 } from 'lucide-react';
+
+const CATEGORY_PRESETS = [
+  { slug: 'mens-fashion', name: 'মেনস ফ্যাশন', icon: Shirt, isFashion: true },
+  { slug: 'womens-fashion', name: 'উইমেনস ফ্যাশন', icon: Tag, isFashion: true },
+  { slug: 'gadgets', name: 'স্মার্ট গ্যাজেটস', icon: Cpu, isGadget: true },
+  { slug: 'home-appliances', name: 'হোম ও কিচেন অ্যাপ্লায়েন্স', icon: Utensils, isAppliance: true },
+  { slug: 'organic-food', name: 'অর্গানিক ফুড', icon: Leaf, isOrganic: true },
+  { slug: 'home-living', name: 'হোম ও লিভিং', icon: Laptop, isHomeLiving: true }
+];
 
 export default function ProductManager({ initialProducts = [], categories = [] }) {
   const [products, setProducts] = useState(initialProducts);
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedStatus, setSelectedStatus] = useState('all');
+
+  // Merge provided categories with default categories to guarantee all are available
+  const availableCategories = (categories && categories.length > 0)
+    ? categories
+    : CATEGORY_PRESETS;
 
   // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,14 +63,18 @@ export default function ProductManager({ initialProducts = [], categories = [] }
   const [formData, setFormData] = useState({
     name: '',
     slug: '',
-    category: categories[0]?.slug || 'mens-fashion',
+    category: availableCategories[0]?.slug || 'gadgets',
     price: '',
     compareAtPrice: '',
     shortDescription: '',
     description: '',
-    images: ['https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=800&q=80'],
-    sizesInput: 'M, L, XL, XXL',
-    colorsInput: 'ব্ল্যাক, মেরুন, নেভি ব্লু',
+    images: ['https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80'],
+    sizesInput: '',
+    colorsInput: 'ব্ল্যাক, সিলভার',
+    warranty: '৬ মাস রিপ্লেসমেন্ট ওয়ারেন্টি',
+    capacitiesInput: '',
+    weightsInput: '',
+    specs: '',
     stockQuantity: 50,
     status: 'published',
     featured: false,
@@ -54,19 +82,65 @@ export default function ProductManager({ initialProducts = [], categories = [] }
     seoDescription: ''
   });
 
+  const isFashion = formData.category === 'mens-fashion' || formData.category === 'womens-fashion';
+  const isGadget = formData.category === 'gadgets';
+  const isAppliance = formData.category === 'home-appliances';
+  const isOrganic = formData.category === 'organic-food';
+  const isHomeLiving = formData.category === 'home-living';
+
+  const handleCategoryChange = (catSlug) => {
+    let defaultSizes = '';
+    let defaultColors = 'ব্ল্যাক';
+    let defaultWarranty = '';
+    let defaultCapacities = '';
+    let defaultWeights = '';
+    let defaultSpecs = '';
+
+    if (catSlug === 'mens-fashion' || catSlug === 'womens-fashion') {
+      defaultSizes = catSlug === 'womens-fashion' ? '52, 54, 56' : 'M, L, XL, XXL';
+      defaultColors = 'ব্ল্যাক, মেরুন, নেভি ব্লু';
+    } else if (catSlug === 'gadgets') {
+      defaultColors = 'ম্যাট ব্ল্যাক, সিলভার, হোয়াইট';
+      defaultWarranty = '৬ মাস রিপ্লেসমেন্ট ওয়ারেন্টি';
+      defaultSpecs = 'ব্লুটুথ ৫.৩, ২০ ঘণ্টা ব্যাটারি ব্যাকআপ, অ্যাক্টিভ নয়েজ ক্যান্সেলেশন';
+    } else if (catSlug === 'home-appliances') {
+      defaultCapacities = '1.8 Litre, 1000W';
+      defaultWarranty = '১ বছর ব্র্যান্ড ওয়ারেন্টি';
+      defaultColors = 'সিলভার-ব্ল্যাক, রেড';
+    } else if (catSlug === 'organic-food') {
+      defaultWeights = '৫০০ গ্রাম, ১ কেজি';
+      defaultSpecs = '১০০% ভেজালমুক্ত, সরাসরি প্রাকৃতিক মৌচাক থেকে সংগৃহীত';
+    }
+
+    setFormData(prev => ({
+      ...prev,
+      category: catSlug,
+      sizesInput: defaultSizes,
+      colorsInput: defaultColors,
+      warranty: defaultWarranty,
+      capacitiesInput: defaultCapacities,
+      weightsInput: defaultWeights,
+      specs: defaultSpecs
+    }));
+  };
+
   const openCreateModal = () => {
     setEditingProduct(null);
     setFormData({
       name: '',
       slug: '',
-      category: categories[0]?.slug || 'mens-fashion',
+      category: availableCategories[0]?.slug || 'gadgets',
       price: '',
       compareAtPrice: '',
       shortDescription: '',
       description: '',
-      images: ['https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=800&q=80'],
-      sizesInput: 'M, L, XL, XXL',
-      colorsInput: 'ব্ল্যাক, মেরুন, নেভি ব্লু',
+      images: ['https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80'],
+      sizesInput: '',
+      colorsInput: 'ব্ল্যাক, সিলভার',
+      warranty: '৬ মাস রিপ্লেসমেন্ট ওয়ারেন্টি',
+      capacitiesInput: '',
+      weightsInput: '',
+      specs: '',
       stockQuantity: 50,
       status: 'published',
       featured: false,
@@ -82,14 +156,18 @@ export default function ProductManager({ initialProducts = [], categories = [] }
     setFormData({
       name: product.name || '',
       slug: product.slug || '',
-      category: product.category || 'mens-fashion',
+      category: product.category || 'gadgets',
       price: product.price || '',
       compareAtPrice: product.compareAtPrice || '',
       shortDescription: product.shortDescription || '',
       description: product.description || '',
-      images: product.images && product.images.length > 0 ? product.images : [''],
+      images: Array.isArray(product.images) && product.images.length > 0 ? product.images : [],
       sizesInput: product.variants?.sizes ? product.variants.sizes.join(', ') : '',
       colorsInput: product.variants?.colors ? product.variants.colors.join(', ') : '',
+      warranty: product.variants?.warranty || '',
+      capacitiesInput: product.variants?.capacities ? product.variants.capacities.join(', ') : '',
+      weightsInput: product.variants?.weights ? product.variants.weights.join(', ') : '',
+      specs: product.variants?.specs || '',
       stockQuantity: product.stockQuantity ?? 50,
       status: product.status || 'published',
       featured: Boolean(product.featured),
@@ -111,7 +189,7 @@ export default function ProductManager({ initialProducts = [], categories = [] }
       if (res.ok) {
         setProducts(products.map(p => p._id === product._id ? { ...p, status: newStatus } : p));
       }
-    } catch (err) {
+    } catch {
       alert('স্ট্যাটাস আপডেট ব্যর্থ হয়েছে।');
     }
   };
@@ -142,6 +220,13 @@ export default function ProductManager({ initialProducts = [], categories = [] }
   const handleSaveProduct = async (e) => {
     e.preventDefault();
     setFormError('');
+
+    const cleanImages = (formData.images || []).filter(Boolean);
+    if (cleanImages.length === 0) {
+      setFormError('কমপক্ষে ১টি পণ্যের ছবি আপলোড বা যুক্ত করুন।');
+      return;
+    }
+
     setSaving(true);
 
     const sizes = formData.sizesInput
@@ -150,6 +235,33 @@ export default function ProductManager({ initialProducts = [], categories = [] }
     const colors = formData.colorsInput
       ? formData.colorsInput.split(',').map(c => c.trim()).filter(Boolean)
       : [];
+    const capacities = formData.capacitiesInput
+      ? formData.capacitiesInput.split(',').map(c => c.trim()).filter(Boolean)
+      : [];
+    const weights = formData.weightsInput
+      ? formData.weightsInput.split(',').map(w => w.trim()).filter(Boolean)
+      : [];
+
+    const variants = {
+      colors: colors.length > 0 ? colors : undefined,
+      warranty: formData.warranty?.trim() || undefined,
+      specs: formData.specs?.trim() || undefined
+    };
+
+    // Only save sizes for fashion categories
+    if (isFashion && sizes.length > 0) {
+      variants.sizes = sizes;
+    }
+
+    // Capacities for appliances
+    if (isAppliance && capacities.length > 0) {
+      variants.capacities = capacities;
+    }
+
+    // Weights for organic food
+    if (isOrganic && weights.length > 0) {
+      variants.weights = weights;
+    }
 
     const payload = {
       name: formData.name.trim(),
@@ -159,8 +271,8 @@ export default function ProductManager({ initialProducts = [], categories = [] }
       compareAtPrice: formData.compareAtPrice ? Number(formData.compareAtPrice) : null,
       shortDescription: formData.shortDescription.trim(),
       description: formData.description.trim(),
-      images: formData.images.filter(Boolean),
-      variants: { sizes, colors },
+      images: cleanImages,
+      variants,
       stockQuantity: Number(formData.stockQuantity),
       status: formData.status,
       featured: formData.featured,
@@ -201,6 +313,7 @@ export default function ProductManager({ initialProducts = [], categories = [] }
 
       setIsModalOpen(false);
     } catch (err) {
+      console.error('Save product error:', err);
       setFormError('সার্ভার যোগাযোগে ত্রুটি ঘটেছে।');
     } finally {
       setSaving(false);
@@ -233,7 +346,7 @@ export default function ProductManager({ initialProducts = [], categories = [] }
             পণ্য ব্যবস্থাপনা (Products)
           </h1>
           <p className="text-xs text-[#4B6354] mt-1">
-            মোট {products.length} টি পণ্য সংরক্ষিত আছে
+            মোট {products.length} টি পণ্য সংরক্ষিত আছে (ফ্যাশন, গ্যাজেটস, হোম অ্যাপ্লায়েন্স, অর্গানিক ফুড)
           </p>
         </div>
 
@@ -267,7 +380,7 @@ export default function ProductManager({ initialProducts = [], categories = [] }
             className="px-3 py-2 rounded-xl border border-[#E2ECE3] bg-[#F6FAF7] text-xs outline-none font-semibold text-[#0F2417]"
           >
             <option value="all">সকল ক্যাটাগরি</option>
-            {categories.map(c => (
+            {availableCategories.map(c => (
               <option key={c.slug} value={c.slug}>{c.name}</option>
             ))}
           </select>
@@ -313,6 +426,7 @@ export default function ProductManager({ initialProducts = [], categories = [] }
                             fill
                             sizes="48px"
                             className="object-cover"
+                            unoptimized
                           />
                         </div>
                         <div className="min-w-0 max-w-[240px]">
@@ -326,7 +440,9 @@ export default function ProductManager({ initialProducts = [], categories = [] }
 
                     {/* Category */}
                     <td className="px-6 py-4 text-[#4B6354]">
-                      {prod.category}
+                      <span className="inline-block px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-800 font-medium text-[11px]">
+                        {prod.category}
+                      </span>
                     </td>
 
                     {/* Price */}
@@ -369,7 +485,7 @@ export default function ProductManager({ initialProducts = [], categories = [] }
                         <button
                           onClick={() => handleCopyLink(prod.slug)}
                           title="লিংক কপি করুন"
-                          className="p-1.5 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-100 transition-colors"
+                          className="p-1.5 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-100 transition-colors cursor-pointer"
                         >
                           {copiedSlug === prod.slug ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Copy className="w-3.5 h-3.5" />}
                         </button>
@@ -415,19 +531,19 @@ export default function ProductManager({ initialProducts = [], categories = [] }
       {/* Product Create / Edit Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-white rounded-3xl border border-[#E2ECE3] shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 sm:p-8 space-y-6">
+          <div className="bg-white rounded-3xl border border-[#E2ECE3] shadow-2xl w-full max-w-3xl max-h-[92vh] overflow-y-auto p-6 sm:p-8 space-y-6">
             <div className="flex items-center justify-between border-b border-gray-100 pb-4">
               <div>
                 <h2 className="text-xl font-black text-[#0F2417]">
                   {editingProduct ? 'পণ্য সম্পাদনা (Edit Product)' : 'নতুন পণ্য যোগ করুন (Create Product)'}
                 </h2>
                 <p className="text-xs text-[#4B6354]">
-                  ফর্মটি পূরণ করে সংরক্ষণ করুন। স্লাগ স্বয়ংক্রিয়ভাবে তৈরি হবে।
+                  ছবি Cloudinary-তে আপলোড করুন এবং ক্যাটাগরি নির্বাচন অনুযায়ী সংশ্লিষ্ট ফিল্ডগুলো পূরণ করুন।
                 </p>
               </div>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="p-2 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-600"
+                className="p-2 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-600 cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -440,7 +556,7 @@ export default function ProductManager({ initialProducts = [], categories = [] }
               </div>
             )}
 
-            <form onSubmit={handleSaveProduct} className="space-y-4">
+            <form onSubmit={handleSaveProduct} className="space-y-5">
               {/* Product Name */}
               <div>
                 <label className="block text-xs font-bold text-[#0F2417] mb-1">
@@ -449,25 +565,25 @@ export default function ProductManager({ initialProducts = [], categories = [] }
                 <input
                   type="text"
                   required
-                  placeholder="যেমন: এক্সক্লুসিভ অ্যামব্রয়ডারি প্রিমিয়াম কোটি সেট"
+                  placeholder="যেমন: প্রিমিয়াম ওয়্যারলেস ব্লুটুথ ৫.৩ ইয়ারবাডস"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full px-4 py-2.5 rounded-xl border border-[#E2ECE3] bg-[#F6FAF7] focus:bg-white text-xs outline-none focus:border-[#08542C]"
                 />
               </div>
 
-              {/* Category & Slug */}
+              {/* Category Selector with Category-Specific Notice */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-[#0F2417] mb-1">
-                    ক্যাটাগরি <span className="text-[#DC2626]">*</span>
+                    ক্যাটাগরি নির্বাচন করুন <span className="text-[#DC2626]">*</span>
                   </label>
                   <select
                     value={formData.category}
-                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#E2ECE3] bg-[#F6FAF7] text-xs outline-none focus:border-[#08542C]"
+                    onChange={(e) => handleCategoryChange(e.target.value)}
+                    className="w-full px-4 py-2.5 rounded-xl border border-[#E2ECE3] bg-[#F6FAF7] text-xs outline-none focus:border-[#08542C] font-semibold text-zinc-900"
                   >
-                    {categories.map(c => (
+                    {availableCategories.map(c => (
                       <option key={c.slug} value={c.slug}>{c.name}</option>
                     ))}
                   </select>
@@ -479,7 +595,7 @@ export default function ProductManager({ initialProducts = [], categories = [] }
                   </label>
                   <input
                     type="text"
-                    placeholder="exclusive-embroidered-koti-set"
+                    placeholder="wireless-earbuds-tws"
                     value={formData.slug}
                     onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
                     className="w-full px-4 py-2.5 rounded-xl border border-[#E2ECE3] bg-[#F6FAF7] font-mono text-xs outline-none focus:border-[#08542C]"
@@ -529,48 +645,254 @@ export default function ProductManager({ initialProducts = [], categories = [] }
                 </div>
               </div>
 
-              {/* Image URL */}
-              <div>
-                <label className="block text-xs font-bold text-[#0F2417] mb-1">
-                  পণ্যের ছবির URL <span className="text-[#DC2626]">*</span>
-                </label>
-                <input
-                  type="url"
-                  required
-                  placeholder="https://images.unsplash.com/photo-..."
-                  value={formData.images[0] || ''}
-                  onChange={(e) => setFormData({ ...formData, images: [e.target.value] })}
-                  className="w-full px-4 py-2 rounded-xl border border-[#E2ECE3] bg-[#F6FAF7] text-xs outline-none focus:border-[#08542C]"
+              {/* CLOUDINARY IMAGE UPLOADER COMPONENT */}
+              <div className="p-4 rounded-2xl bg-white border border-[#E2ECE3] shadow-xs">
+                <ImageUploader
+                  value={formData.images}
+                  onChange={(newImages) => setFormData({ ...formData, images: newImages })}
+                  multiple={true}
+                  folder="bichitra_shop/products"
+                  label="পণ্যের ছবি (সরাসরি Cloudinary আপলোড বা ইমেজ লিংক)"
                 />
               </div>
 
-              {/* Variants */}
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-bold text-[#4B6354] mb-1">
-                    সাইজসমূহ (কমা দিয়ে আলাদা করুন)
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="M, L, XL, XXL"
-                    value={formData.sizesInput}
-                    onChange={(e) => setFormData({ ...formData, sizesInput: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-[#E2ECE3] bg-[#F6FAF7] text-xs outline-none"
-                  />
+              {/* DYNAMIC CATEGORY-SPECIFIC VARIANT FIELDS */}
+              <div className="p-4 rounded-2xl bg-[#F6FAF7] border border-[#E2ECE3] space-y-4">
+                <div className="flex items-center gap-2 border-b border-zinc-200 pb-2">
+                  <Sliders className="w-4 h-4 text-black stroke-[2]" />
+                  <span className="text-xs font-bold text-zinc-900">
+                    {isFashion ? 'পোশাকের সাইজ ও কালার ভ্যারিয়েন্ট' :
+                     isGadget ? 'গ্যাজেট ওয়ারেন্টি, মডেল ও স্পেসিফিকেশন' :
+                     isAppliance ? 'হোম অ্যাপ্লায়েন্স ক্যাপাসিটি, পাওয়ার ও ওয়ারেন্টি' :
+                     isOrganic ? 'খাদ্যপণ্যের নিট ওজন ও খাঁটি হওয়ার নিশ্চয়তা' :
+                     'পণ্যের বৈশিষ্ট্য ও ভ্যারিয়েন্ট'}
+                  </span>
                 </div>
 
-                <div>
-                  <label className="block text-xs font-bold text-[#4B6354] mb-1">
-                    কালারসমূহ (কমা দিয়ে আলাদা করুন)
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="ব্ল্যাক, মেরুন, নেভি ব্লু"
-                    value={formData.colorsInput}
-                    onChange={(e) => setFormData({ ...formData, colorsInput: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-[#E2ECE3] bg-[#F6FAF7] text-xs outline-none"
-                  />
-                </div>
+                {/* 1. Fashion Category: Show Sizes & Colors */}
+                {isFashion && (
+                  <div className="space-y-3">
+                    <div>
+                      <label className="block text-xs font-bold text-[#0F2417] mb-1">
+                        পোশাকের সাইজসমূহ (কমা দিয়ে আলাদা করুন)
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="M, L, XL, XXL"
+                        value={formData.sizesInput}
+                        onChange={(e) => setFormData({ ...formData, sizesInput: e.target.value })}
+                        className="w-full px-3 py-2 rounded-xl border border-[#E2ECE3] bg-white text-xs outline-none focus:border-[#08542C]"
+                      />
+                      <div className="flex items-center gap-1.5 mt-1.5">
+                        <span className="text-[10px] text-zinc-500 font-semibold">কুইক প্রিসেট:</span>
+                        {['M, L, XL, XXL', '40, 42, 44', '52, 54, 56', 'Free Size'].map((preset) => (
+                          <button
+                            key={preset}
+                            type="button"
+                            onClick={() => setFormData({ ...formData, sizesInput: preset })}
+                            className="px-2 py-0.5 rounded-md bg-zinc-200 hover:bg-zinc-300 text-zinc-800 text-[10px] font-bold"
+                          >
+                            {preset}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-[#0F2417] mb-1">
+                        কালারসমূহ (কমা দিয়ে আলাদা করুন)
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="ব্ল্যাক, নেভি ব্লু, মেরুন"
+                        value={formData.colorsInput}
+                        onChange={(e) => setFormData({ ...formData, colorsInput: e.target.value })}
+                        className="w-full px-3 py-2 rounded-xl border border-[#E2ECE3] bg-white text-xs outline-none"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {/* 2. Gadgets Category: Show Warranty, Colors/Models, Specs */}
+                {isGadget && (
+                  <div className="space-y-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-xs font-bold text-[#0F2417] mb-1">
+                          ওয়ারেন্টি নিশ্চয়তা (Warranty)
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="যেমন: ৬ মাস রিপ্লেসমেন্ট ওয়ারেন্টি"
+                          value={formData.warranty}
+                          onChange={(e) => setFormData({ ...formData, warranty: e.target.value })}
+                          className="w-full px-3 py-2 rounded-xl border border-[#E2ECE3] bg-white text-xs outline-none focus:border-[#08542C]"
+                        />
+                        <div className="flex flex-wrap gap-1 mt-1">
+                          {['৬ মাস রিপ্লেসমেন্ট', '১ বছর অফিসিয়াল', '৭ দিনের রিটার্ন গ্যারান্টি'].map((w) => (
+                            <button
+                              key={w}
+                              type="button"
+                              onClick={() => setFormData({ ...formData, warranty: w })}
+                              className="px-1.5 py-0.5 rounded bg-zinc-200 hover:bg-zinc-300 text-zinc-800 text-[10px]"
+                            >
+                              {w}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-[#0F2417] mb-1">
+                          কালার / মডেল (কমা দিয়ে আলাদা করুন)
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="ম্যাট ব্ল্যাক, সিলভার, হোয়াইট"
+                          value={formData.colorsInput}
+                          onChange={(e) => setFormData({ ...formData, colorsInput: e.target.value })}
+                          className="w-full px-3 py-2 rounded-xl border border-[#E2ECE3] bg-white text-xs outline-none"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-[#0F2417] mb-1">
+                        মূল স্পেসিফিকেশন / ফিচার (Key Specs)
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="যেমন: ব্লুটুথ ৫.৩, ২০ ঘণ্টা প্লেব্যাক, ডিজিটাল ডিসপ্লে"
+                        value={formData.specs}
+                        onChange={(e) => setFormData({ ...formData, specs: e.target.value })}
+                        className="w-full px-3 py-2 rounded-xl border border-[#E2ECE3] bg-white text-xs outline-none"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {/* 3. Home Appliances Category: Capacity/Power, Warranty, Colors */}
+                {isAppliance && (
+                  <div className="space-y-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-xs font-bold text-[#0F2417] mb-1">
+                          ক্যাপাসিটি / পাওয়ার / ভলিউম (কমা দিয়ে আলাদা করুন)
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="1.8 Litre, 1000 Watt, 2.5L"
+                          value={formData.capacitiesInput}
+                          onChange={(e) => setFormData({ ...formData, capacitiesInput: e.target.value })}
+                          className="w-full px-3 py-2 rounded-xl border border-[#E2ECE3] bg-white text-xs outline-none focus:border-[#08542C]"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-[#0F2417] mb-1">
+                          ওয়ারেন্টি নিশ্চয়তা (Warranty)
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="যেমন: ১ বছর মোটর ওয়ারেন্টি"
+                          value={formData.warranty}
+                          onChange={(e) => setFormData({ ...formData, warranty: e.target.value })}
+                          className="w-full px-3 py-2 rounded-xl border border-[#E2ECE3] bg-white text-xs outline-none"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-[#0F2417] mb-1">
+                        কালারসমূহ (ঐচ্ছিক)
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="সিলভার-ব্ল্যাক, স্টেইনলেস স্টিল"
+                        value={formData.colorsInput}
+                        onChange={(e) => setFormData({ ...formData, colorsInput: e.target.value })}
+                        className="w-full px-3 py-2 rounded-xl border border-[#E2ECE3] bg-white text-xs outline-none"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {/* 4. Organic Food: Pack Size / Net Weight */}
+                {isOrganic && (
+                  <div className="space-y-3">
+                    <div>
+                      <label className="block text-xs font-bold text-[#0F2417] mb-1">
+                        প্যাক সাইজ / নিট ওজন (কমা দিয়ে আলাদা করুন)
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="২৫০ গ্রাম, ৫০০ গ্রাম, ১ কেজি, ১ লিটার"
+                        value={formData.weightsInput}
+                        onChange={(e) => setFormData({ ...formData, weightsInput: e.target.value })}
+                        className="w-full px-3 py-2 rounded-xl border border-[#E2ECE3] bg-white text-xs outline-none focus:border-[#08542C]"
+                      />
+                      <div className="flex items-center gap-1.5 mt-1.5">
+                        <span className="text-[10px] text-zinc-500 font-semibold">কুইক অপশন:</span>
+                        {['২৫০ গ্রাম', '৫০০ গ্রাম', '১ কেজি', '১ লিটার', 'কম্বো প্যাক'].map((w) => (
+                          <button
+                            key={w}
+                            type="button"
+                            onClick={() => setFormData({ ...formData, weightsInput: w })}
+                            className="px-2 py-0.5 rounded-md bg-zinc-200 hover:bg-zinc-300 text-zinc-800 text-[10px] font-bold"
+                          >
+                            {w}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-[#0F2417] mb-1">
+                        খাঁটি হওয়ার নিশ্চয়তা ও বৈশিষ্ট্য
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="১০০% খাঁটি, প্রাকৃতিক সুন্দরবনের মৌচাকের মধু"
+                        value={formData.specs}
+                        onChange={(e) => setFormData({ ...formData, specs: e.target.value })}
+                        className="w-full px-3 py-2 rounded-xl border border-[#E2ECE3] bg-white text-xs outline-none"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {/* 5. Home & Living */}
+                {isHomeLiving && (
+                  <div className="space-y-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-xs font-bold text-[#0F2417] mb-1">
+                          ডাইমেনশন / সাইজ
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="যেমন: 60 x 40 cm"
+                          value={formData.specs}
+                          onChange={(e) => setFormData({ ...formData, specs: e.target.value })}
+                          className="w-full px-3 py-2 rounded-xl border border-[#E2ECE3] bg-white text-xs outline-none"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-[#0F2417] mb-1">
+                          কালার / ফিনিশ
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="উডেন ব্রাউন, ম্যাট ব্ল্যাক"
+                          value={formData.colorsInput}
+                          onChange={(e) => setFormData({ ...formData, colorsInput: e.target.value })}
+                          className="w-full px-3 py-2 rounded-xl border border-[#E2ECE3] bg-white text-xs outline-none"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Short & Full Description */}
@@ -584,21 +906,21 @@ export default function ProductManager({ initialProducts = [], categories = [] }
                   placeholder="১-২ লাইনের মূল আকর্ষণ..."
                   value={formData.shortDescription}
                   onChange={(e) => setFormData({ ...formData, shortDescription: e.target.value })}
-                  className="w-full px-4 py-2 rounded-xl border border-[#E2ECE3] bg-[#F6FAF7] text-xs outline-none"
+                  className="w-full px-4 py-2 rounded-xl border border-[#E2ECE3] bg-[#F6FAF7] text-xs outline-none focus:bg-white focus:border-[#08542C]"
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-bold text-[#0F2417] mb-1">
-                  বিস্তারিত বিবরণ (Full Description)
+                  বিস্তারিত বিবরণ (Full Description) <span className="text-[#DC2626]">*</span>
                 </label>
                 <textarea
                   rows={4}
                   required
-                  placeholder="ফেব্রিক কোয়ালিটি, সাইজ চার্ট এবং ডেলিভারি সংক্রান্ত বিস্তারিত তথ্য..."
+                  placeholder="পণ্যের কোয়ালিটি, উপাদান, বৈশিষ্ট্য এবং ওয়ারেন্টি সংক্রান্ত বিস্তারিত তথ্য..."
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-[#E2ECE3] bg-[#F6FAF7] text-xs outline-none"
+                  className="w-full px-4 py-2.5 rounded-xl border border-[#E2ECE3] bg-[#F6FAF7] text-xs outline-none focus:bg-white focus:border-[#08542C]"
                 />
               </div>
 
@@ -651,7 +973,7 @@ export default function ProductManager({ initialProducts = [], categories = [] }
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-5 py-2.5 rounded-xl border border-gray-200 text-xs font-bold text-gray-600 hover:bg-gray-50"
+                  className="px-5 py-2.5 rounded-xl border border-gray-200 text-xs font-bold text-gray-600 hover:bg-gray-50 cursor-pointer"
                 >
                   বাতিল
                 </button>

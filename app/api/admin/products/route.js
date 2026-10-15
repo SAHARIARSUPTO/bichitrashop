@@ -65,10 +65,13 @@ export async function POST(request) {
     const parseResult = productSchema.safeParse(body);
 
     if (!parseResult.success) {
+      const firstError = parseResult.error.issues?.[0]?.message ||
+        parseResult.error.errors?.[0]?.message ||
+        'পণ্যের তথ্য সঠিক নয়।';
       return Response.json(
         {
           success: false,
-          error: parseResult.error.errors[0]?.message || 'পণ্যের তথ্য সঠিক নয়।',
+          error: firstError,
           details: parseResult.error.format()
         },
         { status: 400 }
