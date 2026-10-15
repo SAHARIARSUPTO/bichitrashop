@@ -1,5 +1,6 @@
 // app/layout.jsx
 import './globals.css';
+import { Analytics } from '@vercel/analytics/next';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bichitrashop.com';
 
@@ -126,6 +127,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className="min-h-full flex flex-col bg-[#F6FAF7] text-[#0F2417]">
         {children}
+        <Analytics />
       </body>
     </html>
   );
