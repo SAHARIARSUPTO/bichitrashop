@@ -100,13 +100,18 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/products?category=organic-food" className="hover:text-[#22C55E] transition-colors">
-                  খাঁটি মধু ও কাঠের ঘানির সরিষার তেল
+                <Link href="/products?category=gadgets" className="hover:text-[#22C55E] transition-colors">
+                  স্মার্ট গ্যাজেটস ও ব্লুটুথ ইয়ারবাডস
                 </Link>
               </li>
               <li>
-                <Link href="/products?category=home-living" className="hover:text-[#22C55E] transition-colors">
-                  স্মার্ট হোম গ্যাজেটস ও টেবিল
+                <Link href="/products?category=home-appliances" className="hover:text-[#22C55E] transition-colors">
+                  হোম ও কিচেন অ্যাপ্লায়েন্স
+                </Link>
+              </li>
+              <li>
+                <Link href="/products?category=organic-food" className="hover:text-[#22C55E] transition-colors">
+                  খাঁটি মধু ও কাঠের ঘানির সরিষার তেল
                 </Link>
               </li>
               <li>
@@ -117,29 +122,45 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Customer Service & Policies */}
+          {/* Customer Service & Policies for Google Crawler & Customers */}
           <div>
             <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 border-b border-white/10 pb-2">
-              গ্রাহক সেবা ও নিয়মাবলী
+              গ্রাহক সেবা ও পলিসি
             </h3>
             <ul className="space-y-2 text-xs text-white/80">
               <li>
-                <Link href="/products" className="hover:text-[#22C55E] transition-colors">
-                  কিভাবে অর্ডার করবেন
+                <Link href="/about" className="hover:text-[#22C55E] transition-colors">
+                  আমাদের সম্পর্কে (About Us)
                 </Link>
               </li>
               <li>
-                <span className="text-white/60">ডেলিভারি চার্জ: ঢাকা ৳৭০, বাইরে ৳১৩০</span>
+                <Link href="/contact" className="hover:text-[#22C55E] transition-colors">
+                  যোগাযোগ ও কাস্টমার কেয়ার
+                </Link>
               </li>
               <li>
-                <span className="text-white/60">পেমেন্ট মেথড: ক্যাশ অন ডেলিভারি (COD)</span>
+                <Link href="/shipping-policy" className="hover:text-[#22C55E] transition-colors">
+                  শিপিং ও ডেলিভারি পলিসি
+                </Link>
               </li>
               <li>
-                <span className="text-white/60">ডেলিভারি সময়: ঢাকা ২৪-৪৮ ঘণ্টা, বাইরে ২-৪ দিন</span>
+                <Link href="/return-policy" className="hover:text-[#22C55E] transition-colors">
+                  রিটার্ন ও এক্সচেঞ্জ পলিসি
+                </Link>
               </li>
               <li>
-                <Link href="/admin" className="hover:text-[#22C55E] transition-colors text-white/40">
-                  অ্যাডমিন ড্যাশবোর্ড
+                <Link href="/privacy-policy" className="hover:text-[#22C55E] transition-colors">
+                  প্রাইভেসি পলিসি (Privacy Policy)
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="hover:text-[#22C55E] transition-colors">
+                  ব্যবহারের শর্তাবলী (Terms)
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq" className="hover:text-[#22C55E] transition-colors">
+                  সাধারণ জিজ্ঞাসা (FAQ)
                 </Link>
               </li>
             </ul>

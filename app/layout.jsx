@@ -25,6 +25,12 @@ export const metadata = {
   authors: [{ name: 'Bichitra Shop' }],
   creator: 'Bichitra Shop',
   publisher: 'Bichitra Shop',
+  alternates: {
+    canonical: siteUrl,
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || '',
+  },
   robots: {
     index: true,
     follow: true,
