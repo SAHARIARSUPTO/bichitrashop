@@ -29,7 +29,7 @@ export const metadata = {
     canonical: siteUrl,
   },
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || '',
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'EOaABPHPI_eAaNXucQ1HhkIJaDn3uocSezsHHmnAI-A',
   },
   robots: {
     index: true,
