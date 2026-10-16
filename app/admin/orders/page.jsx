@@ -15,8 +15,17 @@ export const metadata = {
 async function getOrdersData() {
   await initDatabase();
   const ordersColl = await getCollection('orders');
-  const orders = await ordersColl.find({}).sort({ createdAt: -1 }).toArray();
-  return JSON.parse(JSON.stringify(orders));
+  const productsColl = await getCollection('products');
+
+  const [orders, products] = await Promise.all([
+    ordersColl.find({}).sort({ createdAt: -1 }).toArray(),
+    productsColl.find({ status: 'published' }).toArray()
+  ]);
+
+  return {
+    orders: JSON.parse(JSON.stringify(orders)),
+    products: JSON.parse(JSON.stringify(products))
+  };
 }
 
 export default async function AdminOrdersPage() {
@@ -25,7 +34,7 @@ export default async function AdminOrdersPage() {
     redirect('/admin/login');
   }
 
-  const orders = await getOrdersData();
+  const { orders, products } = await getOrdersData();
 
-  return <OrderManager initialOrders={orders} />;
+  return <OrderManager initialOrders={orders} initialProducts={products} />;
 }

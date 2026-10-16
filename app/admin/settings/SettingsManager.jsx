@@ -2,6 +2,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import {
   Truck,
@@ -20,22 +21,42 @@ import {
   Layers,
   Sparkles,
   ArrowUp,
-  ArrowDown
+  ArrowDown,
+  Globe,
+  Share2,
+  ShieldCheck,
+  Search,
+  Eye,
+  Check
 } from 'lucide-react';
 import { DEFAULT_HERO_BANNERS, DEFAULT_PROMO_BANNERS, SAMPLE_BANNER_IMAGES } from '@/lib/banners';
 import ImageUploader from '@/app/components/ImageUploader';
 
-
 export default function SettingsManager({ initialSettings = {} }) {
-  const [activeTab, setActiveTab] = useState('banners'); // 'banners' | 'promo' | 'shipping' | 'contact'
+  const [activeTab, setActiveTab] = useState('banners'); // 'banners' | 'promo' | 'shipping' | 'contact' | 'seo' | 'branding'
   
   const [formData, setFormData] = useState({
     insideDhaka: initialSettings.shippingRates?.inside_dhaka ?? 70,
     outsideDhaka: initialSettings.shippingRates?.outside_dhaka ?? 130,
-    phone: initialSettings.contact?.phone || '+880 1700-000000',
+    phone: initialSettings.contact?.phone || '01761674164',
     email: initialSettings.contact?.email || 'support@bichitrashop.com',
-    address: initialSettings.contact?.address || 'Mirpur, Dhaka, Bangladesh',
+    address: initialSettings.contact?.address || 'রহনপুর, চাঁপাইনবাবগঞ্জ, বাংলাদেশ',
     announcement: initialSettings.announcement || 'ক্যাশ অন ডেলিভারি সুবিধা সারা বাংলাদেশে! ৩টি বা ততোধিক পণ্যে ফ্রি ডেলিভারি।'
+  });
+
+  const [branding, setBranding] = useState({
+    favicon: initialSettings.branding?.favicon || '/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png',
+    logo: initialSettings.branding?.logo || '/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png',
+    socialPoster: initialSettings.branding?.socialPoster || '/bichitra-social-poster.jpg'
+  });
+
+  const [seo, setSeo] = useState({
+    metaTitle: initialSettings.seo?.metaTitle || 'Bichitra Shop – বিচিত্র শপ | বিশ্বস্ত পণ্য ও স্মার্ট কেনাকাটা',
+    metaDescription: initialSettings.seo?.metaDescription || 'বিচিত্র শপ – প্রিমিয়াম কোটি সেট, পাঞ্জাবি, বোরকা ও আবায়া, খাঁটি অর্গানিক ফুড এবং আধুনিক লাইফস্টাইল পণ্য। ক্যাশ অন ডেলিভারি সারা বাংলাদেশে।',
+    keywords: initialSettings.seo?.keywords || 'বিচিত্র শপ, Bichitra Shop, অনলাইন শপিং বাংলাদেশ, ক্যাশ অন ডেলিভারি, কোটি সেট, পাঞ্জাবি কালেকশন',
+    ogImage: initialSettings.seo?.ogImage || '/bichitra-social-poster.jpg',
+    googleVerification: initialSettings.seo?.googleVerification || 'EOaABPHPI_eAaNXucQ1HhkIJaDn3uocSezsHHmnAI-A',
+    googleAnalyticsId: initialSettings.seo?.googleAnalyticsId || ''
   });
 
   const [banners, setBanners] = useState(
@@ -166,6 +187,8 @@ export default function SettingsManager({ initialSettings = {} }) {
             email: formData.email.trim(),
             address: formData.address.trim()
           },
+          branding,
+          seo,
           announcement: formData.announcement.trim(),
           heroBanners: banners,
           promoBanners: promoBanners
@@ -280,12 +303,59 @@ export default function SettingsManager({ initialSettings = {} }) {
           <Phone className="w-4 h-4 text-black stroke-[2]" />
           <span>যোগাযোগ ও নোটিশ বার</span>
         </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveTab('seo')}
+          className={`flex items-center gap-2 px-4 py-2.5 text-xs font-bold border-b-2 transition-all ${
+            activeTab === 'seo'
+              ? 'border-zinc-900 text-zinc-900'
+              : 'border-transparent text-zinc-500 hover:text-zinc-900'
+          }`}
+        >
+          <Globe className="w-4 h-4 text-black stroke-[2]" />
+          <span>সার্চ ইঞ্জিন এসইও ও সোশ্যাল শেয়ার</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveTab('branding')}
+          className={`flex items-center gap-2 px-4 py-2.5 text-xs font-bold border-b-2 transition-all ${
+            activeTab === 'branding'
+              ? 'border-zinc-900 text-zinc-900'
+              : 'border-transparent text-zinc-500 hover:text-zinc-900'
+          }`}
+        >
+          <ShieldCheck className="w-4 h-4 text-black stroke-[2]" />
+          <span>সাইট আইকন ও লোগো</span>
+        </button>
       </div>
 
       <form onSubmit={handleSave} className="space-y-6">
         {/* TAB 1: HERO BANNERS MANAGEMENT */}
         {activeTab === 'banners' && (
           <div className="space-y-6">
+            <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-xs">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-[#08542C] text-white flex items-center justify-center shrink-0 shadow-xs">
+                  <Sparkles className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h4 className="text-xs font-black text-[#08542C]">নতুন সহজ ব্যানার ও স্লাইডার ম্যানেজার</h4>
+                  <p className="text-[11px] text-emerald-800">
+                    সরাসরি লাইভ প্রিভিউ, ১-ক্লিক ক্লাউডিনারি আপলোড ও রেডিমেড টেমপ্লেট সহ ব্যানার সাজান।
+                  </p>
+                </div>
+              </div>
+              <Link
+                href="/admin/banners"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#08542C] hover:bg-[#064423] text-white text-xs font-bold transition-all shadow-xs shrink-0"
+              >
+                <span>ব্যানার ম্যানেজার ওপেন করুন</span>
+                <ExternalLink className="w-3.5 h-3.5 text-white" />
+              </Link>
+            </div>
+
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-base font-extrabold text-zinc-900">
@@ -884,10 +954,358 @@ export default function SettingsManager({ initialSettings = {} }) {
                     type="text"
                     value={formData.address}
                     onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                    placeholder="মিরপুর, ঢাকা-১২১৬, বাংলাদেশ"
+                    placeholder="রহনপুর, চাঁপাইনবাবগঞ্জ, বাংলাদেশ"
                     className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 text-xs focus:border-zinc-900 outline-none"
                     required
                   />
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 5: SEO & SOCIAL SHARING */}
+        {activeTab === 'seo' && (
+          <div className="space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-200 pb-4">
+              <div>
+                <h3 className="text-base font-extrabold text-zinc-900 flex items-center gap-2">
+                  <Globe className="w-5 h-5 text-[#08542C]" />
+                  <span>সার্চ ইঞ্জিন অপটিমাইজেশন (SEO) ও সোশ্যাল মিডিয়া শেয়ারিং</span>
+                </h3>
+                <p className="text-xs text-zinc-500 mt-0.5">
+                  গুগল সার্চ ও ফেসবুক/হোয়াটসঅ্যাপে সাইট বা পণ্যের লিংক শেয়ার করলে যে ছবি ও লেখা প্রদর্শিত হবে তা নির্ধারণ করুন
+                </p>
+              </div>
+            </div>
+
+            {/* Google Search Live Preview */}
+            <div className="bg-white rounded-2xl border border-zinc-200 p-5 shadow-xs space-y-3">
+              <div className="flex items-center gap-2 text-xs font-bold text-zinc-700">
+                <Search className="w-4 h-4 text-zinc-500" />
+                <span>গুগল সার্চ প্রিভিউ (Google Search Result Simulation)</span>
+              </div>
+              <div className="p-4 rounded-xl bg-zinc-50 border border-zinc-200/80 max-w-2xl space-y-1">
+                <div className="flex items-center gap-2 text-[11px] text-zinc-600">
+                  <div className="w-4 h-4 rounded-full bg-emerald-700 text-white flex items-center justify-center text-[9px] font-black">
+                    B
+                  </div>
+                  <span className="font-semibold text-zinc-800">bichitrashop.com</span>
+                  <span className="text-zinc-400">›</span>
+                  <span className="text-zinc-500">home</span>
+                </div>
+                <h4 className="text-base font-bold text-[#1a0dab] hover:underline cursor-pointer line-clamp-1 leading-snug">
+                  {seo.metaTitle || 'Bichitra Shop – বিচিত্র শপ | বিশ্বস্ত পণ্য ও স্মার্ট কেনাকাটা'}
+                </h4>
+                <p className="text-xs text-[#4d5156] line-clamp-2 leading-relaxed">
+                  {seo.metaDescription || 'বিচিত্র শপ – প্রিমিয়াম কোটি সেট, পাঞ্জাবি, বোরকা ও আবায়া, খাঁটি অর্গানিক ফুড এবং আধুনিক লাইফস্টাইল পণ্য। ক্যাশ অন ডেলিভারি সারা বাংলাদেশে।'}
+                </p>
+              </div>
+            </div>
+
+            {/* Social Media Share Card Simulation */}
+            <div className="bg-white rounded-2xl border border-zinc-200 p-5 shadow-xs space-y-3">
+              <div className="flex items-center gap-2 text-xs font-bold text-zinc-700">
+                <Share2 className="w-4 h-4 text-emerald-600" />
+                <span>সোশ্যাল মিডিয়া শেয়ার কার্ড প্রিভিউ (WhatsApp / Facebook Link Preview)</span>
+              </div>
+              <div className="max-w-md rounded-2xl border border-zinc-200 overflow-hidden shadow-sm bg-white">
+                <div className="relative aspect-[16/9] w-full bg-zinc-100 overflow-hidden">
+                  <Image
+                    src={seo.ogImage || '/bichitra-social-poster.jpg'}
+                    alt="Social Share Poster"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 448px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-3.5 bg-zinc-50 border-t border-zinc-100 space-y-1">
+                  <span className="text-[10px] uppercase font-bold text-zinc-400 tracking-wider block">
+                    bichitrashop.com
+                  </span>
+                  <h5 className="text-xs font-bold text-zinc-900 line-clamp-1">
+                    {seo.metaTitle}
+                  </h5>
+                  <p className="text-[11px] text-zinc-500 line-clamp-2 leading-relaxed">
+                    {seo.metaDescription}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Form Fields */}
+            <div className="bg-white rounded-2xl border border-zinc-200 p-5 shadow-xs space-y-5">
+              {/* Meta Title */}
+              <div>
+                <div className="flex items-center justify-between mb-1">
+                  <label className="text-xs font-bold text-zinc-900">
+                    সাইট মেটা টাইটেল (Meta Title)
+                  </label>
+                  <span className={`text-[10px] font-bold ${seo.metaTitle.length > 60 ? 'text-amber-600' : 'text-zinc-400'}`}>
+                    {seo.metaTitle.length}/60 অক্ষর (প্রস্তাবিত ৫০-৬০)
+                  </span>
+                </div>
+                <input
+                  type="text"
+                  value={seo.metaTitle}
+                  onChange={(e) => setSeo({ ...seo, metaTitle: e.target.value })}
+                  placeholder="যেমন: Bichitra Shop – বিচিত্র শপ | বিশ্বস্ত পণ্য ও স্মার্ট কেনাকাটা"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 text-xs focus:border-zinc-900 outline-none"
+                  required
+                />
+              </div>
+
+              {/* Meta Description */}
+              <div>
+                <div className="flex items-center justify-between mb-1">
+                  <label className="text-xs font-bold text-zinc-900">
+                    মেটা বিবরণী (Meta Description)
+                  </label>
+                  <span className={`text-[10px] font-bold ${seo.metaDescription.length > 160 ? 'text-amber-600' : 'text-zinc-400'}`}>
+                    {seo.metaDescription.length}/160 অক্ষর (প্রস্তাবিত ১২০-১৬০)
+                  </span>
+                </div>
+                <textarea
+                  rows={3}
+                  value={seo.metaDescription}
+                  onChange={(e) => setSeo({ ...seo, metaDescription: e.target.value })}
+                  placeholder="যেমন: বিচিত্র শপ – প্রিমিয়াম কোটি সেট, পাঞ্জাবি, বোরকা ও আবায়া, খাঁটি অর্গানিক ফুড এবং আধুনিক লাইফস্টাইল পণ্য..."
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 text-xs focus:border-zinc-900 outline-none leading-relaxed"
+                  required
+                />
+              </div>
+
+              {/* Focus Keywords */}
+              <div>
+                <label className="block text-xs font-bold text-zinc-900 mb-1">
+                  সার্চ কি-ওয়ার্ডস (Keywords - কমা দিয়ে লিখুন)
+                </label>
+                <input
+                  type="text"
+                  value={seo.keywords}
+                  onChange={(e) => setSeo({ ...seo, keywords: e.target.value })}
+                  placeholder="বিচিত্র শপ, অনলাইন শপিং বাংলাদেশ, ক্যাশ অন ডেলিভারি, কোটি সেট"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 text-xs focus:border-zinc-900 outline-none"
+                />
+                <p className="text-[11px] text-zinc-500 mt-1">
+                  গুগলে ক্রেতারা যে যে শব্দ দিয়ে অনুসন্ধান করতে পারে তা কমা দিয়ে যুক্ত করুন।
+                </p>
+              </div>
+
+              {/* Social Share Poster Image */}
+              <div className="pt-2 border-t border-zinc-100 space-y-3">
+                <label className="block text-xs font-bold text-zinc-900">
+                  সোশ্যাল শেয়ার পোস্টার ছবি (OpenGraph Poster Image)
+                </label>
+                
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                  <div className="relative w-36 h-20 rounded-xl overflow-hidden border border-zinc-200 shrink-0 bg-zinc-100 shadow-xs">
+                    <Image
+                      src={seo.ogImage || '/bichitra-social-poster.jpg'}
+                      alt="Social Poster Preview"
+                      fill
+                      sizes="144px"
+                      className="object-cover"
+                    />
+                  </div>
+
+                  <div className="flex-1 space-y-2 w-full">
+                    <input
+                      type="text"
+                      value={seo.ogImage}
+                      onChange={(e) => setSeo({ ...seo, ogImage: e.target.value })}
+                      placeholder="ছবির URL যেমন: /bichitra-social-poster.jpg বা Cloudinary লিংক"
+                      className="w-full px-3.5 py-2 rounded-xl border border-zinc-200 text-xs focus:border-zinc-900 outline-none"
+                    />
+
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <button
+                        type="button"
+                        onClick={() => setSeo({ ...seo, ogImage: '/bichitra-social-poster.jpg' })}
+                        className="px-3 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-[11px] font-bold border border-emerald-200 transition-all flex items-center gap-1.5 cursor-pointer"
+                      >
+                        <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
+                        <span>AI জেনারেটেড পোস্টার সেট করুন</span>
+                      </button>
+                    </div>
+
+                    <div className="pt-1">
+                      <ImageUploader
+                        onUploadSuccess={(url) => setSeo({ ...seo, ogImage: url })}
+                        folder="bichitra_seo"
+                        label="নতুন কাস্টম পোস্টার ছবি আপলোড করুন"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Google Search Console & Analytics Verification */}
+              <div className="pt-4 border-t border-zinc-100 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold text-zinc-900 mb-1">
+                    গুগল সার্চ কনসোল ভেরিফিকেশন কোড (Google Site Verification)
+                  </label>
+                  <input
+                    type="text"
+                    value={seo.googleVerification}
+                    onChange={(e) => setSeo({ ...seo, googleVerification: e.target.value })}
+                    placeholder="যেমন: EOaABPHPI_eAaNXucQ1HhkIJaDn3uocSezsHHmnAI-A"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 text-xs font-mono focus:border-zinc-900 outline-none"
+                  />
+                  <p className="text-[10px] text-zinc-500 mt-1">
+                    Google Search Console &gt; Settings &gt; Ownership Verification &gt; HTML tag-এর content কোডটি দিন।
+                  </p>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-zinc-900 mb-1">
+                    গুগল অ্যানালিটিক্স / জিটিএম আইডি (GA4 ID)
+                  </label>
+                  <input
+                    type="text"
+                    value={seo.googleAnalyticsId}
+                    onChange={(e) => setSeo({ ...seo, googleAnalyticsId: e.target.value })}
+                    placeholder="যেমন: G-XXXXXXXXXX"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 text-xs font-mono focus:border-zinc-900 outline-none"
+                  />
+                  <p className="text-[10px] text-zinc-500 mt-1">
+                    Google Analytics ৪ মেজারমেন্ট আইডি থাকলে এখানে ইনপুট দিন।
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 6: BRANDING & SITE ICONS */}
+        {activeTab === 'branding' && (
+          <div className="space-y-6">
+            <div className="border-b border-zinc-200 pb-4">
+              <h3 className="text-base font-extrabold text-zinc-900 flex items-center gap-2">
+                <ShieldCheck className="w-5 h-5 text-[#08542C]" />
+                <span>সাইট আইকন (Favicon) ও স্টোর লোগো ব্যবস্থাপনা</span>
+              </h3>
+              <p className="text-xs text-zinc-500 mt-0.5">
+                ব্রাউজারের ট্যাবে প্রদর্শিত ফেভিকন এবং হেডার/ইনভয়েসে ব্যবহৃত অফিসিয়াল লোগো নিয়ন্ত্রণ করুন
+              </p>
+            </div>
+
+            {/* Browser Tab Simulation Preview */}
+            <div className="bg-white rounded-2xl border border-zinc-200 p-5 shadow-xs space-y-3">
+              <span className="text-xs font-bold text-zinc-700 block">
+                ব্রাউজার ট্যাব প্রিভিউ (Browser Tab Preview)
+              </span>
+              <div className="bg-zinc-200 p-2 rounded-xl flex items-center max-w-sm">
+                <div className="bg-white rounded-t-lg px-3 py-1.5 flex items-center gap-2 shadow-xs border border-zinc-200/80 w-full">
+                  <div className="relative w-4 h-4 rounded-full overflow-hidden shrink-0 bg-white">
+                    <Image
+                      src={branding.favicon || '/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png'}
+                      alt="Tab Favicon"
+                      fill
+                      sizes="16px"
+                      className="object-contain"
+                    />
+                  </div>
+                  <span className="text-xs font-semibold text-zinc-800 truncate">
+                    {seo.metaTitle || 'Bichitra Shop – বিচিত্র শপ'}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Favicon Settings */}
+            <div className="bg-white rounded-2xl border border-zinc-200 p-5 shadow-xs space-y-4">
+              <h4 className="text-xs font-black text-zinc-900 uppercase tracking-wider">
+                সাইট আইকন / ফেভিকন (Site Icon / Favicon)
+              </h4>
+              <p className="text-xs text-zinc-500">
+                সাইটের ট্যাবে, বুকমার্কে এবং মোবাইলের হোমস্ক্রিন শর্টকাটে প্রদর্শিত হবে (PNG বা ICO ফরম্যাট, ৩২x৩২ বা ৬৪x৬৪ পিক্সেল)।
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2">
+                <div className="relative w-16 h-16 rounded-2xl overflow-hidden border-2 border-emerald-600 bg-white p-1 shrink-0 shadow-sm flex items-center justify-center">
+                  <Image
+                    src={branding.favicon || '/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png'}
+                    alt="Favicon Preview"
+                    fill
+                    sizes="64px"
+                    className="object-contain"
+                  />
+                </div>
+
+                <div className="flex-1 space-y-2 w-full">
+                  <input
+                    type="text"
+                    value={branding.favicon}
+                    onChange={(e) => setBranding({ ...branding, favicon: e.target.value })}
+                    placeholder="/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png"
+                    className="w-full px-3.5 py-2 rounded-xl border border-zinc-200 text-xs focus:border-zinc-900 outline-none"
+                  />
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setBranding({ ...branding, favicon: '/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png' })}
+                      className="px-3 py-1.5 rounded-lg bg-zinc-100 hover:bg-zinc-200 text-zinc-800 text-[11px] font-bold transition-all cursor-pointer"
+                    >
+                      ডিফল্ট গ্রিন ব্যাজ লোগো রিসেট
+                    </button>
+                  </div>
+                  <div className="pt-1">
+                    <ImageUploader
+                      onUploadSuccess={(url) => setBranding({ ...branding, favicon: url })}
+                      folder="bichitra_branding"
+                      label="নতুন ফেভিকন আপলোড করুন"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Official Store Logo Settings */}
+            <div className="bg-white rounded-2xl border border-zinc-200 p-5 shadow-xs space-y-4">
+              <h4 className="text-xs font-black text-zinc-900 uppercase tracking-wider">
+                প্রধান স্টোর লোগো (Header & Invoice Logo)
+              </h4>
+              <p className="text-xs text-zinc-500">
+                হেডার বার, ফুটার, কাস্টমার ইনভয়েস চালান ও সোশ্যাল মেটাডাটাতে ব্যবহৃত অফিসিয়াল ব্র্যান্ড লোগো।
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2">
+                <div className="relative w-20 h-20 rounded-2xl overflow-hidden border border-zinc-200 bg-white p-1 shrink-0 shadow-sm flex items-center justify-center">
+                  <Image
+                    src={branding.logo || '/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png'}
+                    alt="Main Store Logo Preview"
+                    fill
+                    sizes="80px"
+                    className="object-contain"
+                  />
+                </div>
+
+                <div className="flex-1 space-y-2 w-full">
+                  <input
+                    type="text"
+                    value={branding.logo}
+                    onChange={(e) => setBranding({ ...branding, logo: e.target.value })}
+                    placeholder="/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png"
+                    className="w-full px-3.5 py-2 rounded-xl border border-zinc-200 text-xs focus:border-zinc-900 outline-none"
+                  />
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setBranding({ ...branding, logo: '/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png' })}
+                      className="px-3 py-1.5 rounded-lg bg-zinc-100 hover:bg-zinc-200 text-zinc-800 text-[11px] font-bold transition-all cursor-pointer"
+                    >
+                      অফিসিয়াল ব্যাজ লোগো সেট করুন
+                    </button>
+                  </div>
+                  <div className="pt-1">
+                    <ImageUploader
+                      onUploadSuccess={(url) => setBranding({ ...branding, logo: url })}
+                      folder="bichitra_branding"
+                      label="নতুন স্টোর লোগো আপলোড করুন"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

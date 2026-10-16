@@ -270,11 +270,11 @@ export default async function OrderSuccessPage({ params, searchParams }) {
           </Link>
 
           <a
-            href="tel:+8801700000000"
+            href="tel:+8801761674164"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white hover:bg-gray-50 border border-[#E2ECE3] text-[#0F2417] font-bold text-sm shadow-xs"
           >
             <PhoneCall className="w-4 h-4 text-[#22C55E]" />
-            <span>হেল্পলাইন: 01700-000000</span>
+            <span>হেল্পলাইন: 01761-674164</span>
           </a>
         </div>
       </main>

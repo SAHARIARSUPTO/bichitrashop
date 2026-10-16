@@ -177,34 +177,36 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
             </div>
           </div>
 
-          {/* Quick Action CTA Buttons */}
-          <div className="space-y-2.5 pt-1">
-            <button
-              onClick={scrollToCheckout}
-              className="w-full py-3.5 sm:py-4 rounded-xl bg-[#DC2626] hover:bg-[#B91C1C] text-white font-black text-base sm:text-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 active:scale-98 cursor-pointer"
-            >
-              <ShoppingBag className="w-5 h-5 text-white" />
-              <span>সরাসরি অর্ডার করুন (ক্যাশ অন ডেলিভারি)</span>
-            </button>
+          {/* Quick Action CTA Buttons - Polished, elegant, and neatly proportioned */}
+          <div className="space-y-3 pt-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+              <button
+                onClick={scrollToCheckout}
+                className="flex-1 sm:max-w-md py-3 sm:py-3.5 px-6 rounded-2xl bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#B91C1C] hover:to-[#991B1B] text-white font-extrabold text-sm sm:text-base shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2 active:scale-[0.98] cursor-pointer"
+              >
+                <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                <span>সরাসরি অর্ডার করুন</span>
+                <span className="text-xs bg-black/20 px-2 py-0.5 rounded-full font-bold ml-1">
+                  ক্যাশ অন ডেলিভারি
+                </span>
+              </button>
 
-            {/* Alternative Hotline & WhatsApp Buttons */}
-            <div className="grid grid-cols-2 gap-2">
               <a
-                href={`https://wa.me/8801700000000?text=${whatsappMessage}`}
+                href={`https://wa.me/8801761674164?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-2.5 px-3 rounded-xl bg-white border border-emerald-600 text-emerald-700 hover:bg-emerald-50 text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-2xs"
+                className="py-3 px-4 rounded-2xl bg-[#E8F5EC] border border-[#08542C]/20 text-[#08542C] hover:bg-[#08542C] hover:text-white text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-2xs cursor-pointer active:scale-95"
               >
-                <MessageCircle className="w-4 h-4 text-emerald-600" />
-                <span>WhatsApp অর্ডার</span>
+                <MessageCircle className="w-4 h-4 text-[#22C55E]" />
+                <span>হোয়াটসঅ্যাপ</span>
               </a>
 
               <a
-                href="tel:+8801700000000"
-                className="py-2.5 px-3 rounded-xl bg-white border border-zinc-300 text-zinc-900 hover:bg-zinc-50 text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-2xs"
+                href="tel:+8801761674164"
+                className="py-3 px-4 rounded-2xl bg-white border border-zinc-200 text-zinc-800 hover:bg-zinc-50 text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-2xs cursor-pointer active:scale-95"
               >
-                <PhoneCall className="w-4 h-4 text-black" />
-                <span>হটলাইনে কল</span>
+                <PhoneCall className="w-4 h-4 text-zinc-700" />
+                <span>হটলাইন: 01761-674164</span>
               </a>
             </div>
           </div>

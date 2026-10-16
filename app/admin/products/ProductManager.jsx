@@ -59,6 +59,12 @@ export default function ProductManager({ initialProducts = [], categories = [] }
   const [formError, setFormError] = useState('');
   const [copiedSlug, setCopiedSlug] = useState('');
 
+  // Bulk Selection and Deletion State
+  const [selectedIds, setSelectedIds] = useState([]);
+  const [isDeleteAllModalOpen, setIsDeleteAllModalOpen] = useState(false);
+  const [deletingBulk, setDeletingBulk] = useState(false);
+  const [deleteAllConfirmText, setDeleteAllConfirmText] = useState('');
+
   // Form Fields
   const [formData, setFormData] = useState({
     name: '',
@@ -334,6 +340,73 @@ export default function ProductManager({ initialProducts = [], categories = [] }
     return true;
   });
 
+  const handleToggleSelectAll = () => {
+    if (selectedIds.length === filteredProducts.length && filteredProducts.length > 0) {
+      setSelectedIds([]);
+    } else {
+      setSelectedIds(filteredProducts.map(p => p._id.toString()));
+    }
+  };
+
+  const handleToggleSelectOne = (id) => {
+    const idStr = id.toString();
+    setSelectedIds(prev =>
+      prev.includes(idStr) ? prev.filter(item => item !== idStr) : [...prev, idStr]
+    );
+  };
+
+  const handleDeleteSelected = async () => {
+    if (!selectedIds.length) return;
+    if (!confirm(`আপনি কি নিশ্চিত যে নির্বাচিত ${selectedIds.length} টি পণ্য মুছে ফেলতে চান?`)) return;
+    setDeletingBulk(true);
+    try {
+      const res = await fetch('/api/admin/products', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ids: selectedIds })
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setProducts(prev => prev.filter(p => !selectedIds.includes(p._id.toString())));
+        setSelectedIds([]);
+      } else {
+        alert(data.error || 'পণ্য মুছতে ব্যর্থ হয়েছে।');
+      }
+    } catch {
+      alert('সার্ভার যোগাযোগে সমস্যা হয়েছে।');
+    } finally {
+      setDeletingBulk(false);
+    }
+  };
+
+  const handleDeleteAll = async () => {
+    if (deleteAllConfirmText.trim() !== 'DELETE') {
+      alert("নিশ্চিত করতে অনুগ্রহ করে বক্সে ঠিকভাবে 'DELETE' লিখুন।");
+      return;
+    }
+    setDeletingBulk(true);
+    try {
+      const res = await fetch('/api/admin/products', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ all: true })
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setProducts([]);
+        setSelectedIds([]);
+        setIsDeleteAllModalOpen(false);
+        setDeleteAllConfirmText('');
+      } else {
+        alert(data.error || 'সকল পণ্য মুছতে ব্যর্থ হয়েছে।');
+      }
+    } catch {
+      alert('সার্ভার যোগাযোগে সমস্যা হয়েছে।');
+    } finally {
+      setDeletingBulk(false);
+    }
+  };
+
   return (
     <div className="p-4 sm:p-8 space-y-6 max-w-7xl">
       {/* Header and Add Button */}
@@ -350,13 +423,28 @@ export default function ProductManager({ initialProducts = [], categories = [] }
           </p>
         </div>
 
-        <button
-          onClick={openCreateModal}
-          className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-[#08542C] hover:bg-[#064423] text-white font-bold text-xs shadow-md transition-all active:scale-95 cursor-pointer"
-        >
-          <Plus className="w-4 h-4" />
-          <span>নতুন পণ্য যোগ করুন</span>
-        </button>
+        <div className="flex items-center gap-3">
+          {products.length > 0 && (
+            <button
+              onClick={() => {
+                setDeleteAllConfirmText('');
+                setIsDeleteAllModalOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-3 rounded-2xl border border-red-200 text-red-600 hover:bg-red-50 font-bold text-xs shadow-xs transition-all active:scale-95 cursor-pointer"
+            >
+              <Trash2 className="w-4 h-4" />
+              <span>সকল পণ্য মুছুন</span>
+            </button>
+          )}
+
+          <button
+            onClick={openCreateModal}
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-[#08542C] hover:bg-[#064423] text-white font-bold text-xs shadow-md transition-all active:scale-95 cursor-pointer"
+          >
+            <Plus className="w-4 h-4" />
+            <span>নতুন পণ্য যোগ করুন</span>
+          </button>
+        </div>
       </div>
 
       {/* Filter and Search Bar */}
@@ -398,6 +486,38 @@ export default function ProductManager({ initialProducts = [], categories = [] }
         </div>
       </div>
 
+      {/* Bulk Action Banner when Products are Selected */}
+      {selectedIds.length > 0 && (
+        <div className="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3 animate-in fade-in duration-200">
+          <div className="flex items-center gap-2.5">
+            <span className="w-6 h-6 rounded-full bg-[#08542C] text-white text-xs font-bold flex items-center justify-center">
+              {selectedIds.length}
+            </span>
+            <span className="text-xs font-bold text-[#08542C]">
+              টি পণ্য নির্বাচিত করা হয়েছে
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleDeleteSelected}
+              disabled={deletingBulk}
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold shadow-xs transition-colors cursor-pointer disabled:opacity-60"
+            >
+              <Trash2 className="w-3.5 h-3.5" />
+              <span>{deletingBulk ? 'মুছে ফেলা হচ্ছে...' : 'নির্বাচিত পণ্য মুছুন'}</span>
+            </button>
+
+            <button
+              onClick={() => setSelectedIds([])}
+              className="px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs font-bold text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer"
+            >
+              সিলেকশন বাতিল
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Products Table */}
       <div className="bg-white rounded-3xl border border-[#E2ECE3] shadow-xs overflow-hidden">
         {filteredProducts.length > 0 ? (
@@ -405,6 +525,15 @@ export default function ProductManager({ initialProducts = [], categories = [] }
             <table className="w-full text-left text-xs">
               <thead className="bg-[#F6FAF7] border-b border-[#E2ECE3] text-[#4B6354] uppercase tracking-wider font-bold">
                 <tr>
+                  <th className="px-4 py-3.5 w-12 text-center">
+                    <input
+                      type="checkbox"
+                      checked={selectedIds.length > 0 && selectedIds.length === filteredProducts.length}
+                      onChange={handleToggleSelectAll}
+                      title="সবগুলো নির্বাচন করুন"
+                      className="w-4 h-4 rounded accent-[#08542C] cursor-pointer"
+                    />
+                  </th>
                   <th className="px-6 py-3.5">পণ্য</th>
                   <th className="px-6 py-3.5">ক্যাটাগরি</th>
                   <th className="px-6 py-3.5">মূল্য (BDT)</th>
@@ -415,7 +544,22 @@ export default function ProductManager({ initialProducts = [], categories = [] }
               </thead>
               <tbody className="divide-y divide-gray-100 font-medium">
                 {filteredProducts.map((prod) => (
-                  <tr key={prod._id} className="hover:bg-gray-50/70 transition-colors">
+                  <tr
+                    key={prod._id}
+                    className={`hover:bg-gray-50/70 transition-colors ${
+                      selectedIds.includes(prod._id.toString()) ? 'bg-emerald-50/40' : ''
+                    }`}
+                  >
+                    {/* Checkbox Column */}
+                    <td className="px-4 py-4 w-12 text-center">
+                      <input
+                        type="checkbox"
+                        checked={selectedIds.includes(prod._id.toString())}
+                        onChange={() => handleToggleSelectOne(prod._id)}
+                        className="w-4 h-4 rounded accent-[#08542C] cursor-pointer"
+                      />
+                    </td>
+
                     {/* Image & Title */}
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
@@ -987,6 +1131,68 @@ export default function ProductManager({ initialProducts = [], categories = [] }
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Delete All Products Confirmation Modal */}
+      {isDeleteAllModalOpen && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl border border-red-200 shadow-2xl w-full max-w-md p-6 sm:p-7 space-y-5 animate-in zoom-in-95 duration-200">
+            <div className="flex items-center gap-3 text-red-600">
+              <div className="w-12 h-12 rounded-2xl bg-red-100 flex items-center justify-center shrink-0">
+                <AlertTriangle className="w-6 h-6 text-red-600" />
+              </div>
+              <div>
+                <h3 className="text-lg font-black text-zinc-900">
+                  সকল পণ্য মুছে ফেলতে চান?
+                </h3>
+                <p className="text-xs text-red-600 font-bold">
+                  এই কাজটি সতর্কতার সাথে সম্পন্ন করুন
+                </p>
+              </div>
+            </div>
+
+            <div className="p-3.5 rounded-2xl bg-red-50 border border-red-200 text-xs text-red-800 space-y-1">
+              <p className="font-semibold">
+                আপনার স্টোরে বর্তমানে মোট <span className="font-bold underline">{products.length} টি পণ্য</span> রয়েছে।
+              </p>
+              <p className="text-[11px] text-red-700">
+                সকল পণ্য আর্কাইভ বা ডিলিট হয়ে যাবে। নিশ্চিত করতে নিচের ঘরে বড় হাতের অক্ষরে <span className="font-black bg-white px-1.5 py-0.5 rounded border border-red-300">DELETE</span> লিখুন:
+              </p>
+            </div>
+
+            <div>
+              <input
+                type="text"
+                placeholder="এখানে DELETE লিখুন..."
+                value={deleteAllConfirmText}
+                onChange={(e) => setDeleteAllConfirmText(e.target.value)}
+                className="w-full px-4 py-2.5 rounded-xl border border-zinc-300 focus:border-red-600 text-sm font-mono tracking-widest text-center uppercase outline-none"
+              />
+            </div>
+
+            <div className="flex items-center justify-end gap-3 pt-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsDeleteAllModalOpen(false);
+                  setDeleteAllConfirmText('');
+                }}
+                className="px-4 py-2.5 rounded-xl border border-zinc-200 text-xs font-bold text-zinc-600 hover:bg-zinc-100 cursor-pointer"
+              >
+                বাতিল করুন
+              </button>
+              <button
+                type="button"
+                disabled={deleteAllConfirmText.trim() !== 'DELETE' || deletingBulk}
+                onClick={handleDeleteAll}
+                className="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold shadow-md transition-all flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+              >
+                {deletingBulk && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
+                <span>হ্যাঁ, সকল পণ্য মুছুন</span>
+              </button>
+            </div>
           </div>
         </div>
       )}

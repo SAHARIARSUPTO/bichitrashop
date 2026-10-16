@@ -17,7 +17,7 @@ import { initDatabase } from '@/lib/db-init';
 
 export const metadata = {
   title: 'যোগাযোগ ও হেল্পলাইন (Contact Us)',
-  description: 'বিচিত্র শপ কাস্টমার সাপোর্ট ও হেল্পলাইন। ফোন: +880 1700-000000, ইমেইল: support@bichitrashop.com। সকাল ৯টা থেকে রাত ১০টা পর্যন্ত সক্রিয়।',
+  description: 'বিচিত্র শপ কাস্টমার সাপোর্ট ও হেল্পলাইন। ফোন: 01761-674164, ইমেইল: support@bichitrashop.com। সকাল ৯টা থেকে রাত ১০টা পর্যন্ত সক্রিয়।',
   alternates: {
     canonical: 'https://bichitrashop.com/contact'
   }
@@ -64,10 +64,10 @@ export default async function ContactPage() {
               <div>
                 <h3 className="text-xs font-bold text-zinc-500 uppercase">হটলাইন কল সাপোর্ট</h3>
                 <a
-                  href="tel:+8801700000000"
+                  href="tel:+8801761674164"
                   className="text-base sm:text-lg font-black text-zinc-900 hover:text-[#08542C] block mt-0.5"
                 >
-                  +880 1700-000000
+                  01761-674164
                 </a>
                 <p className="text-[11px] text-zinc-500 mt-0.5">
                   সরাসরি ফোনে অর্ডার করতে বা পরামর্শ নিতে কল করুন।
@@ -100,7 +100,7 @@ export default async function ContactPage() {
               <div>
                 <h3 className="text-xs font-bold text-zinc-500 uppercase">অফিস ও ওয়্যারহাউজ</h3>
                 <p className="text-sm font-bold text-zinc-900 mt-0.5">
-                  মিরপুর, ঢাকা-১২১৬, বাংলাদেশ
+                  রহনপুর, চাঁপাইনবাবগঞ্জ, বাংলাদেশ
                 </p>
                 <p className="text-[11px] text-zinc-500 mt-0.5">
                   কেন্দ্রীয় বিতরণ হাব ও কাস্টমার সার্ভিস অফিস।

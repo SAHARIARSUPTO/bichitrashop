@@ -23,9 +23,22 @@ export async function GET(request) {
         key: 'store_settings',
         shippingRates: config?.shippingRates || DEFAULT_SHIPPING_RATES,
         contact: config?.contact || {
-          phone: '+880 1700-000000',
+          phone: '01761674164',
           email: 'support@bichitrashop.com',
-          address: 'Mirpur, Dhaka, Bangladesh'
+          address: 'রহনপুর, চাঁপাইনবাবগঞ্জ, বাংলাদেশ'
+        },
+        branding: config?.branding || {
+          favicon: '/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png',
+          logo: '/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png',
+          socialPoster: '/bichitra-social-poster.jpg'
+        },
+        seo: config?.seo || {
+          metaTitle: 'Bichitra Shop – বিচিত্র শপ | বিশ্বস্ত পণ্য ও স্মার্ট কেনাকাটা',
+          metaDescription: 'বিচিত্র শপ – প্রিমিয়াম কোটি সেট, পাঞ্জাবি, বোরকা ও আবায়া, খাঁটি অর্গানিক ফুড এবং আধুনিক লাইফস্টাইল পণ্য। ক্যাশ অন ডেলিভারি সারা বাংলাদেশে।',
+          keywords: 'বিচিত্র শপ, Bichitra Shop, অনলাইন শপিং বাংলাদেশ, ক্যাশ অন ডেলিভারি',
+          ogImage: '/bichitra-social-poster.jpg',
+          googleVerification: 'EOaABPHPI_eAaNXucQ1HhkIJaDn3uocSezsHHmnAI-A',
+          googleAnalyticsId: ''
         },
         announcement: config?.announcement || 'ক্যাশ অন ডেলিভারি সুবিধা সারা বাংলাদেশে!',
         heroBanners: Array.isArray(config?.heroBanners) ? config.heroBanners : DEFAULT_HERO_BANNERS,
@@ -46,25 +59,56 @@ export async function POST(request) {
 
     const body = await request.json();
     const settings = await getCollection('settings');
+    const existing = await settings.findOne({ key: 'store_settings' });
 
     const updateDoc = {
       key: 'store_settings',
-      shippingRates: {
+      shippingRates: body.shippingRates ? {
         inside_dhaka: Math.max(0, parseInt(body.shippingRates?.inside_dhaka ?? 70, 10)),
         outside_dhaka: Math.max(0, parseInt(body.shippingRates?.outside_dhaka ?? 130, 10))
-      },
-      contact: {
-        phone: body.contact?.phone || '+880 1700-000000',
+      } : (existing?.shippingRates || DEFAULT_SHIPPING_RATES),
+      contact: body.contact ? {
+        phone: body.contact?.phone || '01761674164',
         email: body.contact?.email || 'support@bichitrashop.com',
-        address: body.contact?.address || 'Mirpur, Dhaka, Bangladesh'
-      },
-      announcement: body.announcement || 'ক্যাশ অন ডেলিভারি সুবিধা সারা বাংলাদেশে!',
+        address: body.contact?.address || 'রহনপুর, চাঁপাইনবাবগঞ্জ, বাংলাদেশ'
+      } : (existing?.contact || {
+        phone: '01761674164',
+        email: 'support@bichitrashop.com',
+        address: 'রহনপুর, চাঁপাইনবাবগঞ্জ, বাংলাদেশ'
+      }),
+      branding: body.branding ? {
+        favicon: body.branding?.favicon || existing?.branding?.favicon || '/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png',
+        logo: body.branding?.logo || existing?.branding?.logo || '/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png',
+        socialPoster: body.branding?.socialPoster || existing?.branding?.socialPoster || '/bichitra-social-poster.jpg'
+      } : (existing?.branding || {
+        favicon: '/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png',
+        logo: '/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png',
+        socialPoster: '/bichitra-social-poster.jpg'
+      }),
+      seo: body.seo ? {
+        metaTitle: body.seo?.metaTitle || existing?.seo?.metaTitle || 'Bichitra Shop – বিচিত্র শপ | বিশ্বস্ত পণ্য ও স্মার্ট কেনাকাটা',
+        metaDescription: body.seo?.metaDescription || existing?.seo?.metaDescription || 'বিচিত্র শপ – প্রিমিয়াম কোটি সেট, পাঞ্জাবি, বোরকা ও আবায়া, খাঁটি অর্গানিক ফুড এবং আধুনিক লাইফস্টাইল পণ্য।',
+        keywords: body.seo?.keywords || existing?.seo?.keywords || 'বিচিত্র শপ, Bichitra Shop, অনলাইন শপিং বাংলাদেশ, ক্যাশ অন ডেলিভারি',
+        ogImage: body.seo?.ogImage || existing?.seo?.ogImage || '/bichitra-social-poster.jpg',
+        googleVerification: body.seo?.googleVerification || existing?.seo?.googleVerification || 'EOaABPHPI_eAaNXucQ1HhkIJaDn3uocSezsHHmnAI-A',
+        googleAnalyticsId: body.seo?.googleAnalyticsId || existing?.seo?.googleAnalyticsId || ''
+      } : (existing?.seo || {
+        metaTitle: 'Bichitra Shop – বিচিত্র শপ | বিশ্বস্ত পণ্য ও স্মার্ট কেনাকাটা',
+        metaDescription: 'বিচিত্র শপ – প্রিমিয়াম কোটি সেট, পাঞ্জাবি, বোরকা ও আবায়া, খাঁটি অর্গানিক ফুড এবং আধুনিক লাইফস্টাইল পণ্য।',
+        keywords: 'বিচিত্র শপ, Bichitra Shop, অনলাইন শপিং বাংলাদেশ, ক্যাশ অন ডেলিভারি',
+        ogImage: '/bichitra-social-poster.jpg',
+        googleVerification: 'EOaABPHPI_eAaNXucQ1HhkIJaDn3uocSezsHHmnAI-A',
+        googleAnalyticsId: ''
+      }),
+      announcement: body.announcement !== undefined
+        ? body.announcement
+        : (existing?.announcement || 'ক্যাশ অন ডেলিভারি সুবিধা সারা বাংলাদেশে!'),
       heroBanners: Array.isArray(body.heroBanners)
         ? body.heroBanners
-        : DEFAULT_HERO_BANNERS,
+        : (existing?.heroBanners || DEFAULT_HERO_BANNERS),
       promoBanners: Array.isArray(body.promoBanners)
         ? body.promoBanners
-        : DEFAULT_PROMO_BANNERS,
+        : (existing?.promoBanners || DEFAULT_PROMO_BANNERS),
       updatedAt: new Date().toISOString()
     };
 

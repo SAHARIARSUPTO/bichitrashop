@@ -31,11 +31,11 @@ export default function Header({ categories = [], announcement = 'ক্যা�
           </p>
           <div className="flex items-center gap-4 text-xs font-semibold">
             <a
-              href="tel:+8801700000000"
+              href="tel:+8801761674164"
               className="flex items-center gap-1.5 hover:text-white/80 transition-colors py-0.5 px-2.5 rounded-full bg-white/10"
             >
               <PhoneCall className="w-3.5 h-3.5 text-white" />
-              <span>হটলাইন: 01700-000000</span>
+              <span>হটলাইন: 01761-674164</span>
             </a>
             <Link href="/admin" className="text-white/80 hover:text-white underline text-[11px] hidden md:inline">
               অ্যাডমিন পোর্টাল
@@ -45,26 +45,26 @@ export default function Header({ categories = [], announcement = 'ক্যা�
       </div>
 
       {/* Main Navigation Bar */}
-      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 gap-4">
+      <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-13 sm:h-16 md:h-20 gap-2 sm:gap-4">
           {/* Logo & Brand Identity */}
-          <Link href="/" className="flex items-center gap-3 shrink-0 group">
-            <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 border-[#08542C]/20 p-0.5 bg-white shadow-xs group-hover:scale-105 transition-transform">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0 group">
+            <div className="relative w-9 h-9 sm:w-11 sm:h-11 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-[#08542C]/20 p-0.5 bg-white shadow-2xs group-hover:scale-105 transition-transform">
               <Image
                 src="/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png"
                 alt="Bichitra Shop - বিচিত্র শপ লোগো"
                 fill
-                sizes="(max-width: 768px) 56px, 64px"
+                sizes="(max-width: 640px) 36px, (max-width: 768px) 44px, 64px"
                 className="object-contain"
                 priority
               />
             </div>
             <div className="flex flex-col">
-              <div className="flex items-center gap-1">
-                <span className="font-black text-xl sm:text-2xl text-[#DC2626] tracking-tight">Bichitra</span>
-                <span className="font-black text-xl sm:text-2xl text-[#08542C] tracking-tight">Shop</span>
+              <div className="flex items-center gap-0.5 sm:gap-1">
+                <span className="font-black text-base sm:text-xl md:text-2xl text-[#DC2626] tracking-tight">Bichitra</span>
+                <span className="font-black text-base sm:text-xl md:text-2xl text-[#08542C] tracking-tight">Shop</span>
               </div>
-              <span className="text-[11px] font-semibold text-[#08542C] tracking-wide -mt-1 hidden sm:block">
+              <span className="text-[10px] sm:text-[11px] font-semibold text-[#08542C] tracking-wide -mt-0.5 hidden sm:block">
                 বিশ্বস্ত পণ্য | স্মার্ট কেনাকাটা
               </span>
             </div>
@@ -78,12 +78,12 @@ export default function Header({ categories = [], announcement = 'ক্যা�
                 placeholder="পণ্য বা ক্যাটাগরি সার্চ করুন (যেমন: কোটি সেট, পাঞ্জাবি, মধু)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-4 pr-11 py-2.5 rounded-full border border-[#E2ECE3] focus:border-[#08542C] focus:ring-2 focus:ring-[#08542C]/20 outline-none text-sm bg-[#F6FAF7] transition-all text-[#0F2417] placeholder:text-[#4B6354]/60"
+                className="w-full pl-4 pr-11 py-2 rounded-full border border-[#E2ECE3] focus:border-[#08542C] focus:ring-2 focus:ring-[#08542C]/20 outline-none text-sm bg-[#F6FAF7] transition-all text-[#0F2417] placeholder:text-[#4B6354]/60"
               />
               <button
                 type="submit"
                 aria-label="Search"
-                className="absolute right-1.5 top-1.5 bottom-1.5 px-3 rounded-full bg-[#08542C] text-white hover:bg-[#064423] transition-colors flex items-center justify-center"
+                className="absolute right-1.5 top-1.5 bottom-1.5 px-3 rounded-full bg-[#08542C] text-white hover:bg-[#064423] transition-colors flex items-center justify-center cursor-pointer"
               >
                 <Search className="w-4 h-4" />
               </button>
@@ -91,7 +91,7 @@ export default function Header({ categories = [], announcement = 'ক্যা�
           </form>
 
           {/* Navigation Links and Action Buttons */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <Link
               href="/products"
               className="hidden lg:flex items-center gap-1.5 text-sm font-semibold text-[#0F2417] hover:text-[#08542C] transition-colors px-3 py-2 rounded-lg hover:bg-[#E8F5EC]"
@@ -111,9 +111,9 @@ export default function Header({ categories = [], announcement = 'ক্যা�
             {/* Quick Order Now Button */}
             <Link
               href="/products"
-              className="flex items-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] text-white px-4 py-2.5 rounded-full font-bold text-sm shadow-md hover:shadow-lg transition-all active:scale-95"
+              className="flex items-center gap-1.5 bg-[#DC2626] hover:bg-[#B91C1C] text-white px-3 py-1.5 sm:px-4 sm:py-2.5 rounded-full font-bold text-xs sm:text-sm shadow-xs hover:shadow-md transition-all active:scale-95"
             >
-              <ShoppingBag className="w-4 h-4 text-white" />
+              <ShoppingBag className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
               <span className="hidden sm:inline">অর্ডার করুন</span>
               <span className="sm:hidden">শপ</span>
             </Link>
@@ -122,26 +122,26 @@ export default function Header({ categories = [], announcement = 'ক্যা�
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle navigation menu"
-              className="md:hidden p-2 text-[#0F2417] hover:text-[#08542C] rounded-lg hover:bg-gray-100"
+              className="md:hidden p-1.5 text-[#0F2417] hover:text-[#08542C] rounded-lg hover:bg-gray-100 cursor-pointer"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Search Bar */}
-        <div className="md:hidden pb-3 pt-1">
+        {/* Mobile Compact Search Bar */}
+        <div className="md:hidden pb-2 pt-0.5">
           <form onSubmit={handleSearchSubmit} className="relative w-full">
             <input
               type="text"
-              placeholder="পণ্য খুঁজুন..."
+              placeholder="পণ্য বা ক্যাটাগরি সার্চ করুন..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-4 pr-10 py-2 rounded-full border border-[#E2ECE3] focus:border-[#08542C] outline-none text-xs bg-[#F6FAF7] text-[#0F2417]"
+              className="w-full pl-3.5 pr-9 py-1.5 rounded-full border border-[#E2ECE3] focus:border-[#08542C] outline-none text-xs bg-[#F6FAF7] text-[#0F2417] placeholder:text-gray-400"
             />
             <button
               type="submit"
-              className="absolute right-1 top-1 bottom-1 px-3 rounded-full bg-[#08542C] text-white flex items-center justify-center"
+              className="absolute right-1 top-1 bottom-1 px-2.5 rounded-full bg-[#08542C] text-white flex items-center justify-center cursor-pointer"
             >
               <Search className="w-3.5 h-3.5" />
             </button>
@@ -235,11 +235,11 @@ export default function Header({ categories = [], announcement = 'ক্যা�
 
           <div className="pt-3 border-t border-gray-100 flex flex-col gap-2">
             <a
-              href="tel:+8801700000000"
+              href="tel:+8801761674164"
               className="flex items-center justify-center gap-2 p-2.5 rounded-lg bg-[#08542C] text-white font-bold text-xs"
             >
               <PhoneCall className="w-4 h-4 text-white" />
-              <span>কল করুন: 01700-000000</span>
+              <span>কল করুন: 01761-674164</span>
             </a>
             <Link
               href="/admin"

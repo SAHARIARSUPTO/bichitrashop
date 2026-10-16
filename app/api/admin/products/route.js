@@ -2,7 +2,7 @@
 // Admin API: List all products and create a new product with auto slug generation
 
 import { getAdminFromRequest } from '@/lib/auth';
-import { getCollection } from '@/lib/mongodb';
+import { getCollection, ObjectId } from '@/lib/mongodb';
 import { productSchema } from '@/lib/validation';
 import { generateUniqueSlug } from '@/lib/slug';
 
@@ -121,5 +121,79 @@ export async function POST(request) {
   } catch (error) {
     console.error('Error creating product:', error);
     return Response.json({ success: false, error: 'পণ্য তৈরি করতে ত্রুটি ঘটেছে।' }, { status: 500 });
+  }
+}
+
+export async function DELETE(request) {
+  try {
+    const admin = await getAdminFromRequest(request);
+    if (!admin) {
+      return Response.json({ success: false, error: 'অননুমোদিত।' }, { status: 401 });
+    }
+
+    const body = await request.json().catch(() => ({}));
+    const { ids, all, permanent } = body;
+    const products = await getCollection('products');
+
+    if (all === true) {
+      if (permanent) {
+        const result = await products.deleteMany({});
+        return Response.json({
+          success: true,
+          message: `সকল পণ্য সফলভাবে স্থায়ীভাবে মুছে ফেলা হয়েছে (${result.deletedCount || 0} টি)।`,
+          deletedCount: result.deletedCount || 0
+        });
+      } else {
+        const result = await products.updateMany(
+          { status: { $ne: 'archived' } },
+          { $set: { status: 'archived', deletedAt: new Date().toISOString(), updatedAt: new Date().toISOString() } }
+        );
+        return Response.json({
+          success: true,
+          message: `সকল পণ্য সফলভাবে মুছে ফেলা হয়েছে (${result.modifiedCount || 0} টি)।`,
+          deletedCount: result.modifiedCount || 0
+        });
+      }
+    }
+
+    if (Array.isArray(ids) && ids.length > 0) {
+      const objectIds = [];
+      ids.forEach(id => {
+        try {
+          objectIds.push(new ObjectId(id));
+        } catch {}
+      });
+
+      const query = {
+        $or: [
+          { _id: { $in: ids } },
+          ...(objectIds.length > 0 ? [{ _id: { $in: objectIds } }] : [])
+        ]
+      };
+
+      if (permanent) {
+        const result = await products.deleteMany(query);
+        return Response.json({
+          success: true,
+          message: `${result.deletedCount || ids.length} টি নির্বাচিত পণ্য স্থায়ীভাবে মুছে ফেলা হয়েছে।`,
+          deletedCount: result.deletedCount || ids.length
+        });
+      } else {
+        const result = await products.updateMany(
+          query,
+          { $set: { status: 'archived', deletedAt: new Date().toISOString(), updatedAt: new Date().toISOString() } }
+        );
+        return Response.json({
+          success: true,
+          message: `${result.modifiedCount || ids.length} টি নির্বাচিত পণ্য সফলভাবে মুছে ফেলা হয়েছে।`,
+          deletedCount: result.modifiedCount || ids.length
+        });
+      }
+    }
+
+    return Response.json({ success: false, error: 'মুছে ফেলার জন্য পণ্য নির্বাচন করুন।' }, { status: 400 });
+  } catch (error) {
+    console.error('Error deleting products:', error);
+    return Response.json({ success: false, error: 'পণ্য মুছে ফেলতে সমস্যা হয়েছে।' }, { status: 500 });
   }
 }

@@ -15,7 +15,9 @@ import {
   AlertTriangle,
   ArrowRight,
   PlusCircle,
-  Settings
+  Settings,
+  BarChart3,
+  Eye
 } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
@@ -24,6 +26,7 @@ async function getDashboardData() {
   await initDatabase();
   const products = await getCollection('products');
   const orders = await getCollection('orders');
+  const analytics = await getCollection('analytics_events');
 
   const [
     totalProducts,
@@ -33,6 +36,7 @@ async function getDashboardData() {
     totalOrders,
     pendingOrders,
     confirmedOrders,
+    totalViews,
     recentOrdersList
   ] = await Promise.all([
     products.countDocuments({ status: { $ne: 'archived' } }),
@@ -42,6 +46,7 @@ async function getDashboardData() {
     orders.countDocuments({}),
     orders.countDocuments({ orderStatus: 'pending' }),
     orders.countDocuments({ orderStatus: 'confirmed' }),
+    analytics.countDocuments({}),
     orders.find({}).sort({ createdAt: -1 }).limit(6).toArray()
   ]);
 
@@ -58,7 +63,8 @@ async function getDashboardData() {
       totalOrders,
       pendingOrders,
       confirmedOrders,
-      totalRevenue
+      totalRevenue,
+      totalViews
     },
     recentOrders: JSON.parse(JSON.stringify(recentOrdersList))
   };
@@ -95,6 +101,14 @@ export default async function AdminDashboardPage() {
           >
             <PlusCircle className="w-4 h-4" />
             <span>নতুন পণ্য যোগ করুন</span>
+          </Link>
+
+          <Link
+            href="/admin/traffic"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-[#E2ECE3] text-[#08542C] font-bold text-xs hover:bg-emerald-50 transition-colors"
+          >
+            <BarChart3 className="w-4 h-4 text-[#08542C]" />
+            <span>কাস্টমার ট্রাফিক ও ভিউ</span>
           </Link>
 
           <Link
@@ -168,6 +182,35 @@ export default async function AdminDashboardPage() {
             <AlertTriangle className="w-6 h-6" />
           </div>
         </div>
+      </div>
+
+      {/* Customer Traffic & SEO Highlights Banner */}
+      <div className="bg-gradient-to-r from-[#08542C] via-[#0D733E] to-[#16A34A] rounded-2xl p-5 sm:p-6 text-white flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-white/20 text-white tracking-wider uppercase">
+              নতুন ফিচার
+            </span>
+            <span className="text-xs font-bold text-emerald-200">
+              রিয়েল-টাইম কাস্টমার ট্র্যাকিং ও এসইও
+            </span>
+          </div>
+          <h2 className="text-lg sm:text-xl font-black">
+            কাস্টমার কোথা থেকে আসছেন? (ফেসবুক বনাম গুগল সার্চ)
+          </h2>
+          <p className="text-xs text-white/80 max-w-xl">
+            ভিজিটররা কোন সোশ্যাল মিডিয়া বা গুগল থেকে আপনার পণ্য দেখছেন তা ট্র্যাক করুন এবং গুগল সার্চে প্রথম পেজে র‍্যাঙ্কিংয়ের জন্য কার্যকর এসইও পরামর্শ নিন।
+          </p>
+        </div>
+
+        <Link
+          href="/admin/traffic"
+          className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white text-[#08542C] hover:bg-emerald-50 font-black text-xs transition-all shadow-md shrink-0 cursor-pointer"
+        >
+          <BarChart3 className="w-4 h-4 text-[#08542C]" />
+          <span>ট্রাফিক অ্যানালিটিক্স দেখুন ({metrics.totalViews.toLocaleString('bn-BD')} ভিউ)</span>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </Link>
       </div>
 
       {/* Recent Orders Table */}

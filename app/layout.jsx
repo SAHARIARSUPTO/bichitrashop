@@ -1,75 +1,108 @@
 import { Suspense } from 'react';
 import './globals.css';
 import ClientNavigationLoader from './components/ClientNavigationLoader';
+import TrafficTracker from './components/TrafficTracker';
+import {
+  getSiteUrl,
+  toAbsoluteUrl,
+  getStoreSettings,
+  DEFAULT_SOCIAL_POSTER,
+  DEFAULT_SITE_ICON,
+  OFFICIAL_HOTLINE_TEL
+} from '@/lib/seo';
 
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://bichitrashop.vercel.app').replace(/\/+$/, '');
+export const dynamic = 'force-dynamic';
 
-export const metadata = {
-  metadataBase: new URL(siteUrl),
-  title: {
-    default: 'Bichitra Shop – বিচিত্র শপ | বিশ্বস্ত পণ্য ও স্মার্ট কেনাকাটা',
-    template: '%s | Bichitra Shop (বিচিত্র শপ)'
-  },
-  description: 'বিচিত্র শপ – প্রিমিয়াম কোটি সেট, পাঞ্জাবি, বোরকা ও আবায়া, খাঁটি অর্গানিক ফুড এবং আধুনিক লাইফস্টাইল পণ্য। ক্যাশ অন ডেলিভারি সারা বাংলাদেশে।',
-  keywords: [
-    'বিচিত্র শপ',
-    'Bichitra Shop',
-    'অনলাইন শপিং বাংলাদেশ',
-    'কোটি সেট',
-    'পাঞ্জাবি কালেকশন',
-    'বোরকা আবায়া',
-    'খাঁটি মধু',
-    'সরিষার তেল',
-    'ক্যাশ অন ডেলিভারি',
-    'dropshipping bangladesh'
-  ],
-  authors: [{ name: 'Bichitra Shop' }],
-  creator: 'Bichitra Shop',
-  publisher: 'Bichitra Shop',
-  alternates: {
-    canonical: siteUrl,
-  },
-  verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'EOaABPHPI_eAaNXucQ1HhkIJaDn3uocSezsHHmnAI-A',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+export async function generateMetadata() {
+  const siteUrl = getSiteUrl();
+  const settings = await getStoreSettings();
+
+  const metaTitle = settings?.seo?.metaTitle || 'Bichitra Shop – বিচিত্র শপ | বিশ্বস্ত পণ্য ও স্মার্ট কেনাকাটা';
+  const metaDescription = settings?.seo?.metaDescription || 'বিচিত্র শপ – প্রিমিয়াম কোটি সেট, পাঞ্জাবি, বোরকা ও আবায়া, খাঁটি অর্গানিক ফুড এবং আধুনিক লাইফস্টাইল পণ্য। ক্যাশ অন ডেলিভারি সারা বাংলাদেশে।';
+  
+  const rawKeywords = settings?.seo?.keywords;
+  const keywords = Array.isArray(rawKeywords)
+    ? rawKeywords
+    : (typeof rawKeywords === 'string'
+        ? rawKeywords.split(',').map((k) => k.trim()).filter(Boolean)
+        : [
+            'বিচিত্র শপ',
+            'Bichitra Shop',
+            'অনলাইন শপিং বাংলাদেশ',
+            'কোটি সেট',
+            'পাঞ্জাবি কালেকশন',
+            'বোরকা আবায়া',
+            'খাঁটি মধু',
+            'সরিষার তেল',
+            'ক্যাশ অন ডেলিভারি',
+            'dropshipping bangladesh'
+          ]);
+
+  const socialPosterUrl = toAbsoluteUrl(
+    settings?.seo?.ogImage || settings?.branding?.socialPoster || DEFAULT_SOCIAL_POSTER
+  );
+
+  const siteIconUrl = settings?.branding?.favicon || DEFAULT_SITE_ICON;
+  const googleVerification = settings?.seo?.googleVerification || process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'EOaABPHPI_eAaNXucQ1HhkIJaDn3uocSezsHHmnAI-A';
+
+  return {
+    metadataBase: new URL(siteUrl),
+    title: {
+      default: metaTitle,
+      template: '%s | Bichitra Shop (বিচিত্র শপ)'
+    },
+    description: metaDescription,
+    keywords,
+    authors: [{ name: 'Bichitra Shop' }],
+    creator: 'Bichitra Shop',
+    publisher: 'Bichitra Shop',
+    alternates: {
+      canonical: siteUrl
+    },
+    verification: {
+      google: googleVerification
+    },
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  openGraph: {
-    type: 'website',
-    locale: 'bn_BD',
-    url: siteUrl,
-    siteName: 'Bichitra Shop – বিচিত্র শপ',
-    title: 'Bichitra Shop – বিচিত্র শপ | বিশ্বস্ত পণ্য ও স্মার্ট কেনাকাটা',
-    description: 'বিচিত্র শপ – প্রিমিয়াম কোটি সেট, ঐতিহ্যবাহী পাঞ্জাবি, আধুনিক আবায়া ও অর্গানিক ফুড। ক্যাশ অন ডেলিভারি সারা বাংলাদেশে।',
-    images: [
-      {
-        url: '/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png',
-        width: 800,
-        height: 800,
-        alt: 'Bichitra Shop – বিচিত্র শপ অফিসিয়াল লোগো'
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1
       }
-    ]
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Bichitra Shop – বিচিত্র শপ',
-    description: 'বিশ্বস্ত পণ্য | স্মার্ট কেনাকাটা। ক্যাশ অন ডেলিভারি সারা বাংলাদেশে।',
-    images: ['/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png']
-  },
-  icons: {
-    icon: '/favicon.ico',
-    apple: '/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png'
-  }
-};
+    },
+    openGraph: {
+      type: 'website',
+      locale: 'bn_BD',
+      url: siteUrl,
+      siteName: 'Bichitra Shop – বিচিত্র শপ',
+      title: metaTitle,
+      description: metaDescription,
+      images: [
+        {
+          url: socialPosterUrl,
+          secureUrl: socialPosterUrl,
+          width: 1200,
+          height: 630,
+          alt: 'Bichitra Shop – বিচিত্র শপ সোশ্যাল শেয়ার পোস্টার'
+        }
+      ]
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: metaTitle,
+      description: metaDescription,
+      images: [socialPosterUrl]
+    },
+    icons: {
+      icon: siteIconUrl,
+      shortcut: siteIconUrl,
+      apple: siteIconUrl
+    }
+  };
+}
 
 export const viewport = {
   themeColor: '#08542C',
@@ -78,7 +111,11 @@ export const viewport = {
   maximumScale: 5,
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const siteUrl = getSiteUrl();
+  const settings = await getStoreSettings();
+  const hotline = settings?.contact?.phone || OFFICIAL_HOTLINE_TEL;
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -89,11 +126,11 @@ export default function RootLayout({ children }) {
         url: siteUrl,
         logo: {
           '@type': 'ImageObject',
-          url: `${siteUrl}/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png`
+          url: toAbsoluteUrl(settings?.branding?.logo || DEFAULT_SITE_ICON)
         },
         contactPoint: {
           '@type': 'ContactPoint',
-          telephone: '+880-1700-000000',
+          telephone: hotline,
           contactType: 'customer service',
           areaServed: 'BD',
           availableLanguage: ['Bengali', 'English']
@@ -120,6 +157,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="bn" className="h-full antialiased">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -128,6 +171,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col bg-[#F6FAF7] text-[#0F2417]">
         <Suspense fallback={null}>
           <ClientNavigationLoader />
+          <TrafficTracker />
         </Suspense>
         {children}
       </body>

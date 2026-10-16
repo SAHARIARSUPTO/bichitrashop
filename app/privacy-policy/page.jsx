@@ -89,7 +89,7 @@ export default async function PrivacyPolicyPage() {
               <span>৪. যেকোনো প্রয়োজনে যোগাযোগ</span>
             </h2>
             <p>
-              আপনার ব্যক্তিগত তথ্য পরিবর্তন বা মুছে ফেলার জন্য যেকোনো সময় আমাদের ইমেইল <a href="mailto:support@bichitrashop.com" className="font-bold text-black underline">support@bichitrashop.com</a> বা হটলাইন <a href="tel:+8801700000000" className="font-bold text-black underline">+880 1700-000000</a>-এ যোগাযোগ করতে পারেন।
+              আপনার ব্যক্তিগত তথ্য পরিবর্তন বা মুছে ফেলার জন্য যেকোনো সময় আমাদের ইমেইল <a href="mailto:support@bichitrashop.com" className="font-bold text-black underline">support@bichitrashop.com</a> বা হটলাইন <a href="tel:+8801761674164" className="font-bold text-black underline">01761-674164</a>-এ যোগাযোগ করতে পারেন।
             </p>
           </section>
         </article>

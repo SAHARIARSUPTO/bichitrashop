@@ -35,7 +35,7 @@ const ORDER_STEPS = [
 const BOTTOM_NAV_ITEMS = [
   { href: '/', label: 'হোম', icon: Home, active: true },
   { href: '/products', label: 'পণ্য', icon: LayoutGrid },
-  { href: 'tel:+8801700000000', label: 'কল', icon: PhoneCall },
+  { href: 'tel:+8801761674164', label: 'কল', icon: PhoneCall },
 ];
 
 // Static on purpose: this page is the homepage, so "Home" is always the active tab.
@@ -242,11 +242,11 @@ export default async function HomePage() {
               কেনাকাটা শুরু করুন
             </Link>
             <a
-              href="tel:+8801700000000"
+              href="tel:+8801761674164"
               className="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-3 text-sm font-bold transition-colors hover:bg-white/10"
             >
               <PhoneCall className="w-4 h-4" aria-hidden="true" />
-              01700-000000
+              01761-674164
             </a>
           </div>
         </section>

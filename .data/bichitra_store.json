@@ -7,14 +7,14 @@
         "outside_dhaka": 130
       },
       "contact": {
-        "phone": "+880 1700-000000",
+        "phone": "01761674164",
         "email": "support@bichitrashop.com",
-        "address": "Mirpur, Dhaka-1216, Bangladesh"
+        "address": "রহনপুর, চাঁপাইনবাবগঞ্জ, বাংলাদেশ"
       },
       "announcement": "🎉 ক্যাশ অন ডেলিভারি সুবিধা সারা বাংলাদেশে! পণ্য হাতে পেয়ে মূল্য পরিশোধের নিশ্চয়তা।",
       "createdAt": "2026-10-15T18:17:56.858Z",
       "_id": "6ad118d4bd9c2a6708aebd89",
-      "updatedAt": "2026-10-16T06:31:55.336Z",
+      "updatedAt": "2026-10-16T14:11:15.133Z",
       "heroBanners": [
         {
           "id": 1,
@@ -119,7 +119,9 @@
           "accentColor": "from-zinc-900 to-black",
           "active": true
         }
-      ]
+      ],
+      "contact.phone": "01761674164",
+      "contact.address": "রহনপুর, চাঁপাইনবাবগঞ্জ, বাংলাদেশ"
     }
   ],
   "admins": [
@@ -132,6 +134,15 @@
       "updatedAt": "2026-10-15T18:45:31.878Z",
       "_id": "6ad118d5bd9c2a6708aebd8a",
       "lastLoginAt": "2026-10-15T18:45:31.878Z"
+    },
+    {
+      "email": "admin@bichitrashop.com",
+      "passwordHash": "$2b$12$7ulgDLTKIQuNPMHXq0C.K.o06atk/uDzJe./wnAMkgTR24NfMGUb6",
+      "role": "superadmin",
+      "name": "Bichitra Shop Administrator",
+      "createdAt": "2026-10-16T14:18:46.316Z",
+      "updatedAt": "2026-10-16T14:18:46.319Z",
+      "_id": "6ad232468ed7e6a12d243094"
     }
   ],
   "categories": [
@@ -143,7 +154,7 @@
       "status": "active",
       "createdAt": "2026-10-15T18:17:57.099Z",
       "_id": "6ad118d5bd9c2a6708aebd8b",
-      "updatedAt": "2026-10-16T06:31:55.329Z"
+      "updatedAt": "2026-10-16T14:22:00.574Z"
     },
     {
       "name": "উইমেনস ফ্যাশন",
@@ -153,7 +164,7 @@
       "status": "active",
       "createdAt": "2026-10-15T18:17:57.099Z",
       "_id": "6ad118d5bd9c2a6708aebd8c",
-      "updatedAt": "2026-10-16T06:31:55.330Z"
+      "updatedAt": "2026-10-16T14:22:00.575Z"
     },
     {
       "name": "হোম ও লিভিং",
@@ -163,7 +174,7 @@
       "status": "active",
       "createdAt": "2026-10-15T18:17:57.099Z",
       "_id": "6ad118d5bd9c2a6708aebd8d",
-      "updatedAt": "2026-10-16T06:31:55.331Z"
+      "updatedAt": "2026-10-16T14:22:00.578Z"
     },
     {
       "name": "অর্গানিক ফুড",
@@ -173,7 +184,7 @@
       "status": "active",
       "createdAt": "2026-10-15T18:17:57.099Z",
       "_id": "6ad118d5bd9c2a6708aebd8e",
-      "updatedAt": "2026-10-16T06:31:55.332Z"
+      "updatedAt": "2026-10-16T14:22:00.578Z"
     },
     {
       "slug": "gadgets",
@@ -183,7 +194,7 @@
       "status": "active",
       "_id": "6ad12b36a4fcf1a2baec6e35",
       "createdAt": "2026-10-15T19:36:22.226Z",
-      "updatedAt": "2026-10-16T06:31:55.330Z"
+      "updatedAt": "2026-10-16T14:22:00.576Z"
     },
     {
       "slug": "home-appliances",
@@ -193,7 +204,7 @@
       "status": "active",
       "_id": "6ad12b36a4fcf1a2baec6e36",
       "createdAt": "2026-10-15T19:36:22.227Z",
-      "updatedAt": "2026-10-16T06:31:55.331Z"
+      "updatedAt": "2026-10-16T14:22:00.577Z"
     }
   ],
   "products": [
@@ -443,5 +454,635 @@
       "_id": "6ad1c67b33b270fa28eb1ba6"
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "orderReference": "BC-461571-6D",
+      "confirmationTokenHash": "124327d2b1ce7da0f82909be45b505acd7177414e5df3c669d778a5a3c0681c8",
+      "customer": {
+        "name": "রাশেদ খান",
+        "phone": "01812345678",
+        "address": "রোড ৪, সেক্টর ৭, উত্তরা, ঢাকা",
+        "district": "ঢাকা"
+      },
+      "items": [
+        {
+          "productId": "6ad118d5bd9c2a6708aebd8f",
+          "productName": "এক্সক্লুসিভ অ্যামব্রয়ডারি প্রিমিয়াম কোটি সেট (Exclusive Embroidered Koti Set)",
+          "slug": "exclusive-embroidered-koti-set",
+          "unitPrice": 1850,
+          "quantity": 3,
+          "subtotal": 5550
+        }
+      ],
+      "subtotal": 5550,
+      "discount": 0,
+      "deliveryCharge": 70,
+      "deliveryZone": "inside_dhaka",
+      "total": 5620,
+      "paymentMethod": "cash_on_delivery",
+      "paymentStatus": "unpaid",
+      "orderStatus": "shipped",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-16T12:56:37.212Z",
+          "note": "অর্ডার প্লেস করা হয়েছে"
+        },
+        {
+          "status": "shipped",
+          "timestamp": "2026-10-16T12:56:37.213Z",
+          "note": "কুরিয়ারে পাঠানো হয়েছে"
+        }
+      ],
+      "createdAt": "2026-10-16T12:56:37.212Z",
+      "_id": "6ad21f057d2493caac2f7857",
+      "updatedAt": "2026-10-16T12:56:37.213Z"
+    },
+    {
+      "orderReference": "BC-164591-78",
+      "confirmationTokenHash": "54da1f48d1ad0c1975f622f4984f8cae7bd4296704318592dadd1a2ff7bb3107",
+      "customer": {
+        "name": "রাশেদ খান",
+        "phone": "01812345678",
+        "address": "রোড ৪, সেক্টর ৭, উত্তরা, ঢাকা",
+        "district": "ঢাকা"
+      },
+      "items": [
+        {
+          "productId": "6ad118d5bd9c2a6708aebd8f",
+          "productName": "এক্সক্লুসিভ অ্যামব্রয়ডারি প্রিমিয়াম কোটি সেট (Exclusive Embroidered Koti Set)",
+          "slug": "exclusive-embroidered-koti-set",
+          "unitPrice": 1850,
+          "quantity": 3,
+          "subtotal": 5550
+        }
+      ],
+      "subtotal": 5550,
+      "discount": 0,
+      "deliveryCharge": 70,
+      "deliveryZone": "inside_dhaka",
+      "total": 5620,
+      "paymentMethod": "cash_on_delivery",
+      "paymentStatus": "unpaid",
+      "orderStatus": "shipped",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-16T13:04:26.473Z",
+          "note": "অর্ডার প্লেস করা হয়েছে"
+        },
+        {
+          "status": "shipped",
+          "timestamp": "2026-10-16T13:04:26.477Z",
+          "note": "কুরিয়ারে পাঠানো হয়েছে"
+        }
+      ],
+      "createdAt": "2026-10-16T13:04:26.473Z",
+      "_id": "6ad220da67d40fa686dad00e",
+      "updatedAt": "2026-10-16T13:04:26.478Z"
+    },
+    {
+      "orderReference": "BC-850900-54",
+      "confirmationTokenHash": "44eb06cdb5d126d51f87fdffc3b184527aade84e96b747810b80a3d0f419f3e0",
+      "customer": {
+        "name": "রাশেদ খান",
+        "phone": "01812345678",
+        "address": "রোড ৪, সেক্টর ৭, উত্তরা, ঢাকা",
+        "district": "ঢাকা"
+      },
+      "items": [
+        {
+          "productId": "6ad118d5bd9c2a6708aebd8f",
+          "productName": "এক্সক্লুসিভ অ্যামব্রয়ডারি প্রিমিয়াম কোটি সেট (Exclusive Embroidered Koti Set)",
+          "slug": "exclusive-embroidered-koti-set",
+          "unitPrice": 1850,
+          "quantity": 3,
+          "subtotal": 5550
+        }
+      ],
+      "subtotal": 5550,
+      "discount": 0,
+      "deliveryCharge": 70,
+      "deliveryZone": "inside_dhaka",
+      "total": 5620,
+      "paymentMethod": "cash_on_delivery",
+      "paymentStatus": "unpaid",
+      "orderStatus": "shipped",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-16T13:11:10.017Z",
+          "note": "অর্ডার প্লেস করা হয়েছে"
+        },
+        {
+          "status": "shipped",
+          "timestamp": "2026-10-16T13:11:10.018Z",
+          "note": "কুরিয়ারে পাঠানো হয়েছে"
+        }
+      ],
+      "createdAt": "2026-10-16T13:11:10.017Z",
+      "_id": "6ad2226eb638de5753bef2c6",
+      "updatedAt": "2026-10-16T13:11:10.018Z"
+    },
+    {
+      "orderReference": "BC-938315-4F",
+      "confirmationTokenHash": "21f82752644a7f2cd15caef515d64fb002dbdaf6aa1a3743cde2faeac80a6aa7",
+      "customer": {
+        "name": "রাশেদ খান",
+        "phone": "01812345678",
+        "address": "রোড ৪, সেক্টর ৭, উত্তরা, ঢাকা",
+        "district": "ঢাকা"
+      },
+      "items": [
+        {
+          "productId": "6ad118d5bd9c2a6708aebd8f",
+          "productName": "এক্সক্লুসিভ অ্যামব্রয়ডারি প্রিমিয়াম কোটি সেট (Exclusive Embroidered Koti Set)",
+          "slug": "exclusive-embroidered-koti-set",
+          "unitPrice": 1850,
+          "quantity": 3,
+          "subtotal": 5550
+        }
+      ],
+      "subtotal": 5550,
+      "discount": 0,
+      "deliveryCharge": 70,
+      "deliveryZone": "inside_dhaka",
+      "total": 5620,
+      "paymentMethod": "cash_on_delivery",
+      "paymentStatus": "unpaid",
+      "orderStatus": "shipped",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-16T13:11:34.447Z",
+          "note": "অর্ডার প্লেস করা হয়েছে"
+        },
+        {
+          "status": "shipped",
+          "timestamp": "2026-10-16T13:11:34.448Z",
+          "note": "কুরিয়ারে পাঠানো হয়েছে"
+        }
+      ],
+      "createdAt": "2026-10-16T13:11:34.447Z",
+      "_id": "6ad222864c2e5b4bfaec3099",
+      "updatedAt": "2026-10-16T13:11:34.449Z"
+    },
+    {
+      "orderReference": "BC-392931-CD",
+      "confirmationTokenHash": "10fd2206df1cb0a08d13b45a052b0b58597274dfc26bd51e0aa19dccf52176f6",
+      "customer": {
+        "name": "রাশেদ খান",
+        "phone": "01812345678",
+        "address": "রোড ৪, সেক্টর ৭, উত্তরা, ঢাকা",
+        "district": "ঢাকা"
+      },
+      "items": [
+        {
+          "productId": "6ad118d5bd9c2a6708aebd8f",
+          "productName": "এক্সক্লুসিভ অ্যামব্রয়ডারি প্রিমিয়াম কোটি সেট (Exclusive Embroidered Koti Set)",
+          "slug": "exclusive-embroidered-koti-set",
+          "unitPrice": 1850,
+          "quantity": 3,
+          "subtotal": 5550
+        }
+      ],
+      "subtotal": 5550,
+      "discount": 0,
+      "deliveryCharge": 70,
+      "deliveryZone": "inside_dhaka",
+      "total": 5620,
+      "paymentMethod": "cash_on_delivery",
+      "paymentStatus": "unpaid",
+      "orderStatus": "shipped",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-16T13:11:55.893Z",
+          "note": "অর্ডার প্লেস করা হয়েছে"
+        },
+        {
+          "status": "shipped",
+          "timestamp": "2026-10-16T13:11:55.894Z",
+          "note": "কুরিয়ারে পাঠানো হয়েছে"
+        }
+      ],
+      "createdAt": "2026-10-16T13:11:55.893Z",
+      "_id": "6ad2229b9cfed954d27e880c",
+      "updatedAt": "2026-10-16T13:11:55.894Z"
+    },
+    {
+      "orderReference": "BC-801784-23",
+      "confirmationTokenHash": "0aebd13f3a86e7d27a7bd3679a22d80a587f306411e4e705509072b78559d1d9",
+      "customer": {
+        "name": "রাশেদ খান",
+        "phone": "01812345678",
+        "address": "রোড ৪, সেক্টর ৭, উত্তরা, ঢাকা",
+        "district": "ঢাকা"
+      },
+      "items": [
+        {
+          "productId": "6ad118d5bd9c2a6708aebd8f",
+          "productName": "এক্সক্লুসিভ অ্যামব্রয়ডারি প্রিমিয়াম কোটি সেট (Exclusive Embroidered Koti Set)",
+          "slug": "exclusive-embroidered-koti-set",
+          "unitPrice": 1850,
+          "quantity": 3,
+          "subtotal": 5550
+        }
+      ],
+      "subtotal": 5550,
+      "discount": 0,
+      "deliveryCharge": 70,
+      "deliveryZone": "inside_dhaka",
+      "total": 5620,
+      "paymentMethod": "cash_on_delivery",
+      "paymentStatus": "unpaid",
+      "orderStatus": "shipped",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-16T13:12:35.595Z",
+          "note": "অর্ডার প্লেস করা হয়েছে"
+        },
+        {
+          "status": "shipped",
+          "timestamp": "2026-10-16T13:12:35.597Z",
+          "note": "কুরিয়ারে পাঠানো হয়েছে"
+        }
+      ],
+      "createdAt": "2026-10-16T13:12:35.595Z",
+      "_id": "6ad222c3d8faa0485dfac4e0",
+      "updatedAt": "2026-10-16T13:12:35.597Z"
+    },
+    {
+      "orderReference": "BC-947400-40",
+      "confirmationTokenHash": "94f5407eaf56bd9bf0c9757b6dc3ef3e23350534288724982e1da7c90116b9d6",
+      "customer": {
+        "name": "রাশেদ খান",
+        "phone": "01812345678",
+        "address": "রোড ৪, সেক্টর ৭, উত্তরা, ঢাকা",
+        "district": "ঢাকা"
+      },
+      "items": [
+        {
+          "productId": "6ad118d5bd9c2a6708aebd8f",
+          "productName": "এক্সক্লুসিভ অ্যামব্রয়ডারি প্রিমিয়াম কোটি সেট (Exclusive Embroidered Koti Set)",
+          "slug": "exclusive-embroidered-koti-set",
+          "unitPrice": 1850,
+          "quantity": 3,
+          "subtotal": 5550
+        }
+      ],
+      "subtotal": 5550,
+      "discount": 0,
+      "deliveryCharge": 70,
+      "deliveryZone": "inside_dhaka",
+      "total": 5620,
+      "paymentMethod": "cash_on_delivery",
+      "paymentStatus": "unpaid",
+      "orderStatus": "shipped",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-16T13:14:24.291Z",
+          "note": "অর্ডার প্লেস করা হয়েছে"
+        },
+        {
+          "status": "shipped",
+          "timestamp": "2026-10-16T13:14:24.294Z",
+          "note": "কুরিয়ারে পাঠানো হয়েছে"
+        }
+      ],
+      "createdAt": "2026-10-16T13:14:24.291Z",
+      "_id": "6ad2233034c2c911fdd22d32",
+      "updatedAt": "2026-10-16T13:14:24.294Z"
+    },
+    {
+      "orderReference": "BC-562841-90",
+      "confirmationTokenHash": "0f1d4b7d03bd53667fa6d607f65a2abcf57907d612b612f89d621a90748718dc",
+      "customer": {
+        "name": "রাশেদ খান",
+        "phone": "01812345678",
+        "address": "রোড ৪, সেক্টর ৭, উত্তরা, ঢাকা",
+        "district": "ঢাকা"
+      },
+      "items": [
+        {
+          "productId": "6ad118d5bd9c2a6708aebd8f",
+          "productName": "এক্সক্লুসিভ অ্যামব্রয়ডারি প্রিমিয়াম কোটি সেট (Exclusive Embroidered Koti Set)",
+          "slug": "exclusive-embroidered-koti-set",
+          "unitPrice": 1850,
+          "quantity": 3,
+          "subtotal": 5550
+        }
+      ],
+      "subtotal": 5550,
+      "discount": 0,
+      "deliveryCharge": 70,
+      "deliveryZone": "inside_dhaka",
+      "total": 5620,
+      "paymentMethod": "cash_on_delivery",
+      "paymentStatus": "unpaid",
+      "orderStatus": "shipped",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-16T14:10:45.616Z",
+          "note": "অর্ডার প্লেস করা হয়েছে"
+        },
+        {
+          "status": "shipped",
+          "timestamp": "2026-10-16T14:10:45.618Z",
+          "note": "কুরিয়ারে পাঠানো হয়েছে"
+        }
+      ],
+      "createdAt": "2026-10-16T14:10:45.616Z",
+      "_id": "6ad2306595697d4d1910d8e5",
+      "updatedAt": "2026-10-16T14:10:45.618Z"
+    },
+    {
+      "orderReference": "BC-567635-29",
+      "confirmationTokenHash": "938ecdd2f046601de74b10d3c349f7f645e25bf53f4320350038a01bd3d40e1d",
+      "customer": {
+        "name": "রাশেদ খান",
+        "phone": "01812345678",
+        "address": "রোড ৪, সেক্টর ৭, উত্তরা, ঢাকা",
+        "district": "ঢাকা"
+      },
+      "items": [
+        {
+          "productId": "6ad118d5bd9c2a6708aebd8f",
+          "productName": "এক্সক্লুসিভ অ্যামব্রয়ডারি প্রিমিয়াম কোটি সেট (Exclusive Embroidered Koti Set)",
+          "slug": "exclusive-embroidered-koti-set",
+          "unitPrice": 1850,
+          "quantity": 3,
+          "subtotal": 5550
+        }
+      ],
+      "subtotal": 5550,
+      "discount": 0,
+      "deliveryCharge": 70,
+      "deliveryZone": "inside_dhaka",
+      "total": 5620,
+      "paymentMethod": "cash_on_delivery",
+      "paymentStatus": "unpaid",
+      "orderStatus": "shipped",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-16T14:11:46.546Z",
+          "note": "অর্ডার প্লেস করা হয়েছে"
+        },
+        {
+          "status": "shipped",
+          "timestamp": "2026-10-16T14:11:46.548Z",
+          "note": "কুরিয়ারে পাঠানো হয়েছে"
+        }
+      ],
+      "createdAt": "2026-10-16T14:11:46.546Z",
+      "_id": "6ad230a2328fbc7f61bac922",
+      "updatedAt": "2026-10-16T14:11:46.548Z"
+    },
+    {
+      "orderReference": "BC-521241-20",
+      "confirmationTokenHash": "dbdb24f237da2def955d86747d5a0c52052b2e2f757fd95e5aa935238117dd1a",
+      "customer": {
+        "name": "রাশেদ খান",
+        "phone": "01812345678",
+        "address": "রোড ৪, সেক্টর ৭, উত্তরা, ঢাকা",
+        "district": "ঢাকা"
+      },
+      "items": [
+        {
+          "productId": "6ad118d5bd9c2a6708aebd8f",
+          "productName": "এক্সক্লুসিভ অ্যামব্রয়ডারি প্রিমিয়াম কোটি সেট (Exclusive Embroidered Koti Set)",
+          "slug": "exclusive-embroidered-koti-set",
+          "unitPrice": 1850,
+          "quantity": 3,
+          "subtotal": 5550
+        }
+      ],
+      "subtotal": 5550,
+      "discount": 0,
+      "deliveryCharge": 70,
+      "deliveryZone": "inside_dhaka",
+      "total": 5620,
+      "paymentMethod": "cash_on_delivery",
+      "paymentStatus": "unpaid",
+      "orderStatus": "shipped",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": "2026-10-16T14:18:47.090Z",
+          "note": "অর্ডার প্লেস করা হয়েছে"
+        },
+        {
+          "status": "shipped",
+          "timestamp": "2026-10-16T14:18:47.091Z",
+          "note": "কুরিয়ারে পাঠানো হয়েছে"
+        }
+      ],
+      "createdAt": "2026-10-16T14:18:47.090Z",
+      "_id": "6ad232478ed7e6a12d243095",
+      "updatedAt": "2026-10-16T14:18:47.091Z"
+    }
+  ],
+  "test_products_bulk": [
+    {
+      "_id": "prod-2",
+      "name": "Item 2",
+      "status": "published",
+      "createdAt": "2026-10-16T14:18:46.037Z",
+      "updatedAt": "2026-10-16T14:18:46.037Z"
+    }
+  ],
+  "test_products_all": [],
+  "analytics_events": [
+    {
+      "path": "/products/exclusive-embroidered-koti-set",
+      "fullPath": "/products/exclusive-embroidered-koti-set?fbclid=IwAR2aX9...",
+      "title": "এক্সক্লুসিভ হ্যান্ডক্রাফটেড কোটি ও পাঞ্জাবি সেট",
+      "referrer": "https://l.facebook.com/",
+      "source": "Facebook",
+      "utm": {
+        "source": "facebook",
+        "medium": "cpc",
+        "campaign": "eid_collection"
+      },
+      "device": "Mobile",
+      "sessionId": "session_fb_1",
+      "createdAt": "2026-10-16T13:54:17.325Z",
+      "_id": "6ad22f59ce7815dff466125e",
+      "updatedAt": "2026-10-16T14:06:17.325Z"
+    },
+    {
+      "path": "/products/luxury-dubai-cherry-georgette-abaya",
+      "fullPath": "/products/luxury-dubai-cherry-georgette-abaya?gclid=EAIaIQobChMI...",
+      "title": "লাক্সারি দুবাই চেরি জর্জেট আবায়া কালেকশন",
+      "referrer": "https://www.google.com/",
+      "source": "Google Search",
+      "utm": {
+        "source": "google",
+        "medium": "organic",
+        "campaign": ""
+      },
+      "device": "Mobile",
+      "sessionId": "session_goog_1",
+      "createdAt": "2026-10-16T13:38:17.325Z",
+      "_id": "6ad22f59ce7815dff466125f",
+      "updatedAt": "2026-10-16T14:06:17.326Z"
+    },
+    {
+      "path": "/",
+      "fullPath": "/",
+      "title": "বিচিত্র শপ – প্রিমিয়াম ফ্যাশন ও লাইফস্টাইল",
+      "referrer": "https://www.google.com.bd/",
+      "source": "Google Search",
+      "utm": {
+        "source": "google",
+        "medium": "organic",
+        "campaign": ""
+      },
+      "device": "Desktop",
+      "sessionId": "session_goog_2",
+      "createdAt": "2026-10-16T13:21:17.325Z",
+      "_id": "6ad22f59ce7815dff4661260",
+      "updatedAt": "2026-10-16T14:06:17.327Z"
+    },
+    {
+      "path": "/products/premium-copper-motor-kitchen-blender",
+      "fullPath": "/products/premium-copper-motor-kitchen-blender",
+      "title": "প্রিমিয়াম ১০০% কপার মোটর ব্লেন্ডার ও গ্রাইন্ডার",
+      "referrer": "https://m.facebook.com/",
+      "source": "Facebook",
+      "utm": {
+        "source": "facebook",
+        "medium": "feed",
+        "campaign": "kitchen_deals"
+      },
+      "device": "Mobile",
+      "sessionId": "session_fb_2",
+      "createdAt": "2026-10-16T12:36:17.325Z",
+      "_id": "6ad22f59ce7815dff4661261",
+      "updatedAt": "2026-10-16T14:06:17.327Z"
+    },
+    {
+      "path": "/products/natural-sundarban-raw-honey",
+      "fullPath": "/products/natural-sundarban-raw-honey",
+      "title": "খাঁটি সুন্দরবনের প্রাকৃতিক চাকের মধু (১ কেজি)",
+      "referrer": "https://web.whatsapp.com/",
+      "source": "WhatsApp",
+      "utm": {
+        "source": "whatsapp",
+        "medium": "share",
+        "campaign": ""
+      },
+      "device": "Mobile",
+      "sessionId": "session_wa_1",
+      "createdAt": "2026-10-16T11:46:17.325Z",
+      "_id": "6ad22f59ce7815dff4661262",
+      "updatedAt": "2026-10-16T14:06:17.328Z"
+    },
+    {
+      "path": "/",
+      "fullPath": "/",
+      "title": "বিচিত্র শপ – হোম পেজ",
+      "referrer": "",
+      "source": "Direct / Organic",
+      "utm": {
+        "source": "",
+        "medium": "",
+        "campaign": ""
+      },
+      "device": "Mobile",
+      "sessionId": "session_dir_1",
+      "createdAt": "2026-10-16T10:36:17.325Z",
+      "_id": "6ad22f59ce7815dff4661263",
+      "updatedAt": "2026-10-16T14:06:17.329Z"
+    },
+    {
+      "path": "/products/electric-fast-heating-stainless-kettle",
+      "fullPath": "/products/electric-fast-heating-stainless-kettle?",
+      "title": "Bichitra Shop",
+      "referrer": "",
+      "source": "Direct / Organic",
+      "utm": {
+        "source": "",
+        "medium": "",
+        "campaign": ""
+      },
+      "device": "Desktop",
+      "sessionId": "sid_1792158985717_80u6rq1",
+      "createdAt": "2026-10-16T14:15:17.364Z",
+      "_id": "6ad23175ce7815dff4661264",
+      "updatedAt": "2026-10-16T14:15:17.364Z"
+    },
+    {
+      "path": "/",
+      "fullPath": "/?",
+      "title": "Bichitra Shop",
+      "referrer": "",
+      "source": "Direct / Organic",
+      "utm": {
+        "source": "",
+        "medium": "",
+        "campaign": ""
+      },
+      "device": "Desktop",
+      "sessionId": "sid_1792158985717_80u6rq1",
+      "createdAt": "2026-10-16T14:15:51.963Z",
+      "_id": "6ad23197ce7815dff4661265",
+      "updatedAt": "2026-10-16T14:15:51.963Z"
+    },
+    {
+      "path": "/products/exclusive-embroidered-koti-set",
+      "fullPath": "/products/exclusive-embroidered-koti-set?",
+      "title": "Bichitra Shop",
+      "referrer": "",
+      "source": "Direct / Organic",
+      "utm": {
+        "source": "",
+        "medium": "",
+        "campaign": ""
+      },
+      "device": "Desktop",
+      "sessionId": "sid_1792158985717_80u6rq1",
+      "createdAt": "2026-10-16T14:21:34.276Z",
+      "_id": "6ad232eece7815dff4661266",
+      "updatedAt": "2026-10-16T14:21:34.276Z"
+    },
+    {
+      "path": "/",
+      "fullPath": "/?",
+      "title": "Bichitra Shop",
+      "referrer": "",
+      "source": "Direct / Organic",
+      "utm": {
+        "source": "",
+        "medium": "",
+        "campaign": ""
+      },
+      "device": "Desktop",
+      "sessionId": "sid_1792158985717_80u6rq1",
+      "createdAt": "2026-10-16T14:21:39.564Z",
+      "_id": "6ad232f3ce7815dff4661267",
+      "updatedAt": "2026-10-16T14:21:39.564Z"
+    },
+    {
+      "path": "/about",
+      "fullPath": "/about?",
+      "title": "আমাদের সম্পর্কে (About Us) | Bichitra Shop (বিচিত্র শপ)",
+      "referrer": "",
+      "source": "Direct / Organic",
+      "utm": {
+        "source": "",
+        "medium": "",
+        "campaign": ""
+      },
+      "device": "Desktop",
+      "sessionId": "sid_1792158985717_80u6rq1",
+      "createdAt": "2026-10-16T14:22:00.580Z",
+      "_id": "6ad23308ce7815dff4661268",
+      "updatedAt": "2026-10-16T14:22:00.580Z"
+    }
+  ]
 }

@@ -175,8 +175,8 @@ export default function Footer() {
               <li className="flex items-start gap-2.5">
                 <Phone className="w-4 h-4 text-[#22C55E] shrink-0 mt-0.5" />
                 <div>
-                  <a href="tel:+8801700000000" className="font-bold text-white hover:text-[#22C55E] block text-sm">
-                    +880 1700-000000
+                  <a href="tel:+8801761674164" className="font-bold text-white hover:text-[#22C55E] block text-sm">
+                    01761-674164
                   </a>
                   <span className="text-[11px] text-zinc-500">সকাল ৯টা – রাত ১০টা (প্রতিদিন)</span>
                 </div>
@@ -189,7 +189,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#22C55E] shrink-0 mt-0.5" />
-                <span>মিরপুর, ঢাকা-১২১৬, বাংলাদেশ</span>
+                <span>রহনপুর, চাঁপাইনবাবগঞ্জ, বাংলাদেশ</span>
               </li>
             </ul>
           </div>

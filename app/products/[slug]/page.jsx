@@ -13,13 +13,15 @@ import { ChevronRight, Home } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bichitrashop.com';
+import { getSiteUrl, toAbsoluteUrl, DEFAULT_SOCIAL_POSTER } from '@/lib/seo';
 
 export async function generateMetadata({ params }) {
   await initDatabase();
   const { slug } = await params;
   const products = await getCollection('products');
   const product = await products.findOne({ slug: slug.trim(), status: 'published' });
+
+  const siteUrl = getSiteUrl();
 
   if (!product) {
     return {
@@ -29,9 +31,30 @@ export async function generateMetadata({ params }) {
   }
 
   const title = product.seo?.title || `${product.name} | Bichitra Shop (বিচিত্র শপ)`;
-  const description = product.seo?.description || product.shortDescription;
-  const imageUrl = product.images?.[0] || `${siteUrl}/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png`;
+  const description = product.seo?.description || product.shortDescription || `${product.name} - সেরা মূল্যে কিনুন বিচিত্র শপ থেকে। ক্যাশ অন ডেলিভারি সারা বাংলাদেশে।`;
   const canonicalUrl = product.seo?.canonicalUrl || `${siteUrl}/products/${product.slug}`;
+
+  // Ensure absolute URLs for social crawlers (Facebook, WhatsApp, Twitter, etc.)
+  const rawImage = product.images?.[0] || DEFAULT_SOCIAL_POSTER;
+  const primaryImageUrl = toAbsoluteUrl(rawImage);
+
+  const ogImages = (Array.isArray(product.images) && product.images.length > 0)
+    ? product.images.slice(0, 4).map((img, idx) => ({
+        url: toAbsoluteUrl(img),
+        secureUrl: toAbsoluteUrl(img),
+        width: 1200,
+        height: 630,
+        alt: `${product.name} - ছবি ${idx + 1}`
+      }))
+    : [
+        {
+          url: primaryImageUrl,
+          secureUrl: primaryImageUrl,
+          width: 1200,
+          height: 630,
+          alt: product.name
+        }
+      ];
 
   return {
     title,
@@ -44,21 +67,20 @@ export async function generateMetadata({ params }) {
       description,
       url: canonicalUrl,
       siteName: 'Bichitra Shop – বিচিত্র শপ',
+      locale: 'bn_BD',
       type: 'website',
-      images: [
-        {
-          url: imageUrl,
-          width: 800,
-          height: 800,
-          alt: product.name
-        }
-      ]
+      images: ogImages
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [imageUrl]
+      images: [primaryImageUrl]
+    },
+    other: {
+      'product:price:amount': String(product.price || 0),
+      'product:price:currency': 'BDT',
+      'product:availability': (product.stockQuantity ?? 1) > 0 ? 'in stock' : 'out of stock'
     }
   };
 }
@@ -100,6 +122,7 @@ async function getProductData(slug) {
 
 export default async function ProductDetailPage({ params }) {
   const { slug } = await params;
+  const siteUrl = getSiteUrl();
   const data = await getProductData(slug);
 
   if (!data || !data.product) {

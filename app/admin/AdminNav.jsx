@@ -10,11 +10,13 @@ import {
   Package,
   ShoppingBag,
   Settings,
+  Image as LucideImage,
   ExternalLink,
   LogOut,
   Menu,
   X,
-  ChevronRight
+  ChevronRight,
+  BarChart3
 } from 'lucide-react';
 
 export default function AdminNav({ children }) {
@@ -44,7 +46,9 @@ export default function AdminNav({ children }) {
     { name: 'ড্যাশবোর্ড', href: '/admin', icon: LayoutDashboard, exact: true },
     { name: 'পণ্য ব্যবস্থাপনা', href: '/admin/products', icon: Package },
     { name: 'অর্ডার সমূহ', href: '/admin/orders', icon: ShoppingBag },
-    { name: 'ব্যানার ও সেটিংস', href: '/admin/settings', icon: Settings },
+    { name: 'কাস্টমার ট্রাফিক ও এসইও', href: '/admin/traffic', icon: BarChart3 },
+    { name: 'ব্যানার স্লাইডার', href: '/admin/banners', icon: LucideImage },
+    { name: 'স্টোর সেটিংস', href: '/admin/settings', icon: Settings },
   ];
 
   return (
