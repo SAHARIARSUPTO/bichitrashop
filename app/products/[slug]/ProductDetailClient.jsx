@@ -24,7 +24,7 @@ import ProductGallery from '../../components/ProductGallery';
 import CheckoutForm from '../../components/CheckoutForm';
 import { formatBDT } from '@/lib/pricing';
 
-export default function ProductDetailClient({ product, relatedProducts = [] }) {
+export default function ProductDetailClient({ product, relatedProducts = [], canonicalUrl = '' }) {
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState(product?.variants?.sizes?.[0] || '');
   const [selectedColor, setSelectedColor] = useState(product?.variants?.colors?.[0] || '');
@@ -66,8 +66,10 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
     }
   };
 
+  const productUrl = canonicalUrl || (product?.slug ? `https://bichitrashop.vercel.app/products/${product.slug}` : '');
+
   const whatsappMessage = encodeURIComponent(
-    `হ্যালো বিচিত্র শপ! আমি এই পণ্যটি অর্ডার করতে চাই:\n\nপণ্য: ${product.name}\nমূল্য: ৳${product.price}\nসাইজ/ভেরিয়েন্ট: ${selectedSize || 'Standard'}\nলিংক: ${typeof window !== 'undefined' ? window.location.href : ''}`
+    `হ্যালো বিচিত্র শপ! আমি এই পণ্যটি অর্ডার করতে চাই:\n\nপণ্য: ${product.name}\nমূল্য: ৳${product.price}\nসাইজ/ভেরিয়েন্ট: ${selectedSize || 'Standard'}\nলিংক: ${productUrl}`
   );
 
   return (
@@ -195,6 +197,15 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
                 href={`https://wa.me/8801761674164?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={(e) => {
+                  if (typeof window !== 'undefined' && window.location.href) {
+                    const dynamicMsg = encodeURIComponent(
+                      `হ্যালো বিচিত্র শপ! আমি এই পণ্যটি অর্ডার করতে চাই:\n\nপণ্য: ${product.name}\nমূল্য: ৳${product.price}\nসাইজ/ভেরিয়েন্ট: ${selectedSize || 'Standard'}\nলিংক: ${window.location.href}`
+                    );
+                    window.open(`https://wa.me/8801761674164?text=${dynamicMsg}`, '_blank', 'noopener,noreferrer');
+                    e.preventDefault();
+                  }
+                }}
                 className="py-3 px-4 rounded-2xl bg-[#E8F5EC] border border-[#08542C]/20 text-[#08542C] hover:bg-[#08542C] hover:text-white text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-2xs cursor-pointer active:scale-95"
               >
                 <MessageCircle className="w-4 h-4 text-[#22C55E]" />

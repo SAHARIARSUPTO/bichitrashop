@@ -45,6 +45,21 @@ export async function generateMetadata() {
   const siteIconUrl = settings?.branding?.favicon || DEFAULT_SITE_ICON;
   const googleVerification = settings?.seo?.googleVerification || process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'EOaABPHPI_eAaNXucQ1HhkIJaDn3uocSezsHHmnAI-A';
 
+  const customFavicon = settings?.branding?.favicon;
+  const hasCustomFavicon = Boolean(customFavicon && customFavicon !== DEFAULT_SITE_ICON);
+
+  const iconEntries = [
+    ...(hasCustomFavicon ? [{ url: customFavicon, sizes: 'any' }] : []),
+    { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+    { url: '/favicon.svg', type: 'image/svg+xml' }
+  ];
+
+  const appleEntries = [
+    ...(hasCustomFavicon ? [{ url: customFavicon, sizes: '180x180' }] : []),
+    { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }
+  ];
+
   return {
     metadataBase: new URL(siteUrl),
     title: {
@@ -97,10 +112,17 @@ export async function generateMetadata() {
       images: [socialPosterUrl]
     },
     icons: {
-      icon: siteIconUrl,
-      shortcut: siteIconUrl,
-      apple: siteIconUrl
-    }
+      icon: iconEntries,
+      apple: appleEntries,
+      shortcut: '/favicon.ico',
+      other: [
+        {
+          rel: 'apple-touch-icon-precomposed',
+          url: '/apple-touch-icon-precomposed.png'
+        }
+      ]
+    },
+    manifest: '/site.webmanifest'
   };
 }
 
@@ -155,7 +177,7 @@ export default async function RootLayout({ children }) {
   };
 
   return (
-    <html lang="bn" className="h-full antialiased">
+    <html lang="bn" className="h-full antialiased" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -168,7 +190,7 @@ export default async function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-[#F6FAF7] text-[#0F2417]">
+      <body className="min-h-full flex flex-col bg-[#F6FAF7] text-[#0F2417]" suppressHydrationWarning>
         <Suspense fallback={null}>
           <ClientNavigationLoader />
           <TrafficTracker />

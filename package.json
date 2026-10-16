@@ -10,7 +10,8 @@
     "lint": "eslint",
     "test": "node --test tests/*.test.js",
     "seed": "node scripts/init-db.js",
-    "seed:admin": "node scripts/seed-admin.js"
+    "seed:admin": "node scripts/seed-admin.js",
+    "generate:favicons": "python scripts/generate-favicons.py"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

@@ -222,7 +222,11 @@ export default async function ProductDetailPage({ params }) {
         </nav>
 
         {/* Interactive Modern Product Details Section */}
-        <ProductDetailClient product={product} relatedProducts={relatedProducts} />
+        <ProductDetailClient
+          product={product}
+          relatedProducts={relatedProducts}
+          canonicalUrl={`${siteUrl}/products/${product.slug}`}
+        />
 
         {/* Related Products Section (2 Cards on Mobile!) */}
         {relatedProducts && relatedProducts.length > 0 && (

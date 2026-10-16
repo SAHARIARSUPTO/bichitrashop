@@ -17,13 +17,13 @@ export default function FestiveCalligraphySection({ products = [] }) {
             <Sparkles className="w-4 h-4 text-white stroke-[2]" />
           </div>
           <div>
-            <h2 className="text-base sm:text-2xl font-black text-zinc-900 tracking-tight flex items-center gap-2">
+            <h2 className="text-lg sm:text-2xl font-black text-zinc-900 tracking-tight flex items-center gap-2">
               <span>বাঙালি ঐতিহ্য ও উৎসব কালেকশন</span>
               <span className="hidden sm:inline-block px-2 py-0.5 rounded-full bg-emerald-100 text-[#08542C] text-xs font-extrabold">
                 ফেস্টিভ স্পেশাল
               </span>
             </h2>
-            <p className="text-[11px] sm:text-xs text-zinc-600 mt-0.5">
+            <p className="text-xs sm:text-sm text-zinc-600 mt-0.5">
               ঐতিহ্যবাহী নকশি সুতার কাজ, আরামদায়ক সিল্ক-কটন ব্লেন্ড এবং শতভাগ পাকা রঙের নিশ্চয়তা
             </p>
           </div>
@@ -70,8 +70,8 @@ export default function FestiveCalligraphySection({ products = [] }) {
                 <Icon className="w-4 h-4 text-black stroke-[1.8]" />
               </div>
               <div className="min-w-0">
-                <h4 className="text-[11px] sm:text-xs font-bold text-zinc-900 truncate">{badge.title}</h4>
-                <p className="text-[10px] text-zinc-500 truncate">{badge.desc}</p>
+                <h4 className="text-xs sm:text-sm font-bold text-zinc-900 truncate">{badge.title}</h4>
+                <p className="text-xs text-zinc-500 truncate">{badge.desc}</p>
               </div>
             </div>
           );

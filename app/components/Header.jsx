@@ -1,16 +1,53 @@
 // app/components/Header.jsx
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { Search, ShoppingBag, PhoneCall, Menu, X, ShieldCheck, ChevronRight, Flame } from 'lucide-react';
+import { useRouter, usePathname } from 'next/navigation';
+import { Search, ShoppingBag, PhoneCall, Menu, X, ShieldCheck, ChevronRight, Flame, ArrowLeft } from 'lucide-react';
 
-export default function Header({ categories = [], announcement = 'ক্যাশ অন ডেলিভারি সুবিধা সারা বাংলাদেশে! ৩টি বা ততোধিক পণ্যে ফ্রি ডেলিভারি।' }) {
+export default function Header({ categories = [], announcement = 'ক্যাশ অন ডেলিভারি সুবিধা সারা বাংলাদেশে!' }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
+
+  // Handle hardware / gesture back on mobile devices when menu drawer is open
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    window.history.pushState({ mobileDrawerOpen: true }, '');
+
+    const handlePopState = () => {
+      setMobileMenuOpen(false);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [mobileMenuOpen]);
+
+  // Go back to previous step/page on mobile devices
+  const handleGoBack = () => {
+    if (mobileMenuOpen) {
+      setMobileMenuOpen(false);
+      return;
+    }
+    if (typeof window !== 'undefined') {
+      const hasHistory = window.history.length > 1;
+      const isInternal = !document.referrer || document.referrer.includes(window.location.host);
+      if (hasHistory && isInternal) {
+        router.back();
+      } else {
+        router.push('/');
+      }
+    } else {
+      router.push('/');
+    }
+  };
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -47,28 +84,43 @@ export default function Header({ categories = [], announcement = 'ক্যা�
       {/* Main Navigation Bar */}
       <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-13 sm:h-16 md:h-20 gap-2 sm:gap-4">
-          {/* Logo & Brand Identity */}
-          <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0 group">
-            <div className="relative w-9 h-9 sm:w-11 sm:h-11 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-[#08542C]/20 p-0.5 bg-white shadow-2xs group-hover:scale-105 transition-transform">
-              <Image
-                src="/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png"
-                alt="Bichitra Shop - বিচিত্র শপ লোগো"
-                fill
-                sizes="(max-width: 640px) 36px, (max-width: 768px) 44px, 64px"
-                className="object-contain"
-                priority
-              />
-            </div>
-            <div className="flex flex-col">
-              <div className="flex items-center gap-0.5 sm:gap-1">
-                <span className="font-black text-base sm:text-xl md:text-2xl text-[#DC2626] tracking-tight">Bichitra</span>
-                <span className="font-black text-base sm:text-xl md:text-2xl text-[#08542C] tracking-tight">Shop</span>
+          <div className="flex items-center gap-1 sm:gap-3 shrink-0">
+            {/* Mobile Back Button: Active on mobile devices when not on home page or when menu is open */}
+            {(!isHomePage || mobileMenuOpen) && (
+              <button
+                type="button"
+                onClick={handleGoBack}
+                aria-label="পূর্ববর্তী পেজে ফিরে যান"
+                className="md:hidden flex items-center justify-center w-8 h-8 -ml-1 rounded-full text-zinc-800 hover:text-[#08542C] hover:bg-[#E8F5EC] active:bg-[#D5EEDB] active:scale-90 transition-all shrink-0 cursor-pointer"
+                title="পূর্ববর্তী পেজে ফিরে যান"
+              >
+                <ArrowLeft className="w-5 h-5 text-black stroke-[2.5]" />
+              </button>
+            )}
+
+            {/* Logo & Brand Identity */}
+            <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0 group">
+              <div className="relative w-9 h-9 sm:w-11 sm:h-11 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-[#08542C]/20 p-0.5 bg-white shadow-2xs group-hover:scale-105 transition-transform">
+                <Image
+                  src="/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png"
+                  alt="Bichitra Shop - বিচিত্র শপ লোগো"
+                  fill
+                  sizes="(max-width: 640px) 36px, (max-width: 768px) 44px, 64px"
+                  className="object-contain"
+                  priority
+                />
               </div>
-              <span className="text-[10px] sm:text-[11px] font-semibold text-[#08542C] tracking-wide -mt-0.5 hidden sm:block">
-                বিশ্বস্ত পণ্য | স্মার্ট কেনাকাটা
-              </span>
-            </div>
-          </Link>
+              <div className="flex flex-col">
+                <div className="flex items-center gap-0.5 sm:gap-1">
+                  <span className="font-black text-base sm:text-xl md:text-2xl text-[#DC2626] tracking-tight">Bichitra</span>
+                  <span className="font-black text-base sm:text-xl md:text-2xl text-[#08542C] tracking-tight">Shop</span>
+                </div>
+                <span className="text-[10px] sm:text-[11px] font-semibold text-[#08542C] tracking-wide -mt-0.5 hidden sm:block">
+                  বিশ্বস্ত পণ্য | স্মার্ট কেনাকাটা
+                </span>
+              </div>
+            </Link>
+          </div>
 
           {/* Search Bar (Desktop) */}
           <form onSubmit={handleSearchSubmit} className="hidden md:flex flex-1 max-w-lg mx-4">
@@ -182,7 +234,21 @@ export default function Header({ categories = [], announcement = 'ক্যা�
 
       {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-[#E2ECE3] px-4 pt-4 pb-6 space-y-3 shadow-xl animate-in slide-in-from-top-2 duration-200">
+        <div className="md:hidden bg-white border-t border-[#E2ECE3] px-4 pt-3 pb-6 space-y-3 shadow-xl animate-in slide-in-from-top-2 duration-200">
+          <div className="flex items-center justify-between pb-2 border-b border-gray-100">
+            <button
+              type="button"
+              onClick={handleGoBack}
+              className="flex items-center gap-1.5 text-xs font-bold text-[#08542C] hover:text-[#064423] py-1 px-2 rounded-lg hover:bg-[#E8F5EC] transition-colors cursor-pointer"
+            >
+              <ArrowLeft className="w-4 h-4 text-black stroke-[2.5]" />
+              <span>পূর্ববর্তী পেজে ফিরে যান</span>
+            </button>
+            <span className="text-xs font-bold text-[#4B6354] uppercase tracking-wider">
+              মেনু
+            </span>
+          </div>
+
           <div className="text-xs font-bold text-[#4B6354] uppercase tracking-wider mb-2">
             ক্যাটাগরি সমূহ
           </div>

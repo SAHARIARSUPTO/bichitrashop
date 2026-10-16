@@ -85,7 +85,7 @@ export default function HomePaginatedProducts({
             <h2 className="text-lg sm:text-2xl font-black text-[#0F2417] tracking-tight">
               আমাদের পণ্যসমূহ
             </h2>
-            <span className="bg-[#E8F5EC] text-[#08542C] text-[11px] font-bold px-2 py-0.5 rounded-full">
+            <span className="bg-[#E8F5EC] text-[#08542C] text-xs font-bold px-2 py-0.5 rounded-full">
               {totalItems}টি পণ্য
             </span>
           </div>
@@ -123,7 +123,7 @@ export default function HomePaginatedProducts({
                 <span>{item.label}</span>
                 {item.badge && (
                   <span
-                    className={`text-[9px] px-1 rounded-full font-black ${
+                    className={`text-[10px] px-1.5 rounded-full font-black ${
                       isActive ? 'bg-[#DC2626] text-white' : 'bg-red-100 text-red-600'
                     }`}
                   >

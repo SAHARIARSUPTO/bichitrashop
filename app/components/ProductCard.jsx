@@ -33,7 +33,7 @@ export default function ProductCard({ product, onQuickOrder = null }) {
         {/* Discount Badge */}
         {hasDiscount && (
           <div className="absolute top-2 left-2 z-10">
-            <span className="bg-[#DC2626] text-white text-[10px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-md shadow-xs flex items-center gap-0.5">
+            <span className="bg-[#DC2626] text-white text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-md shadow-xs flex items-center gap-0.5">
               <Zap className="w-2.5 h-2.5 fill-white" />
               <span>{discountPercent}% ছাড়</span>
             </span>
@@ -42,7 +42,7 @@ export default function ProductCard({ product, onQuickOrder = null }) {
 
         {/* Stock / Fast Delivery Badge */}
         <div className="absolute bottom-2 left-2 z-10">
-          <span className="bg-white/95 backdrop-blur-xs text-zinc-900 text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded-md shadow-2xs border border-zinc-200">
+          <span className="bg-white/95 backdrop-blur-xs text-zinc-900 text-xs font-bold px-1.5 py-0.5 rounded-md shadow-2xs border border-zinc-200">
             ক্যাশ অন ডেলিভারি
           </span>
         </div>
@@ -53,7 +53,7 @@ export default function ProductCard({ product, onQuickOrder = null }) {
         <div>
           {/* Category Tag */}
           {product.category && (
-            <span className="text-[10px] sm:text-[11px] font-medium text-zinc-500 uppercase tracking-wider mb-0.5 sm:mb-1 block truncate">
+            <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-0.5 sm:mb-1 block truncate">
               {product.category === 'mens-fashion' ? 'মেনস ফ্যাশন' :
                product.category === 'womens-fashion' ? 'উইমেনস ফ্যাশন' :
                product.category === 'home-living' ? 'হোম ও লিভিং' :
@@ -76,7 +76,7 @@ export default function ProductCard({ product, onQuickOrder = null }) {
               {formatBDT(product.price)}
             </span>
             {hasDiscount && (
-              <span className="text-[10px] sm:text-xs text-zinc-400 line-through">
+              <span className="text-xs text-zinc-400 line-through">
                 {formatBDT(product.compareAtPrice)}
               </span>
             )}
@@ -86,7 +86,7 @@ export default function ProductCard({ product, onQuickOrder = null }) {
           <div className="mt-2 grid grid-cols-2 gap-1.5">
             <Link
               href={`/products/${product.slug}`}
-              className="flex items-center justify-center gap-1 py-1.5 px-1 sm:px-2 rounded-lg border border-zinc-300 hover:border-black text-zinc-900 hover:text-black hover:bg-zinc-50 text-[11px] sm:text-xs font-bold transition-all text-center"
+              className="flex items-center justify-center gap-1 py-1.5 px-1 sm:px-2 rounded-lg border border-zinc-300 hover:border-black text-zinc-900 hover:text-black hover:bg-zinc-50 text-xs font-bold transition-all text-center"
             >
               <Eye className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-black stroke-[2]" />
               <span>বিস্তারিত</span>
@@ -95,7 +95,7 @@ export default function ProductCard({ product, onQuickOrder = null }) {
             {onQuickOrder ? (
               <button
                 onClick={() => onQuickOrder(product)}
-                className="flex items-center justify-center gap-1 py-1.5 px-1 sm:px-2 rounded-lg bg-[#DC2626] hover:bg-[#B91C1C] text-white text-[11px] sm:text-xs font-bold shadow-2xs hover:shadow-xs transition-all active:scale-95 text-center"
+                className="flex items-center justify-center gap-1 py-1.5 px-1 sm:px-2 rounded-lg bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs font-bold shadow-2xs hover:shadow-xs transition-all active:scale-95 text-center cursor-pointer"
               >
                 <ShoppingBag className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" />
                 <span>অর্ডার</span>
@@ -103,7 +103,7 @@ export default function ProductCard({ product, onQuickOrder = null }) {
             ) : (
               <Link
                 href={`/products/${product.slug}#checkout`}
-                className="flex items-center justify-center gap-1 py-1.5 px-1 sm:px-2 rounded-lg bg-[#DC2626] hover:bg-[#B91C1C] text-white text-[11px] sm:text-xs font-bold shadow-2xs hover:shadow-xs transition-all active:scale-95 text-center"
+                className="flex items-center justify-center gap-1 py-1.5 px-1 sm:px-2 rounded-lg bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs font-bold shadow-2xs hover:shadow-xs transition-all active:scale-95 text-center"
               >
                 <ShoppingBag className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" />
                 <span>অর্ডার</span>

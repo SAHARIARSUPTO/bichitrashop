@@ -283,7 +283,7 @@ export default function ModernHero({ categories = [], banners = [] }) {
                   <h4 className="font-bold text-xs sm:text-sm text-zinc-900 truncate">
                     পার্সেল চেক করে টাকা পরিশোধ
                   </h4>
-                  <p className="text-[11px] text-zinc-500 truncate">
+                  <p className="text-xs text-zinc-500 truncate">
                     কোনো অগ্রিম পেমেন্ট নেই, সন্তুষ্ট হয়ে টাকা দিন
                   </p>
                 </div>
@@ -308,7 +308,7 @@ export default function ModernHero({ categories = [], banners = [] }) {
                   <h4 className="font-bold text-xs sm:text-sm text-zinc-900 truncate">
                     যেকোনো ৩টি পণ্যে ফ্রি ডেলিভারি
                   </h4>
-                  <p className="text-[11px] text-zinc-500 truncate">
+                  <p className="text-xs text-zinc-500 truncate">
                     সারা বাংলাদেশে ডেলিভারি চার্জ সম্পূর্ণ ফ্রি
                   </p>
                 </div>
@@ -330,11 +330,11 @@ export default function ModernHero({ categories = [], banners = [] }) {
       <div className="md:hidden w-full px-3">
         <div className="bg-white rounded-2xl p-3 border border-zinc-200 shadow-2xs">
           <div className="flex items-center justify-between pb-2 mb-2.5 border-b border-zinc-100">
-            <span className="text-xs font-black text-zinc-900 flex items-center gap-1.5">
+            <span className="text-xs sm:text-sm font-black text-zinc-900 flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-[#08542C]"></span>
               জনপ্রিয় ক্যাটাগরি
             </span>
-            <Link href="/products" className="text-[11px] font-bold text-[#08542C] hover:underline flex items-center gap-0.5">
+            <Link href="/products" className="text-xs font-bold text-[#08542C] hover:underline flex items-center gap-0.5">
               <span>সব দেখুন</span>
               <ChevronRight className="w-3 h-3" />
             </Link>
@@ -361,12 +361,12 @@ export default function ModernHero({ categories = [], banners = [] }) {
                   <div className="relative w-12 h-12 rounded-2xl bg-zinc-100 group-hover:bg-[#E8F5EC] border border-zinc-200 group-hover:border-[#08542C]/40 flex items-center justify-center transition-colors shadow-2xs">
                     <ItemIcon className="w-5 h-5 text-black stroke-[1.8]" />
                     {item.badge && (
-                      <span className="absolute -top-1 -right-1 bg-[#DC2626] text-white text-[9px] font-black px-1 rounded-full shadow-2xs leading-tight">
+                      <span className="absolute -top-1 -right-1 bg-[#DC2626] text-white text-[10px] font-black px-1.5 rounded-full shadow-2xs leading-tight">
                         {item.badge}
                       </span>
                     )}
                   </div>
-                  <span className="text-[11px] font-bold text-zinc-800 group-hover:text-black mt-1.5 line-clamp-1 leading-tight">
+                  <span className="text-xs font-bold text-zinc-800 group-hover:text-black mt-1.5 line-clamp-1 leading-tight">
                     {item.name}
                   </span>
                 </Link>
@@ -394,7 +394,7 @@ export default function ModernHero({ categories = [], banners = [] }) {
                 <span className="w-4 h-4 rounded-full bg-zinc-100 flex items-center justify-center shrink-0 border border-zinc-200">
                   <Icon className="w-2.5 h-2.5 text-black stroke-[2]" />
                 </span>
-                <span className="tracking-tight text-[11px] sm:text-xs">{cat.name}</span>
+                <span className="tracking-tight text-xs">{cat.name}</span>
               </Link>
             );
           })}

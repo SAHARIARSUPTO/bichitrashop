@@ -1,55 +1,44 @@
 // app/components/ClientNavigationLoader.jsx
 'use client';
 
-import React, { useState, useEffect, useTransition } from 'react';
+import React, { useState, useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 export default function ClientNavigationLoader() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
 
-  // When pathname or search params change, finish progress
+  // Instantly clear loader when new route/page renders
   useEffect(() => {
-    if (loading) {
-      setProgress(100);
-      const timer = setTimeout(() => {
-        setLoading(false);
-        setProgress(0);
-      }, 300);
-      return () => clearTimeout(timer);
-    }
+    setLoading(false);
   }, [pathname, searchParams]);
 
-  // Intercept all internal anchor clicks for instant visual mobile app feedback
+  // Trigger cool loader instantly on internal navigation clicks
   useEffect(() => {
     const handleDocumentClick = (e) => {
-      // Find closest anchor
       const anchor = e.target.closest('a');
       if (!anchor) return;
 
       const href = anchor.getAttribute('href');
       if (!href) return;
 
-      // Ignore external links, hash anchors on the same page, tel:, mailto:
+      // Ignore external links, hash anchors, tel, mailto, downloads, new tabs
       if (
         href.startsWith('http://') ||
         href.startsWith('https://') ||
         href.startsWith('tel:') ||
         href.startsWith('mailto:') ||
         href.startsWith('#') ||
-        anchor.target === '_blank'
+        anchor.target === '_blank' ||
+        anchor.hasAttribute('download')
       ) {
         return;
       }
 
-      // If clicked link is different from current URL, trigger instant loader
       const currentUrl = `${window.location.pathname}${window.location.search}`;
       if (href !== currentUrl) {
         setLoading(true);
-        setProgress(35);
-        setTimeout(() => setProgress(75), 150);
       }
     };
 
@@ -57,42 +46,36 @@ export default function ClientNavigationLoader() {
     return () => document.removeEventListener('click', handleDocumentClick);
   }, []);
 
-  if (!loading && progress === 0) return null;
+  // Safety fallback: auto-clear after 3.5 seconds
+  useEffect(() => {
+    if (!loading) return;
+    const timer = setTimeout(() => setLoading(false), 3500);
+    return () => clearTimeout(timer);
+  }, [loading]);
+
+  if (!loading) return null;
 
   return (
     <div
       aria-hidden="true"
-      className="fixed top-0 left-0 right-0 z-50 pointer-events-none transition-opacity duration-300"
-      style={{ opacity: loading ? 1 : 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/[0.04] backdrop-blur-[2px] pointer-events-none transition-all duration-200"
     >
-      {/* Top glowing high-speed loader strip */}
-      <div
-        className="h-1 bg-gradient-to-r from-[#08542C] via-[#22C55E] to-[#DC2626] transition-all duration-300 ease-out shadow-[0_0_12px_rgba(34,197,94,0.6)]"
-        style={{ width: `${progress}%` }}
-      />
-      {/* Sleek mobile app corner spinner */}
-      <div className="absolute right-3 top-2.5 bg-black/80 backdrop-blur-md text-white text-[10px] font-bold py-1 px-2.5 rounded-full flex items-center gap-1.5 shadow-lg animate-in fade-in">
-        <svg
-          className="animate-spin h-3 w-3 text-white"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <circle
-            className="opacity-25"
-            cx="12"
-            cy="12"
-            r="10"
-            stroke="currentColor"
-            strokeWidth="4"
-          />
-          <path
-            className="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8v8H4z"
-          />
-        </svg>
-        <span>লোড হচ্ছে...</span>
+      {/* Top glowing laser progress bar */}
+      <div className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#08542C] to-[#22C55E] shadow-[0_0_12px_rgba(34,197,94,0.9)] animate-pulse" />
+
+      {/* Cool floating glassmorphic dual-ring animated circle (website state clearly visible behind) */}
+      <div className="relative flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/85 backdrop-blur-xl border border-white/70 shadow-[0_10px_35px_rgba(0,0,0,0.12)]">
+        {/* Ambient brand glow aura */}
+        <div className="absolute inset-0 rounded-full bg-[#08542C]/15 blur-lg pointer-events-none" />
+
+        {/* Outer clockwise spinning ring */}
+        <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border-[3px] border-transparent border-t-[#08542C] border-r-[#22C55E] animate-spin" />
+
+        {/* Inner counter-clockwise spinning ring */}
+        <div className="absolute w-5 h-5 sm:w-6 sm:h-6 rounded-full border-[2.5px] border-transparent border-b-[#08542C] border-l-[#10B981] animate-[spin_1s_linear_infinite_reverse]" />
+
+        {/* Center glowing pulse dot */}
+        <div className="absolute w-2 h-2 rounded-full bg-[#08542C] shadow-[0_0_8px_#08542C] animate-pulse" />
       </div>
     </div>
   );

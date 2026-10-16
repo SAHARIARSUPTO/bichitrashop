@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CheckoutForm from '../components/CheckoutForm';
+import BackButton from '../components/BackButton';
 import { getCollection, ObjectId } from '@/lib/mongodb';
 import { initDatabase } from '@/lib/db-init';
 import { ArrowLeft, ShoppingBag } from 'lucide-react';
@@ -71,13 +72,10 @@ export default async function CheckoutPage({ searchParams }) {
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 flex-1 w-full space-y-6">
         <div className="flex items-center justify-between">
-          <Link
-            href={product ? `/products/${product.slug}` : '/products'}
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#08542C] hover:underline"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>পণ্য পৃষ্ঠায় ফিরে যান</span>
-          </Link>
+          <BackButton
+            fallbackHref={product ? `/products/${product.slug}` : '/products'}
+            label="পূর্ববর্তী পেজে ফিরে যান"
+          />
           <span className="text-xs text-[#4B6354] font-semibold">
             নিরাপদ ক্যাশ অন ডেলিভারি
           </span>

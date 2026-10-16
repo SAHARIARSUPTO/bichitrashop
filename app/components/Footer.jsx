@@ -71,7 +71,7 @@ export default function Footer() {
               <div>
                 <span className="font-black text-xl text-[#DC2626]">Bichitra </span>
                 <span className="font-black text-xl text-white">Shop</span>
-                <p className="text-[11px] text-[#22C55E] font-medium">বিশ্বস্ত পণ্য | স্মার্ট কেনাকাটা</p>
+                <p className="text-xs text-[#22C55E] font-medium">বিশ্বস্ত পণ্য | স্মার্ট কেনাকাটা</p>
               </div>
             </div>
             <p className="text-xs text-zinc-400 leading-relaxed">
@@ -178,7 +178,7 @@ export default function Footer() {
                   <a href="tel:+8801761674164" className="font-bold text-white hover:text-[#22C55E] block text-sm">
                     01761-674164
                   </a>
-                  <span className="text-[11px] text-zinc-500">সকাল ৯টা – রাত ১০টা (প্রতিদিন)</span>
+                  <span className="text-xs text-zinc-500">সকাল ৯টা – রাত ১০টা (প্রতিদিন)</span>
                 </div>
               </li>
               <li className="flex items-start gap-2.5">
@@ -200,7 +200,7 @@ export default function Footer() {
       <div className="border-t border-zinc-800 bg-black py-4 px-4 text-center text-xs text-zinc-500">
         <div className="w-full max-w-[1440px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
           <p>© 2026 Bichitra Shop (বিচিত্র শপ). সর্বস্বত্ব সংরক্ষিত।</p>
-          <p className="text-[11px] text-zinc-600">
+          <p className="text-xs text-zinc-600">
             নিরাপদ ক্যাশ অন ডেলিভারি ও দ্রুততম হোম ডেলিভারি সার্ভিস।
           </p>
         </div>

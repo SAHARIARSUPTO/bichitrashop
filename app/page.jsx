@@ -52,7 +52,7 @@ function MobileBottomNav() {
             <Link
               href={href}
               aria-current={active ? 'page' : undefined}
-              className={`flex flex-col items-center gap-0.5 py-2.5 text-[11px] font-semibold ${
+              className={`flex flex-col items-center gap-0.5 py-2.5 text-xs font-semibold ${
                 active ? 'text-black' : 'text-zinc-500 hover:text-black'
               }`}
             >
@@ -136,7 +136,7 @@ function SectionHeader({ title, href, linkLabel = 'সব দেখুন', chil
   return (
     <div className="flex items-center justify-between gap-3 mb-4">
       <div className="flex items-center gap-3 min-w-0">
-        <h2 className="text-lg sm:text-2xl font-extrabold text-[#0F2417] truncate">{title}</h2>
+        <h2 className="text-lg sm:text-2xl font-black text-[#0F2417] tracking-tight truncate">{title}</h2>
         {children}
       </div>
       {href && (
@@ -227,25 +227,25 @@ export default async function HomePage() {
         {/* Single, compact promo strip */}
         <section className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-3xl bg-[#08542C] p-5 sm:p-8 text-white shadow-xs">
           <div className="space-y-1.5 max-w-xl">
-            <h2 className="text-lg sm:text-2xl font-extrabold leading-snug">
+            <h2 className="text-lg sm:text-2xl font-black tracking-tight leading-snug">
               পার্সেল দেখে, চেক করে তারপর টাকা দিন
             </h2>
-            <p className="text-sm text-white/80 leading-relaxed">
+            <p className="text-xs sm:text-sm text-white/90 leading-relaxed">
               ডেলিভারিম্যানের সামনে পার্সেল খুলে দেখার সুযোগ। কোনো সমস্যা থাকলে সঙ্গে সঙ্গে ফেরত।
             </p>
           </div>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2.5 sm:gap-3">
             <Link
               href="/products"
-              className="rounded-full bg-white px-5 py-3 text-sm font-extrabold text-[#08542C] transition-colors hover:bg-[#E8F5EC]"
+              className="rounded-full bg-white px-4 py-2 sm:px-5 sm:py-3 text-xs sm:text-sm font-bold text-[#08542C] transition-colors hover:bg-[#E8F5EC]"
             >
               কেনাকাটা শুরু করুন
             </Link>
             <a
               href="tel:+8801761674164"
-              className="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-3 text-sm font-bold transition-colors hover:bg-white/10"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/30 px-4 py-2 sm:px-5 sm:py-3 text-xs sm:text-sm font-bold transition-colors hover:bg-white/10"
             >
-              <PhoneCall className="w-4 h-4" aria-hidden="true" />
+              <PhoneCall className="w-3.5 h-3.5 sm:w-4 sm:h-4" aria-hidden="true" />
               01761-674164
             </a>
           </div>
@@ -257,14 +257,14 @@ export default async function HomePage() {
             {SERVICE_PERKS.map(({ icon: Icon, title, text }) => (
               <li
                 key={title}
-                className="flex items-center gap-3 rounded-2xl bg-white p-3 sm:p-4 shadow-[0_1px_3px_rgba(15,36,23,0.06)] border border-zinc-100"
+                className="flex items-center gap-2.5 sm:gap-3 rounded-2xl bg-white p-3 sm:p-4 shadow-[0_1px_3px_rgba(15,36,23,0.06)] border border-zinc-100"
               >
-                <span className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-zinc-100 border border-zinc-200 text-black">
-                  <Icon className="w-5 h-5 text-black stroke-[1.8]" aria-hidden="true" />
+                <span className="flex h-9 w-9 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-zinc-100 border border-zinc-200 text-black">
+                  <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-black stroke-[1.8]" aria-hidden="true" />
                 </span>
                 <div className="min-w-0">
-                  <p className="text-[13px] sm:text-sm font-bold text-[#0F2417] leading-tight">{title}</p>
-                  <p className="text-[11px] sm:text-xs text-[#4B6354] mt-0.5 truncate">{text}</p>
+                  <p className="text-xs sm:text-sm font-bold text-[#0F2417] leading-tight truncate">{title}</p>
+                  <p className="text-xs text-[#4B6354] mt-0.5 truncate">{text}</p>
                 </div>
               </li>
             ))}
@@ -277,29 +277,29 @@ export default async function HomePage() {
               <ShoppingBag className="w-8 h-8" aria-hidden="true" />
             </div>
             <h3 className="text-lg font-bold text-[#0F2417]">এখনো কোনো পণ্য যোগ করা হয়নি</h3>
-            <p className="text-sm text-[#4B6354]">অ্যাডমিন ড্যাশবোর্ড থেকে পণ্য যোগ করলে এখানে দেখা যাবে।</p>
+            <p className="text-xs sm:text-sm text-[#4B6354]">অ্যাডমিন ড্যাশবোর্ড থেকে পণ্য যোগ করলে এখানে দেখা যাবে।</p>
             <Link
               href="/admin/products"
-              className="inline-flex rounded-full bg-[#08542C] px-5 py-2.5 text-sm font-bold text-white"
+              className="inline-flex rounded-full bg-[#08542C] px-5 py-2.5 text-xs sm:text-sm font-bold text-white"
             >
               পণ্য যোগ করুন
             </Link>
           </div>
         )}
 
-        {/* How ordering works: this one is a real sequence, so numbers are justified */}
+        {/* How ordering works */}
         <section className="rounded-3xl bg-white p-5 sm:p-8 shadow-[0_1px_3px_rgba(15,36,23,0.06)]">
-          <h2 className="text-lg sm:text-2xl font-extrabold text-[#0F2417]">অর্ডার করবেন যেভাবে</h2>
-          <p className="text-sm text-[#4B6354] mt-1 mb-6">অ্যাকাউন্ট ছাড়াই ৩ ধাপে অর্ডার সম্পন্ন হয়।</p>
-          <ol className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <h2 className="text-lg sm:text-2xl font-black text-[#0F2417] tracking-tight">অর্ডার করবেন যেভাবে</h2>
+          <p className="text-xs sm:text-sm text-[#4B6354] mt-1 mb-5 sm:mb-6">অ্যাকাউন্ট ছাড়াই ৩ ধাপে অর্ডার সম্পন্ন হয়।</p>
+          <ol className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
             {ORDER_STEPS.map((step, index) => (
-              <li key={step.title} className="flex items-start gap-4 rounded-2xl bg-[#F3F7F4] p-4">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-zinc-900 text-sm font-extrabold text-white">
+              <li key={step.title} className="flex items-start gap-3 sm:gap-4 rounded-2xl bg-[#F3F7F4] p-3.5 sm:p-4">
+                <span className="flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-full bg-zinc-900 text-xs sm:text-sm font-black text-white">
                   {['১', '২', '৩'][index]}
                 </span>
                 <div>
-                  <h3 className="font-bold text-[#0F2417]">{step.title}</h3>
-                  <p className="text-sm text-[#4B6354] mt-1 leading-relaxed">{step.text}</p>
+                  <h3 className="font-bold text-xs sm:text-sm text-[#0F2417]">{step.title}</h3>
+                  <p className="text-xs sm:text-sm text-[#4B6354] mt-1 leading-relaxed">{step.text}</p>
                 </div>
               </li>
             ))}

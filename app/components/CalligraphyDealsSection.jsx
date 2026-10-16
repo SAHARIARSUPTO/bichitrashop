@@ -43,10 +43,10 @@ export default function CalligraphyDealsSection() {
             <Flame className="w-4 h-4 text-amber-400 stroke-[2]" />
           </div>
           <div>
-            <h2 className="text-base sm:text-2xl font-black text-zinc-900 tracking-tight">
+            <h2 className="text-lg sm:text-2xl font-black text-zinc-900 tracking-tight">
               ধামাকা অফার ও বিশেষ কালেকশন
             </h2>
-            <p className="text-[11px] sm:text-xs text-zinc-600">
+            <p className="text-xs sm:text-sm text-zinc-600">
               সীমিত সময়ের জন্য অবিশ্বাস্য মূল্যছাড় ও ফ্রি ডেলিভারি অফার
             </p>
           </div>
@@ -87,14 +87,14 @@ export default function CalligraphyDealsSection() {
                     <Icon className="w-3.5 h-3.5 text-black" />
                   </span>
                   <div className="truncate">
-                    <span className="text-xs font-black text-zinc-900 block truncate group-hover:text-[#08542C] transition-colors">
+                    <span className="text-xs sm:text-sm font-black text-zinc-900 block truncate group-hover:text-[#08542C] transition-colors">
                       {card.title}
                     </span>
-                    <span className="text-[10px] text-zinc-500 block truncate">{card.tag}</span>
+                    <span className="text-xs text-zinc-500 block truncate">{card.tag}</span>
                   </div>
                 </div>
 
-                <span className="shrink-0 inline-flex items-center gap-1 text-[11px] font-bold text-zinc-900 bg-zinc-100 px-2.5 py-1 rounded-full group-hover:bg-[#08542C] group-hover:text-white transition-colors">
+                <span className="shrink-0 inline-flex items-center gap-1 text-xs font-bold text-zinc-900 bg-zinc-100 px-2.5 py-1 rounded-full group-hover:bg-[#08542C] group-hover:text-white transition-colors">
                   <span>অর্ডার</span>
                   <ArrowRight className="w-3 h-3" />
                 </span>
