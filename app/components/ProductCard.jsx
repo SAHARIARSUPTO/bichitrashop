@@ -16,7 +16,7 @@ export default function ProductCard({ product, onQuickOrder = null }) {
     ? Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)
     : 0;
 
-  const primaryImage = product.images?.[0] || 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80';
+  const primaryImage = product.images?.[0] || '/products/koti_set_navy_gold.jpg';
 
   return (
     <div className="group relative bg-white rounded-xl sm:rounded-2xl border border-zinc-200 hover:border-zinc-900 shadow-2xs hover:shadow-md transition-all duration-200 flex flex-col overflow-hidden">

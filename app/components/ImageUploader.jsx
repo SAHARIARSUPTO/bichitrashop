@@ -142,7 +142,7 @@ export default function ImageUploader({
         <div className="flex gap-2 p-2.5 bg-zinc-50 border border-zinc-200 rounded-xl">
           <input
             type="url"
-            placeholder="https://images.unsplash.com/photo-..."
+            placeholder="https://... বা /products/image.jpg"
             value={urlDraft}
             onChange={(e) => setUrlDraft(e.target.value)}
             className="flex-1 px-3 py-1.5 rounded-lg border border-zinc-200 text-xs bg-white outline-none focus:border-zinc-900"

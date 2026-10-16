@@ -308,7 +308,7 @@ export default function OrderManager({ initialOrders = [] }) {
                   <div className="flex items-center gap-3">
                     <div className="relative w-12 h-12 rounded-lg overflow-hidden bg-gray-50 shrink-0 border border-gray-200">
                       <Image
-                        src={item.image || 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=200&q=80'}
+                        src={item.image || '/products/koti_set_navy_gold.jpg'}
                         alt={item.productName}
                         fill
                         sizes="48px"

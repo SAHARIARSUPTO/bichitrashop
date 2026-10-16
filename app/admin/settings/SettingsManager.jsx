@@ -22,12 +22,12 @@ import {
   ArrowUp,
   ArrowDown
 } from 'lucide-react';
-import { DEFAULT_HERO_BANNERS, SAMPLE_BANNER_IMAGES } from '@/lib/banners';
+import { DEFAULT_HERO_BANNERS, DEFAULT_PROMO_BANNERS, SAMPLE_BANNER_IMAGES } from '@/lib/banners';
 import ImageUploader from '@/app/components/ImageUploader';
 
 
 export default function SettingsManager({ initialSettings = {} }) {
-  const [activeTab, setActiveTab] = useState('banners'); // 'banners' | 'shipping' | 'contact'
+  const [activeTab, setActiveTab] = useState('banners'); // 'banners' | 'promo' | 'shipping' | 'contact'
   
   const [formData, setFormData] = useState({
     insideDhaka: initialSettings.shippingRates?.inside_dhaka ?? 70,
@@ -42,6 +42,12 @@ export default function SettingsManager({ initialSettings = {} }) {
     Array.isArray(initialSettings.heroBanners) && initialSettings.heroBanners.length > 0
       ? initialSettings.heroBanners
       : DEFAULT_HERO_BANNERS
+  );
+
+  const [promoBanners, setPromoBanners] = useState(
+    Array.isArray(initialSettings.promoBanners) && initialSettings.promoBanners.length > 0
+      ? initialSettings.promoBanners
+      : DEFAULT_PROMO_BANNERS
   );
 
   const [saving, setSaving] = useState(false);
@@ -69,8 +75,8 @@ export default function SettingsManager({ initialSettings = {} }) {
       price: 1500,
       comparePrice: 1950,
       discount: '৳৪৫০ ছাড়',
-      slug: 'exclusive-embroidered-koti-set',
-      image: SAMPLE_BANNER_IMAGES[0].url,
+      slug: '/products',
+      image: SAMPLE_BANNER_IMAGES[0]?.url || '/banners/deshi_spices_curry.jpg',
       active: true
     };
     setBanners((prev) => [newSlide, ...prev]);
@@ -79,8 +85,7 @@ export default function SettingsManager({ initialSettings = {} }) {
   // Delete banner slide
   const handleDeleteBanner = (index) => {
     if (banners.length <= 1) {
-      alert('কমপক্ষে একটি ব্যানার স্লাইড থাকতে হবে।');
-      return;
+      if (!confirm('আপনি কি শেষ ব্যানারটিও মুছে ফেলতে চান?')) return;
     }
     setBanners((prev) => prev.filter((_, idx) => idx !== index));
   };
@@ -88,6 +93,49 @@ export default function SettingsManager({ initialSettings = {} }) {
   // Move banner up / down
   const handleMoveBanner = (index, direction) => {
     setBanners((prev) => {
+      const copy = [...prev];
+      const targetIndex = index + direction;
+      if (targetIndex < 0 || targetIndex >= copy.length) return prev;
+      const temp = copy[index];
+      copy[index] = copy[targetIndex];
+      copy[targetIndex] = temp;
+      return copy;
+    });
+  };
+
+  // Promo Banners handlers
+  const handlePromoBannerChange = (index, field, value) => {
+    setPromoBanners((prev) => {
+      const updated = [...prev];
+      updated[index] = { ...updated[index], [field]: value };
+      return updated;
+    });
+  };
+
+  const handleAddPromoBanner = () => {
+    const newId = 'promo-' + Date.now();
+    const newPromo = {
+      id: newId,
+      title: 'নতুন ধামাকা বিজ্ঞাপন অফার',
+      subtitle: 'বিচিত্র শপ থেকে আপনার পছন্দের পণ্যে আকর্ষণীয় মূল্যছাড়',
+      badge: '৫০% পর্যন্ত অফ',
+      tag: 'সীমিত অফার',
+      ctaText: 'অফার দেখুন',
+      link: '/products',
+      image: SAMPLE_BANNER_IMAGES[0]?.url || '/banners/deshi_spices_curry.jpg',
+      active: true
+    };
+    setPromoBanners((prev) => [newPromo, ...prev]);
+  };
+
+  const handleDeletePromoBanner = (index) => {
+    if (confirm('আপনি কি নিশ্চিত যে এই বিজ্ঞাপন ব্যানারটি মুছে ফেলতে চান?')) {
+      setPromoBanners((prev) => prev.filter((_, idx) => idx !== index));
+    }
+  };
+
+  const handleMovePromoBanner = (index, direction) => {
+    setPromoBanners((prev) => {
       const copy = [...prev];
       const targetIndex = index + direction;
       if (targetIndex < 0 || targetIndex >= copy.length) return prev;
@@ -119,7 +167,8 @@ export default function SettingsManager({ initialSettings = {} }) {
             address: formData.address.trim()
           },
           announcement: formData.announcement.trim(),
-          heroBanners: banners
+          heroBanners: banners,
+          promoBanners: promoBanners
         })
       });
 
@@ -190,7 +239,20 @@ export default function SettingsManager({ initialSettings = {} }) {
           }`}
         >
           <ImageIcon className="w-4 h-4 text-black stroke-[2]" />
-          <span>ব্যানার স্লাইডার ব্যবস্থাপনা ({banners.length})</span>
+          <span>ব্যানার স্লাইডার ({banners.length})</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveTab('promo')}
+          className={`flex items-center gap-2 px-4 py-2.5 text-xs font-bold border-b-2 transition-all ${
+            activeTab === 'promo'
+              ? 'border-zinc-900 text-zinc-900'
+              : 'border-transparent text-zinc-500 hover:text-zinc-900'
+          }`}
+        >
+          <Sparkles className="w-4 h-4 text-black stroke-[2]" />
+          <span>বিজ্ঞাপন ও অফার ব্যানার ({promoBanners.length})</span>
         </button>
 
         <button
@@ -464,6 +526,237 @@ export default function SettingsManager({ initialSettings = {} }) {
                 </div>
               ))}
             </div>
+          </div>
+        )}
+
+        {/* TAB: PROMOTIONAL ADVERTISE BANNERS (SALE, OFF, DEALS) */}
+        {activeTab === 'promo' && (
+          <div className="space-y-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-base font-extrabold text-zinc-900">
+                  হোমপেজ বিজ্ঞাপন ও অফার ব্যানার সমূহ
+                </h3>
+                <p className="text-xs text-zinc-500">
+                  সেল, ডিসকাউন্ট, ক্যাশ অন ডেলিভারি ও কিচেন অ্যাপ্লায়েন্স অফার ব্যানার এডিট, ডিলিট বা যোগ করুন
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={handleAddPromoBanner}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#08542C] hover:bg-[#064423] text-white text-xs font-bold shadow-2xs transition-all cursor-pointer"
+              >
+                <Plus className="w-4 h-4 text-white stroke-[2]" />
+                <span>নতুন বিজ্ঞাপন ব্যানার যোগ করুন</span>
+              </button>
+            </div>
+
+            {promoBanners.length === 0 ? (
+              <div className="bg-white rounded-2xl border border-zinc-200 p-8 text-center space-y-3">
+                <p className="text-xs text-zinc-500 font-semibold">কোনো বিজ্ঞাপন ব্যানার পাওয়া যায়নি। নতুন ব্যানার যোগ করুন।</p>
+                <button
+                  type="button"
+                  onClick={handleAddPromoBanner}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-zinc-900 text-white text-xs font-bold"
+                >
+                  <Plus className="w-4 h-4 text-white" />
+                  <span>ব্যানার যোগ করুন</span>
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-5">
+                {promoBanners.map((promo, index) => (
+                  <div
+                    key={promo.id || index}
+                    className="bg-white rounded-2xl border border-zinc-200 p-5 shadow-xs space-y-4 transition-all hover:border-zinc-300"
+                  >
+                    <div className="flex items-center justify-between border-b border-zinc-100 pb-3">
+                      <div className="flex items-center gap-2.5">
+                        <span className="w-6 h-6 rounded-md bg-zinc-900 text-white font-bold text-xs flex items-center justify-center">
+                          {index + 1}
+                        </span>
+                        <span className="text-sm font-bold text-zinc-900">
+                          {promo.title || 'শিরোনামহীন বিজ্ঞাপন ব্যানার'}
+                        </span>
+                        {promo.active ? (
+                          <span className="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 text-[10px] font-bold">
+                            সক্রিয়
+                          </span>
+                        ) : (
+                          <span className="px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-600 text-[10px] font-bold">
+                            নিষ্ক্রিয়
+                          </span>
+                        )}
+                      </div>
+
+                      <div className="flex items-center gap-1">
+                        <button
+                          type="button"
+                          onClick={() => handleMovePromoBanner(index, -1)}
+                          disabled={index === 0}
+                          title="উপরে নিন"
+                          className="p-1.5 rounded-lg border border-zinc-200 hover:bg-zinc-100 disabled:opacity-30 text-zinc-700 cursor-pointer"
+                        >
+                          <ArrowUp className="w-3.5 h-3.5 text-black stroke-[2]" />
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => handleMovePromoBanner(index, 1)}
+                          disabled={index === promoBanners.length - 1}
+                          title="নিচে নিন"
+                          className="p-1.5 rounded-lg border border-zinc-200 hover:bg-zinc-100 disabled:opacity-30 text-zinc-700 cursor-pointer"
+                        >
+                          <ArrowDown className="w-3.5 h-3.5 text-black stroke-[2]" />
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => handleDeletePromoBanner(index)}
+                          title="মুছে ফেলুন"
+                          className="p-1.5 rounded-lg border border-red-200 hover:bg-red-50 text-red-600 ml-1 cursor-pointer"
+                        >
+                          <Trash2 className="w-3.5 h-3.5 text-red-600 stroke-[2]" />
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Promo Banner Fields Grid */}
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+                      {/* Left: Cloudinary Image Uploader & Preview */}
+                      <div className="lg:col-span-5 space-y-3">
+                        <ImageUploader
+                          value={promo.image || ''}
+                          onChange={(newUrl) => handlePromoBannerChange(index, 'image', newUrl)}
+                          multiple={false}
+                          folder="bichitra_shop/banners"
+                          label="বিজ্ঞাপন ব্যানার ছবি (Cloudinary বা লিংক)"
+                        />
+
+                        {/* Quick Sample Image Picker */}
+                        <div className="pt-1">
+                          <span className="text-[11px] font-bold text-zinc-500 block mb-1">
+                            অথবা দ্রুত প্রস্তাবিত ছবি নির্বাচন করুন:
+                          </span>
+                          <div className="flex flex-wrap gap-1.5">
+                            {SAMPLE_BANNER_IMAGES.map((sample, sIdx) => (
+                              <button
+                                key={sIdx}
+                                type="button"
+                                onClick={() => handlePromoBannerChange(index, 'image', sample.url)}
+                                className="text-[10px] font-semibold px-2 py-1 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors border border-zinc-200 cursor-pointer"
+                              >
+                                {sample.label}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Right: Texts & Actions */}
+                      <div className="lg:col-span-7 space-y-3.5">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          <div>
+                            <label className="block text-xs font-bold text-zinc-900 mb-1">
+                              বিজ্ঞাপন শিরোনাম (Title)
+                            </label>
+                            <input
+                              type="text"
+                              value={promo.title || ''}
+                              onChange={(e) => handlePromoBannerChange(index, 'title', e.target.value)}
+                              placeholder="যেমন: দেশি কিচেন অ্যাপ্লায়েন্স মেগা সেল"
+                              className="w-full px-3 py-2 rounded-xl border border-zinc-200 text-xs focus:border-zinc-900 outline-none"
+                            />
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-bold text-zinc-900 mb-1">
+                              ট্যাগ (Tag)
+                            </label>
+                            <input
+                              type="text"
+                              value={promo.tag || ''}
+                              onChange={(e) => handlePromoBannerChange(index, 'tag', e.target.value)}
+                              placeholder="যেমন: কিচেন ধামাকা"
+                              className="w-full px-3 py-2 rounded-xl border border-zinc-200 text-xs focus:border-zinc-900 outline-none"
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className="block text-xs font-bold text-zinc-900 mb-1">
+                            সংক্ষিপ্ত বিবরণ (Subtitle)
+                          </label>
+                          <textarea
+                            rows={2}
+                            value={promo.subtitle || ''}
+                            onChange={(e) => handlePromoBannerChange(index, 'subtitle', e.target.value)}
+                            placeholder="অফারের বিস্তারিত বা বিবরণ..."
+                            className="w-full px-3 py-2 rounded-xl border border-zinc-200 text-xs focus:border-zinc-900 outline-none resize-none"
+                          />
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                          <div>
+                            <label className="block text-xs font-bold text-zinc-900 mb-1">
+                              ডিসকাউন্ট / অফার ব্যাজ
+                            </label>
+                            <input
+                              type="text"
+                              value={promo.badge || ''}
+                              onChange={(e) => handlePromoBannerChange(index, 'badge', e.target.value)}
+                              placeholder="যেমন: ৫০% পর্যন্ত ছাড়"
+                              className="w-full px-3 py-2 rounded-xl border border-zinc-200 text-xs focus:border-zinc-900 outline-none"
+                            />
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-bold text-zinc-900 mb-1">
+                              বাটন টেক্সট (CTA)
+                            </label>
+                            <input
+                              type="text"
+                              value={promo.ctaText || ''}
+                              onChange={(e) => handlePromoBannerChange(index, 'ctaText', e.target.value)}
+                              placeholder="যেমন: অফার দেখুন"
+                              className="w-full px-3 py-2 rounded-xl border border-zinc-200 text-xs focus:border-zinc-900 outline-none"
+                            />
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-bold text-zinc-900 mb-1">
+                              টার্গেট লিংক (Link URL)
+                            </label>
+                            <input
+                              type="text"
+                              value={promo.link || ''}
+                              onChange={(e) => handlePromoBannerChange(index, 'link', e.target.value)}
+                              placeholder="/products?category=home-appliances"
+                              className="w-full px-3 py-2 rounded-xl border border-zinc-200 text-xs focus:border-zinc-900 outline-none"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="pt-1">
+                          <label className="inline-flex items-center gap-2 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={promo.active !== false}
+                              onChange={(e) => handlePromoBannerChange(index, 'active', e.target.checked)}
+                              className="w-4 h-4 rounded text-zinc-900 border-zinc-300"
+                            />
+                            <span className="text-xs font-bold text-zinc-800">
+                              হোমপেজে এই বিজ্ঞাপন ব্যানারটি প্রদর্শন করুন (Active)
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
 

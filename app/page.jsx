@@ -1,20 +1,22 @@
 // app/page.jsx
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Truck, RotateCcw, BadgeCheck, Headphones, PhoneCall, ShoppingBag, Zap, Home, LayoutGrid, ShoppingCart } from 'lucide-react';
+import { ArrowRight, Truck, RotateCcw, BadgeCheck, Headphones, PhoneCall, ShoppingBag, Zap, Home, LayoutGrid } from 'lucide-react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ProductCard from './components/ProductCard';
 import ModernHero from './components/ModernHero';
+import HomePaginatedProducts from './components/HomePaginatedProducts';
+import FestiveCalligraphySection from './components/FestiveCalligraphySection';
+import DeshiAppliancesSection from './components/DeshiAppliancesSection';
+import CalligraphyDealsSection from './components/CalligraphyDealsSection';
 import { getCollection } from '@/lib/mongodb';
 import { initDatabase } from '@/lib/db-init';
 
-// Cache the rendered page for 60s so the homepage doesn't hit MongoDB on every request.
-export const revalidate = 60;
+export const dynamic = 'force-dynamic';
 
 const DEFAULT_ANNOUNCEMENT = 'ক্যাশ অন ডেলিভারি সুবিধা সারা বাংলাদেশে! ৩টি বা ততোধিক পণ্যে ফ্রি ডেলিভারি।';
-const CATEGORY_FALLBACK_IMAGE =
-  'https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=300&q=80';
+const CATEGORY_FALLBACK_IMAGE = '/categories/mens_fashion.jpg';
 
 const SERVICE_PERKS = [
   { icon: Truck, title: 'ক্যাশ অন ডেলিভারি', text: 'সারা বাংলাদেশে' },
@@ -33,7 +35,6 @@ const ORDER_STEPS = [
 const BOTTOM_NAV_ITEMS = [
   { href: '/', label: 'হোম', icon: Home, active: true },
   { href: '/products', label: 'পণ্য', icon: LayoutGrid },
-  { href: '/cart', label: 'কার্ট', icon: ShoppingCart },
   { href: 'tel:+8801700000000', label: 'কল', icon: PhoneCall },
 ];
 
@@ -45,7 +46,7 @@ function MobileBottomNav() {
       aria-label="মোবাইল নেভিগেশন"
       className="fixed inset-x-0 bottom-0 z-40 border-t border-[#E2ECE3] bg-white/90 backdrop-blur-md md:hidden pb-[env(safe-area-inset-bottom)]"
     >
-      <ul className="grid grid-cols-4">
+      <ul className="grid grid-cols-3">
         {BOTTOM_NAV_ITEMS.map(({ href, label, icon: Icon, active }) => (
           <li key={label}>
             <Link
@@ -91,7 +92,8 @@ async function getHomeData() {
       getCollection('settings'),
     ]);
 
-    const [flashProducts, featuredProducts, latestProducts, categories, settings] = await Promise.all([
+    const [allProducts, flashProducts, featuredProducts, latestProducts, categories, settings] = await Promise.all([
+      productsColl.find({ status: 'published' }).sort({ createdAt: -1 }).limit(48).toArray(),
       productsColl.find({ status: 'published', flashSale: true }).limit(10).toArray(),
       productsColl.find({ status: 'published', featured: true }).limit(8).toArray(),
       productsColl.find({ status: 'published' }).sort({ createdAt: -1 }).limit(8).toArray(),
@@ -102,12 +104,14 @@ async function getHomeData() {
     const serialize = (docs) => JSON.parse(JSON.stringify(docs));
 
     return {
+      allProducts: serialize(allProducts),
       flashProducts: serialize(flashProducts),
       featuredProducts: serialize(featuredProducts),
       latestProducts: serialize(latestProducts),
       categories: serialize(categories),
       announcement: settings?.announcement || DEFAULT_ANNOUNCEMENT,
       heroBanners: settings?.heroBanners || [],
+      promoBanners: settings?.promoBanners || [],
       flashSaleEndsAt: settings?.flashSaleEndsAt
         ? new Date(settings.flashSaleEndsAt).toISOString()
         : endOfTodayInDhaka(),
@@ -115,12 +119,14 @@ async function getHomeData() {
   } catch (error) {
     console.error('Error fetching home page data:', error);
     return {
+      allProducts: [],
       flashProducts: [],
       featuredProducts: [],
       latestProducts: [],
       categories: [],
       announcement: DEFAULT_ANNOUNCEMENT,
       heroBanners: [],
+      promoBanners: [],
       flashSaleEndsAt: endOfTodayInDhaka(),
     };
   }
@@ -157,24 +163,101 @@ function ProductGrid({ products }) {
 }
 
 export default async function HomePage() {
-  const { flashProducts, featuredProducts, latestProducts, categories, announcement, heroBanners, flashSaleEndsAt } =
+  const { allProducts, flashProducts, featuredProducts, latestProducts, categories, announcement, heroBanners, promoBanners, flashSaleEndsAt } =
     await getHomeData();
 
-  const hasAnyProducts = featuredProducts.length > 0 || latestProducts.length > 0;
+  const combinedProducts = allProducts.length > 0
+    ? allProducts
+    : Array.from(new Map([...flashProducts, ...featuredProducts, ...latestProducts].map(p => [p.slug, p])).values());
+
+  const hasAnyProducts = combinedProducts.length > 0;
+
+  // Filter dedicated products for specialized showcase zones
+  const festiveProducts = combinedProducts.filter(
+    (p) => p.category === 'mens-fashion' || p.category === 'womens-fashion'
+  ).slice(0, 4);
+
+  const applianceProducts = combinedProducts.filter(
+    (p) => p.category === 'home-appliances'
+  ).slice(0, 4);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#F3F7F4]">
       <Header categories={categories} announcement={announcement} />
       <ModernHero categories={categories} banners={heroBanners} />
 
-      <main className="w-full max-w-[1536px] mx-auto px-3 sm:px-6 lg:px-8 pt-3 pb-24 md:pb-12 space-y-6 sm:space-y-8">
+      <main className="w-full max-w-[1536px] mx-auto px-3 sm:px-6 lg:px-8 pt-2 sm:pt-4 pb-24 md:pb-12 space-y-8 sm:space-y-12">
+        {/* DIRECT MOBILE-FIRST PRODUCT CARDS FEED WITH PAGING TECHNIQUE */}
+        {hasAnyProducts ? (
+          <HomePaginatedProducts
+            initialProducts={combinedProducts}
+            categories={categories}
+            flashSaleEndsAt={flashSaleEndsAt}
+          />
+        ) : (
+          <div className="mx-auto max-w-md space-y-4 rounded-3xl bg-white p-10 text-center shadow-[0_1px_3px_rgba(15,36,23,0.06)]">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#E8F5EC] text-[#08542C]">
+              <ShoppingBag className="w-8 h-8" aria-hidden="true" />
+            </div>
+            <h3 className="text-lg font-bold text-[#0F2417]">এখনো কোনো পণ্য যোগ করা হয়নি</h3>
+            <p className="text-sm text-[#4B6354]">অ্যাডমিন ড্যাশবোর্ড থেকে পণ্য যোগ করলে এখানে দেখা যাবে।</p>
+            <Link
+              href="/admin/products"
+              className="inline-flex rounded-full bg-[#08542C] px-5 py-2.5 text-sm font-bold text-white"
+            >
+              পণ্য যোগ করুন
+            </Link>
+          </div>
+        )}
+
+        {/* NEW SECTION 1: BENGALI CALLIGRAPHY FESTIVE & HERITAGE COLLECTION */}
+        {festiveProducts.length > 0 && (
+          <FestiveCalligraphySection products={festiveProducts} />
+        )}
+
+        {/* NEW SECTION 2: 3-COLUMN CALLIGRAPHIC PROMO & FLASH DEALS GRID */}
+        <CalligraphyDealsSection />
+
+        {/* NEW SECTION 3: DESHI KITCHEN & HOME APPLIANCES FEATURE ZONE */}
+        {applianceProducts.length > 0 && (
+          <DeshiAppliancesSection products={applianceProducts} />
+        )}
+
+
+        {/* Single, compact promo strip */}
+        <section className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-3xl bg-[#08542C] p-5 sm:p-8 text-white shadow-xs">
+          <div className="space-y-1.5 max-w-xl">
+            <h2 className="text-lg sm:text-2xl font-extrabold leading-snug">
+              পার্সেল দেখে, চেক করে তারপর টাকা দিন
+            </h2>
+            <p className="text-sm text-white/80 leading-relaxed">
+              ডেলিভারিম্যানের সামনে পার্সেল খুলে দেখার সুযোগ। কোনো সমস্যা থাকলে সঙ্গে সঙ্গে ফেরত।
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/products"
+              className="rounded-full bg-white px-5 py-3 text-sm font-extrabold text-[#08542C] transition-colors hover:bg-[#E8F5EC]"
+            >
+              কেনাকাটা শুরু করুন
+            </Link>
+            <a
+              href="tel:+8801700000000"
+              className="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-3 text-sm font-bold transition-colors hover:bg-white/10"
+            >
+              <PhoneCall className="w-4 h-4" aria-hidden="true" />
+              01700-000000
+            </a>
+          </div>
+        </section>
+
         {/* Service perks: 2x2 on mobile, one row on desktop */}
         <section aria-label="আমাদের সুবিধা">
           <ul className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4">
             {SERVICE_PERKS.map(({ icon: Icon, title, text }) => (
               <li
                 key={title}
-                className="flex items-center gap-3 rounded-2xl bg-white p-3 sm:p-4 shadow-[0_1px_3px_rgba(15,36,23,0.06)]"
+                className="flex items-center gap-3 rounded-2xl bg-white p-3 sm:p-4 shadow-[0_1px_3px_rgba(15,36,23,0.06)] border border-zinc-100"
               >
                 <span className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-zinc-100 border border-zinc-200 text-black">
                   <Icon className="w-5 h-5 text-black stroke-[1.8]" aria-hidden="true" />
@@ -187,105 +270,6 @@ export default async function HomePage() {
             ))}
           </ul>
         </section>
-
-        {/* Categories: swipeable circles on mobile, wrapping grid on desktop */}
-        {categories.length > 0 && (
-          <section className="rounded-3xl bg-white p-4 sm:p-6 shadow-[0_1px_3px_rgba(15,36,23,0.06)]">
-            <SectionHeader title="ক্যাটাগরি" href="/products" />
-            <ul className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 -mx-1 px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:grid md:grid-cols-6 lg:grid-cols-8 md:overflow-visible">
-              {categories.map((cat) => (
-                <li key={cat.slug} className="snap-start shrink-0 w-[76px] sm:w-24 md:w-auto">
-                  <Link
-                    href={`/products?category=${cat.slug}`}
-                    className="group flex flex-col items-center gap-2 text-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#08542C] rounded-xl"
-                  >
-                    <span className="relative block h-[68px] w-[68px] sm:h-20 sm:w-20 overflow-hidden rounded-full bg-[#E8F5EC] ring-2 ring-transparent transition group-hover:ring-[#22C55E]">
-                      <Image
-                        src={cat.image || CATEGORY_FALLBACK_IMAGE}
-                        alt=""
-                        fill
-                        sizes="80px"
-                        className="object-cover"
-                      />
-                    </span>
-                    <span className="text-xs sm:text-[13px] font-semibold text-[#0F2417] leading-snug line-clamp-2">
-                      {cat.name}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
-
-        {/* Flash sale: only rendered when products are flagged flashSale: true */}
-        {flashProducts.length > 0 && (
-          <section className="rounded-3xl bg-gradient-to-br from-[#DC2626] to-[#B91C1C] p-3 sm:p-6 shadow-sm">
-            <div className="flex flex-wrap items-center justify-between gap-3 mb-4 px-1">
-              <div className="flex items-center gap-3 text-white">
-                <Zap className="w-6 h-6 fill-current" aria-hidden="true" />
-                <h2 className="text-lg sm:text-2xl font-extrabold">ফ্ল্যাশ সেল</h2>
-                <span className="hidden sm:inline-block rounded-md bg-black/25 px-2.5 py-1 text-xs font-bold">
-                  শেষ: {formatSaleEnd(flashSaleEndsAt)}
-                </span>
-              </div>
-              <Link
-                href="/products?flashSale=true"
-                className="inline-flex items-center gap-1 rounded-full bg-white px-3.5 py-1.5 text-xs sm:text-sm font-bold text-[#B91C1C] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              >
-                সব দেখুন <ArrowRight className="w-4 h-4" aria-hidden="true" />
-              </Link>
-            </div>
-            <div className="flex gap-2.5 sm:gap-3 overflow-x-auto snap-x pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              {flashProducts.map((product) => (
-                <div key={product.slug} className="snap-start shrink-0 w-[calc(50%-5px)] sm:w-[31%] lg:w-[23.5%]">
-                  <ProductCard product={product} />
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {featuredProducts.length > 0 && (
-          <section>
-            <SectionHeader title="জনপ্রিয় পণ্য" href="/products?featured=true" />
-            <ProductGrid products={featuredProducts} />
-          </section>
-        )}
-
-        {/* Single, compact promo strip instead of a large banner */}
-        <section className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-3xl bg-[#08542C] p-5 sm:p-8 text-white">
-          <div className="space-y-1.5 max-w-xl">
-            <h2 className="text-lg sm:text-2xl font-extrabold leading-snug">
-              পার্সেল দেখে, চেক করে তারপর টাকা দিন
-            </h2>
-            <p className="text-sm text-white/80 leading-relaxed">
-              ডেলিভারিম্যানের সামনে পার্সেল খুলে দেখার সুযোগ। কোনো সমস্যা থাকলে সঙ্গে সঙ্গে ফেরত।
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/products"
-              className="rounded-full bg-white px-5 py-3 text-sm font-extrabold text-[#08542C] transition-colors hover:bg-[#E8F5EC] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-            >
-              কেনাকাটা শুরু করুন
-            </Link>
-            <a
-              href="tel:+8801700000000"
-              className="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-3 text-sm font-bold transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-            >
-              <PhoneCall className="w-4 h-4" aria-hidden="true" />
-              01700-000000
-            </a>
-          </div>
-        </section>
-
-        {latestProducts.length > 0 && (
-          <section>
-            <SectionHeader title="নতুন পণ্য" href="/products" />
-            <ProductGrid products={latestProducts} />
-          </section>
-        )}
 
         {!hasAnyProducts && (
           <div className="mx-auto max-w-md space-y-4 rounded-3xl bg-white p-10 text-center shadow-[0_1px_3px_rgba(15,36,23,0.06)]">

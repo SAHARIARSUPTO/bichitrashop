@@ -68,7 +68,7 @@ export default function ProductManager({ initialProducts = [], categories = [] }
     compareAtPrice: '',
     shortDescription: '',
     description: '',
-    images: ['https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80'],
+    images: ['/products/koti_set_navy_gold.jpg'],
     sizesInput: '',
     colorsInput: 'ব্ল্যাক, সিলভার',
     warranty: '৬ মাস রিপ্লেসমেন্ট ওয়ারেন্টি',
@@ -134,7 +134,7 @@ export default function ProductManager({ initialProducts = [], categories = [] }
       compareAtPrice: '',
       shortDescription: '',
       description: '',
-      images: ['https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80'],
+      images: ['/products/koti_set_navy_gold.jpg'],
       sizesInput: '',
       colorsInput: 'ব্ল্যাক, সিলভার',
       warranty: '৬ মাস রিপ্লেসমেন্ট ওয়ারেন্টি',
@@ -421,7 +421,7 @@ export default function ProductManager({ initialProducts = [], categories = [] }
                       <div className="flex items-center gap-3">
                         <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-white shrink-0 border border-[#E2ECE3]">
                           <Image
-                            src={prod.images?.[0] || 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=200&q=80'}
+                            src={prod.images?.[0] || '/products/koti_set_navy_gold.jpg'}
                             alt={prod.name}
                             fill
                             sizes="48px"

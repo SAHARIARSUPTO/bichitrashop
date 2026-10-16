@@ -154,7 +154,7 @@ export default async function OrderSuccessPage({ params, searchParams }) {
             <div className="flex items-center gap-4 p-4 rounded-2xl bg-[#F6FAF7] border border-[#E2ECE3]">
               <div className="relative w-20 h-20 rounded-xl overflow-hidden bg-white shrink-0 border border-[#E2ECE3]">
                 <Image
-                  src={item.image || 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=300&q=80'}
+                  src={item.image || '/products/koti_set_navy_gold.jpg'}
                   alt={item.productName || 'পণ্য'}
                   fill
                   sizes="80px"

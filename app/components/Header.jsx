@@ -22,8 +22,8 @@ export default function Header({ categories = [], announcement = 'ক্যা�
 
   return (
     <header className="sticky top-0 z-40 bg-white border-b border-[#E2ECE3] shadow-xs">
-      {/* Top Announcement Bar */}
-      <div className="bg-[#08542C] text-white text-xs md:text-sm py-2 px-4 transition-colors">
+      {/* Top Announcement Bar (Hidden on Mobile for Fast App-like Feel) */}
+      <div className="hidden md:block bg-[#08542C] text-white text-xs md:text-sm py-2 px-4 transition-colors">
         <div className="w-full max-w-[1440px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-1 text-center sm:text-left">
           <p className="font-medium tracking-wide flex items-center justify-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E]"></span>

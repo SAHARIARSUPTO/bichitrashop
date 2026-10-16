@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 export default function ProductGallery({ images = [], name = 'Product Image' }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const activeImage = images[activeIndex] || images[0] || 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80';
+  const activeImage = images[activeIndex] || images[0] || '/products/koti_set_navy_gold.jpg';
 
   return (
     <div className="space-y-4">

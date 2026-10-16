@@ -3,9 +3,34 @@
 
 import { getCollection } from '@/lib/mongodb';
 import { initDatabase } from '@/lib/db-init';
+import { headers } from 'next/headers';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default async function sitemap() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bichitrashop.vercel.app/';
+  let baseUrl = '';
+
+  try {
+    const headersList = await headers();
+    const host = headersList.get('x-forwarded-host') || headersList.get('host');
+    const proto = headersList.get('x-forwarded-proto') || 'https';
+    if (host && !host.includes('localhost')) {
+      baseUrl = `${proto}://${host}`;
+    }
+  } catch (e) {
+    // ignore
+  }
+
+  if (!baseUrl) {
+    // If running on Vercel deployment without custom domain active, use Vercel URL
+    const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
+    if (vercelUrl) {
+      baseUrl = `https://${vercelUrl}`;
+    } else {
+      baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://bichitrashop.vercel.app').replace(/\/+$/, '');
+    }
+  }
 
   const staticPages = [
     {

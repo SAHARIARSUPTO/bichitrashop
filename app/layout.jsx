@@ -1,7 +1,8 @@
-// app/layout.jsx
+import { Suspense } from 'react';
 import './globals.css';
+import ClientNavigationLoader from './components/ClientNavigationLoader';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bichitrashop.com';
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://bichitrashop.vercel.app').replace(/\/+$/, '');
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -125,6 +126,9 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="min-h-full flex flex-col bg-[#F6FAF7] text-[#0F2417]">
+        <Suspense fallback={null}>
+          <ClientNavigationLoader />
+        </Suspense>
         {children}
       </body>
     </html>

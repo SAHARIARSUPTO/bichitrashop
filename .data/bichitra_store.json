@@ -14,7 +14,112 @@
       "announcement": "🎉 ক্যাশ অন ডেলিভারি সুবিধা সারা বাংলাদেশে! পণ্য হাতে পেয়ে মূল্য পরিশোধের নিশ্চয়তা।",
       "createdAt": "2026-10-15T18:17:56.858Z",
       "_id": "6ad118d4bd9c2a6708aebd89",
-      "updatedAt": "2026-10-15T18:17:56.860Z"
+      "updatedAt": "2026-10-16T06:31:55.336Z",
+      "heroBanners": [
+        {
+          "id": 1,
+          "title": "উৎসবের রঙে সাজুন – এক্সক্লুসিভ কোটি ও পাঞ্জাবি সেট",
+          "subtitle": "নিখুঁত হ্যান্ডক্রাফটেড সুতার কাজ, আরামদায়ক সিল্ক-কটন ব্লেন্ড এবং শতভাগ পাকা রঙের নিশ্চয়তা",
+          "badge": "ঐতিহ্যবাহী উৎসব",
+          "tag": "মেনস ফ্যাশন",
+          "price": 1850,
+          "comparePrice": 2450,
+          "discount": "৳৬০০ ছাড় (২৫%)",
+          "slug": "exclusive-embroidered-koti-set",
+          "image": "/banners/bengali_calligraphy_festive_banner.jpg",
+          "active": true
+        },
+        {
+          "id": 2,
+          "title": "দেশি কিচেন ও হোম অ্যাপ্লায়েন্স – ব্লেন্ডার ও কুকার",
+          "subtitle": "খাঁটি মসলা বাটা ও আধুনিক রান্নার জন্য ১০০% কপার মোটর ব্লেন্ডার ও রাইস কুকার",
+          "badge": "দেশি গৃহস্থালি",
+          "tag": "হোম অ্যাপ্লায়েন্স",
+          "price": 1950,
+          "comparePrice": 2600,
+          "discount": "৳৬৫০ ছাড় (২৫%)",
+          "slug": "/products?category=home-appliances",
+          "image": "/banners/bengali_calligraphy_kitchen_banner.jpg",
+          "active": true
+        },
+        {
+          "id": 3,
+          "title": "মার্জিত ও স্নিগ্ধ ফ্যাশন – প্রিমিয়াম দুবাই চেরি আবায়া",
+          "subtitle": "মার্জিত কাট, নিখুঁত স্টোন ও হ্যান্ড এম্ব্রয়ডারি ওয়ার্ক এবং আরামদায়ক প্রিমিয়াম দুবাই ফেব্রিক",
+          "badge": "নতুন কালেকশন",
+          "tag": "উইমেনস ফ্যাশন",
+          "price": 2250,
+          "comparePrice": 2850,
+          "discount": "৳৬০০ ছাড় (২১%)",
+          "slug": "luxury-dubai-cherry-georgette-abaya",
+          "image": "/banners/bengali_calligraphy_abaya_banner.jpg",
+          "active": true
+        },
+        {
+          "id": 4,
+          "title": "ধামাকা অফার সপ্তাহ – ৫০% পর্যন্ত বিশেষ ছাড়",
+          "subtitle": "হোম অ্যাপ্লায়েন্স, প্রিমিয়াম পোশাক ও স্মার্ট গ্যাজেটে সীমিত সময়ের অবিশ্বাস্য মূল্যছাড়",
+          "badge": "ধামাকা সেল",
+          "tag": "হট ডিল",
+          "price": 890,
+          "comparePrice": 1350,
+          "discount": "৫০% পর্যন্ত ছাড়",
+          "slug": "wireless-stereo-earbuds",
+          "image": "/banners/bengali_calligraphy_dhamaka_sale.jpg",
+          "active": true
+        },
+        {
+          "id": 5,
+          "title": "খাঁটি দেশি পণ্যের আস্থা – সুন্দরবনের কাঁচা মধু ও তেল",
+          "subtitle": "সুন্দরবনের প্রাকৃতিক মৌচাকের মধু ও দেশি কাঠের ঘানিতে ভাঙানো খাঁটি সরিষার তেল কম্বো",
+          "badge": "১০০% খাঁটি পণ্য",
+          "tag": "অর্গানিক ফুড",
+          "price": 980,
+          "comparePrice": 1250,
+          "discount": "৳২৭০ ছাড় (২২%)",
+          "slug": "sundarban-raw-honey-mustard-oil-bundle",
+          "image": "/banners/bengali_calligraphy_organic_deshi.jpg",
+          "active": true
+        }
+      ],
+      "promoBanners": [
+        {
+          "id": "promo-1",
+          "title": "দেশি কিচেন অ্যাপ্লায়েন্স মেগা সেল",
+          "subtitle": "ব্লেন্ডার, রাইস কুকার ও আধুনিক কিচেন সামগ্রীতে আকর্ষণীয় মূল্যছাড়",
+          "badge": "৫০% পর্যন্ত অফ",
+          "tag": "কিচেন ধামাকা",
+          "ctaText": "অফার দেখুন",
+          "link": "/products?category=home-appliances",
+          "image": "/banners/bengali_calligraphy_kitchen_banner.jpg",
+          "accentColor": "from-amber-600 to-red-600",
+          "active": true
+        },
+        {
+          "id": "promo-2",
+          "title": "ধামাকা অফার সপ্তাহ ও ফ্রি হোম ডেলিভারি",
+          "subtitle": "যেকোনো ৩টি পণ্য অর্ডারে ঢাকা ও সারা বাংলাদেশে ডেলিভারি সম্পূর্ণ ফ্রি",
+          "badge": "ফ্রি শিপিং",
+          "tag": "সীমিত অফার",
+          "ctaText": "অর্ডার করুন",
+          "link": "/products",
+          "image": "/banners/bengali_calligraphy_dhamaka_sale.jpg",
+          "accentColor": "from-emerald-700 to-teal-800",
+          "active": true
+        },
+        {
+          "id": "promo-3",
+          "title": "খাঁটি দেশি অর্গানিক খাদ্য ও মধু সমাহার",
+          "subtitle": "সুন্দরবনের প্রাকৃতিক কাঁচা মধু ও কাঠের ঘানির সরিষার তেল কম্বো",
+          "badge": "১০০% খাঁটি",
+          "tag": "অর্গানিক ফুড",
+          "ctaText": "কালেকশন দেখুন",
+          "link": "/products/sundarban-raw-honey-mustard-oil-bundle",
+          "image": "/banners/bengali_calligraphy_organic_deshi.jpg",
+          "accentColor": "from-zinc-900 to-black",
+          "active": true
+        }
+      ]
     }
   ],
   "admins": [
@@ -34,61 +139,61 @@
       "name": "মেনস ফ্যাশন",
       "slug": "mens-fashion",
       "description": "পাঞ্জাবি, কোটি ও এক্সক্লুসিভ পুরুষদের পোশাক",
-      "image": "https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=600&q=80",
+      "image": "/categories/mens_fashion.jpg",
       "status": "active",
       "createdAt": "2026-10-15T18:17:57.099Z",
       "_id": "6ad118d5bd9c2a6708aebd8b",
-      "updatedAt": "2026-10-15T19:45:44.769Z"
+      "updatedAt": "2026-10-16T06:31:55.329Z"
     },
     {
       "name": "উইমেনস ফ্যাশন",
       "slug": "womens-fashion",
       "description": "আবায়া, থ্রি-পিস ও আধুনিক নারীদের ট্রেন্ডি পোশাক",
-      "image": "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=600&q=80",
+      "image": "/categories/womens_fashion.jpg",
       "status": "active",
       "createdAt": "2026-10-15T18:17:57.099Z",
       "_id": "6ad118d5bd9c2a6708aebd8c",
-      "updatedAt": "2026-10-15T19:45:44.770Z"
+      "updatedAt": "2026-10-16T06:31:55.330Z"
     },
     {
       "name": "হোম ও লিভিং",
       "slug": "home-living",
       "description": "স্মার্ট হোম গ্যাজেটস ও লাইফস্টাইল সমাধান",
-      "image": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80",
+      "image": "/categories/home_living.jpg",
       "status": "active",
       "createdAt": "2026-10-15T18:17:57.099Z",
       "_id": "6ad118d5bd9c2a6708aebd8d",
-      "updatedAt": "2026-10-15T19:45:44.772Z"
+      "updatedAt": "2026-10-16T06:31:55.331Z"
     },
     {
       "name": "অর্গানিক ফুড",
       "slug": "organic-food",
       "description": "খাঁটি মধু, সরিষার তেল ও পুষ্টিকর খাদ্যপণ্য",
-      "image": "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=600&q=80",
+      "image": "/categories/organic_food.jpg",
       "status": "active",
       "createdAt": "2026-10-15T18:17:57.099Z",
       "_id": "6ad118d5bd9c2a6708aebd8e",
-      "updatedAt": "2026-10-15T19:45:44.772Z"
+      "updatedAt": "2026-10-16T06:31:55.332Z"
     },
     {
       "slug": "gadgets",
       "name": "স্মার্ট গ্যাজেটস",
       "description": "ব্লুটুথ ইয়ারবাডস, স্মার্টওয়াচ ও টেক গ্যাজেটস",
-      "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=600&q=80",
+      "image": "/categories/gadgets.jpg",
       "status": "active",
       "_id": "6ad12b36a4fcf1a2baec6e35",
       "createdAt": "2026-10-15T19:36:22.226Z",
-      "updatedAt": "2026-10-15T19:45:44.770Z"
+      "updatedAt": "2026-10-16T06:31:55.330Z"
     },
     {
       "slug": "home-appliances",
       "name": "হোম ও কিচেন অ্যাপ্লায়েন্স",
       "description": "ব্লেন্ডার, ইলেকট্রিক কেটলি ও আধুনিক গৃহস্থালি সরঞ্জাম",
-      "image": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80",
+      "image": "/categories/home_appliances.jpg",
       "status": "active",
       "_id": "6ad12b36a4fcf1a2baec6e36",
       "createdAt": "2026-10-15T19:36:22.227Z",
-      "updatedAt": "2026-10-15T19:45:44.771Z"
+      "updatedAt": "2026-10-16T06:31:55.331Z"
     }
   ],
   "products": [
@@ -101,8 +206,8 @@
       "price": 1850,
       "compareAtPrice": 2450,
       "images": [
-        "https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80"
+        "/products/koti_set_navy_gold.jpg",
+        "/products/koti_embroidery_detail.jpg"
       ],
       "variants": {
         "sizes": [
@@ -125,7 +230,7 @@
         "description": "আকর্ষণীয় অফারে কিনুন এক্সক্লুসিভ কোটি সেট। ক্যাশ অন ডেলিভারি সারা বাংলাদেশে। বিচিত্র শপ।"
       },
       "createdAt": "2026-10-15T18:17:57.101Z",
-      "updatedAt": "2026-10-15T18:17:57.101Z",
+      "updatedAt": "2026-10-16T06:31:55.332Z",
       "_id": "6ad118d5bd9c2a6708aebd8f"
     },
     {
@@ -137,8 +242,8 @@
       "price": 1450,
       "compareAtPrice": 1950,
       "images": [
-        "https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=800&q=80"
+        "/products/jamdani_panjabi_white.jpg",
+        "/products/koti_set_navy_gold.jpg"
       ],
       "variants": {
         "sizes": [
@@ -160,7 +265,7 @@
         "description": "১০০% প্রিমিয়াম সুতি জামদানি পাঞ্জাবি ক্যাশ অন ডেলিভারিতে অর্ডার করুন বিচিত্র শপ থেকে।"
       },
       "createdAt": "2026-10-15T18:17:57.101Z",
-      "updatedAt": "2026-10-15T18:17:57.101Z",
+      "updatedAt": "2026-10-16T06:31:55.332Z",
       "_id": "6ad118d5bd9c2a6708aebd90"
     },
     {
@@ -172,8 +277,8 @@
       "price": 2250,
       "compareAtPrice": 2850,
       "images": [
-        "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80"
+        "/products/cherry_georgette_abaya.jpg",
+        "/products/cherry_abaya_detail.jpg"
       ],
       "variants": {
         "sizes": [
@@ -195,7 +300,7 @@
         "description": "মার্জিত ও আকর্ষণীয় দুবাই চেরি আবায়া কিনুন বিচিত্র শপ থেকে সেরা মূল্যে।"
       },
       "createdAt": "2026-10-15T18:17:57.101Z",
-      "updatedAt": "2026-10-15T18:17:57.102Z",
+      "updatedAt": "2026-10-16T06:31:55.333Z",
       "_id": "6ad118d5bd9c2a6708aebd91"
     },
     {
@@ -207,8 +312,8 @@
       "price": 980,
       "compareAtPrice": 1250,
       "images": [
-        "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=800&q=80"
+        "/products/sundarban_honey_mustard_oil.jpg",
+        "/products/organic_spices_bundle.jpg"
       ],
       "variants": {
         "sizes": [
@@ -223,7 +328,7 @@
         "description": "১০০% খাঁটি সুন্দরবনের মধু ও ঘানির সরিষার তেল কম্বো প্যাক ক্যাশ অন ডেলিভারিতে কিনুন।"
       },
       "createdAt": "2026-10-15T18:17:57.101Z",
-      "updatedAt": "2026-10-15T18:17:57.102Z",
+      "updatedAt": "2026-10-16T06:31:55.333Z",
       "_id": "6ad118d5bd9c2a6708aebd92"
     },
     {
@@ -235,8 +340,8 @@
       "price": 750,
       "compareAtPrice": 1050,
       "images": [
-        "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=800&q=80"
+        "/products/deshi_cookware_kitchen.jpg",
+        "/products/deshi_biryani_pot.jpg"
       ],
       "variants": {
         "colors": [
@@ -253,7 +358,7 @@
         "description": "স্মার্ট পোর্টেবল ফোল্ডেবল ল্যাপটপ টেবিল ক্যাশ অন ডেলিভারিতে হোম ডেলিভারি নিন।"
       },
       "createdAt": "2026-10-15T18:17:57.101Z",
-      "updatedAt": "2026-10-15T18:17:57.102Z",
+      "updatedAt": "2026-10-16T06:31:55.334Z",
       "_id": "6ad118d5bd9c2a6708aebd93"
     },
     {
@@ -261,12 +366,11 @@
       "slug": "wireless-stereo-earbuds",
       "shortDescription": "ডিপ বাস, অ্যাক্টিভ নয়েজ ক্যান্সেলেশন এবং ২০ ঘণ্টার লং ব্যাটারি ব্যাকআপযুক্ত ডিজিটাল ডিসপ্লে ইয়ারবাডস।",
       "description": "ক্রিস্টাল ক্লিয়ার কলিং এবং পাওয়ারফুল সাউন্ড কোয়ালিটির ব্লুটুথ ৫.৩ ওয়্যারলেস ইয়ারবাডস।\nডিজিটাল ব্যাটারি পার্সেন্টেজ ডিসপ্লে।\n\nফিচার:\n• এইচডি স্টেরিও সাউন্ড উইথ ডিপ বাস\n• টাচ কন্ট্রোল ফিচার\n• সোয়েট অ্যান্ড ওয়াটার রেজিস্ট্যান্ট\n• চার্জিং কেসসহ ২০ ঘণ্টার প্লেব্যাক",
-      "category": "home-living",
+      "category": "gadgets",
       "price": 890,
       "compareAtPrice": 1350,
       "images": [
-        "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?auto=format&fit=crop&w=800&q=80"
+        "/products/wireless_earbuds_smartwatch.jpg"
       ],
       "variants": {
         "colors": [
@@ -282,8 +386,61 @@
         "description": "হাই-কোয়ালিটি সাউন্ড ও ডিজিটাল ডিসপ্লে ব্লুটুথ ইয়ারবাডস। ক্যাশ অন ডেলিভারি।"
       },
       "createdAt": "2026-10-15T18:17:57.101Z",
-      "updatedAt": "2026-10-15T18:17:57.103Z",
+      "updatedAt": "2026-10-16T06:31:55.334Z",
       "_id": "6ad118d5bd9c2a6708aebd94"
+    },
+    {
+      "name": "দেশি সুপার ব্লেন্ডার ও মসলা গ্রাইন্ডার ১০০০W (Heavy Duty Blender Grinder)",
+      "slug": "deshi-super-blender-grinder-copper-motor",
+      "shortDescription": "খাঁটি দেশি হলুদ, জিরা, আদা-রসুন বাটা ও স্মুদির জন্য ১০০% কপার মোটর ব্লেন্ডার।",
+      "description": "বাঙালি রান্নার আসল স্বাদ খাঁটি বাটা মসলায়। ঝামেলাহীনভাবে সব ধরণের শক্ত মসলা মিহি করতে বিচিত্র শপের শক্তিশালী ব্লেন্ডার গ্রাইন্ডার।\n\nমূল সুবিধাসমূহ:\n• ১০০০ ওয়াট ১০০% পিওর কপার মোটর\n• ৩টি আনব্রেকেবল স্টেইনলেস স্টিল জার\n• শক্ত মসলা, চালের গুঁড়া ও জুস তৈরিতে পারফেক্ট\n• ওভারলোড প্রটেকশন ও ২ বছরের মোটর ওয়ারেন্টি\n• ক্যাশ অন ডেলিভারিতে চেক করে মূল্য পরিশোধ",
+      "category": "home-appliances",
+      "price": 1950,
+      "compareAtPrice": 2600,
+      "images": [
+        "/products/blender_grinder_appliance.jpg",
+        "/products/modern_kitchen_appliances.jpg"
+      ],
+      "variants": {
+        "specs": "1000W কপার মোটর, ৩টি জার, স্টেইনলেস ব্লেড",
+        "warranty": "২ বছর মোটর রিপ্লেসমেন্ট ওয়ারেন্টি"
+      },
+      "stockQuantity": 35,
+      "status": "published",
+      "featured": true,
+      "createdAt": "2026-10-16T06:31:55.334Z",
+      "updatedAt": "2026-10-16T06:31:55.335Z",
+      "_id": "6ad1c4dbe5d3e5082394df8d"
+    },
+    {
+      "name": "প্রিমিয়াম ২ লিটার স্টেইনলেস স্টিল ইলেকট্রিক কেটলি (Electric Fast Heating Kettle)",
+      "slug": "electric-fast-heating-stainless-kettle",
+      "shortDescription": "অটো শাট-অফ, ওভারহিট প্রোটেকশন ও দ্রুত পানি গরম করার স্টেইনলেস স্টিল ইলেকট্রিক কেটলি।",
+      "description": "প্রতিদিনের চা, কফি বা গরম পানির জন্য আধুনিক ও নিরাপদ ইলেকট্রিক কেটলি। ১৫০০W পাওয়ার, অটো শাট-অফ ও ১ বছর ওয়ারেন্টি।",
+      "category": "home-appliances",
+      "price": 950,
+      "compareAtPrice": 1350,
+      "images": [
+        "/products/electric_kettle_stainless.jpg",
+        "/products/blender_grinder_appliance.jpg"
+      ],
+      "variants": {
+        "capacities": [
+          "2.0 Litre (1500W)"
+        ],
+        "colors": [
+          "সিলভার-ব্ল্যাক",
+          "মেটালিক রেড"
+        ],
+        "warranty": "১ বছর অফিসিয়াল সার্ভিস ওয়ারেন্টি",
+        "specs": "১৫০০W পাওয়ার, অটো শাট-অফ, ফুড গ্রেড স্টিল"
+      },
+      "stockQuantity": 40,
+      "status": "published",
+      "featured": true,
+      "createdAt": "2026-10-16T06:38:51.672Z",
+      "updatedAt": "2026-10-16T06:38:51.674Z",
+      "_id": "6ad1c67b33b270fa28eb1ba6"
     }
   ],
   "orders": []

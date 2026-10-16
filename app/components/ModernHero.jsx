@@ -26,7 +26,6 @@ import {
   Tv,
   Utensils
 } from 'lucide-react';
-import { formatBDT } from '@/lib/pricing';
 import { DEFAULT_HERO_BANNERS } from '@/lib/banners';
 
 export default function ModernHero({ categories = [], banners = [] }) {
@@ -129,9 +128,59 @@ export default function ModernHero({ categories = [], banners = [] }) {
   ];
 
   return (
-    <div className="bg-[#F6FAF7] pt-3 pb-6 space-y-3.5">
-      {/* 1. Quick Category Buttons Strip with Crisp Black Icons */}
-      <div className="w-full max-w-[1536px] mx-auto px-3 sm:px-6 lg:px-8">
+    <div className="bg-[#F6FAF7] pt-2 sm:pt-3 pb-3 sm:pb-6 space-y-3">
+      {/* 1. MOBILE-ONLY NATIVE APP CATEGORY GRID (Visible only on mobile devices) */}
+      <div className="md:hidden w-full px-3">
+        <div className="bg-white rounded-2xl p-3 border border-zinc-200 shadow-2xs">
+          <div className="flex items-center justify-between pb-2 mb-2.5 border-b border-zinc-100">
+            <span className="text-xs font-black text-zinc-900 flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-[#08542C]"></span>
+              জনপ্রিয় ক্যাটাগরি
+            </span>
+            <Link href="/products" className="text-[11px] font-bold text-[#08542C] hover:underline flex items-center gap-0.5">
+              <span>সব দেখুন</span>
+              <ChevronRight className="w-3 h-3" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-4 gap-2">
+            {[
+              { name: 'কোটি সেট', href: '/products?category=mens-fashion', icon: Shirt, badge: 'হট' },
+              { name: 'পাঞ্জাবি', href: '/products?category=mens-fashion', icon: Sparkles },
+              { name: 'আবায়া বোরকা', href: '/products?category=womens-fashion', icon: Tag, badge: 'নতুন' },
+              { name: 'গ্যাজেট', href: '/products?category=gadgets', icon: Headphones },
+              { name: 'অ্যাপ্লায়েন্স', href: '/products?category=home-appliances', icon: Utensils },
+              { name: 'খাঁটি মধু', href: '/products?category=organic-food', icon: Leaf },
+              { name: 'হট ডিল', href: '/products?featured=true', icon: Flame, badge: 'অফার' },
+              { name: 'সব পণ্য', href: '/products', icon: ShoppingBag }
+            ].map((item, idx) => {
+              const ItemIcon = item.icon;
+              return (
+                <Link
+                  key={idx}
+                  href={item.href}
+                  className="flex flex-col items-center text-center p-1.5 rounded-xl hover:bg-zinc-50 active:scale-95 transition-all group"
+                >
+                  <div className="relative w-12 h-12 rounded-2xl bg-zinc-100 group-hover:bg-[#E8F5EC] border border-zinc-200 group-hover:border-[#08542C]/40 flex items-center justify-center transition-colors shadow-2xs">
+                    <ItemIcon className="w-5 h-5 text-black stroke-[1.8]" />
+                    {item.badge && (
+                      <span className="absolute -top-1 -right-1 bg-[#DC2626] text-white text-[9px] font-black px-1 rounded-full shadow-2xs leading-tight">
+                        {item.badge}
+                      </span>
+                    )}
+                  </div>
+                  <span className="text-[11px] font-bold text-zinc-800 group-hover:text-black mt-1.5 line-clamp-1 leading-tight">
+                    {item.name}
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* 2. DESKTOP-ONLY Quick Category Buttons Strip */}
+      <div className="hidden md:block w-full max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2 overflow-x-auto pb-1.5 scrollbar-none">
           {quickCategories.map((cat, idx) => {
             const Icon = cat.icon;
@@ -155,11 +204,11 @@ export default function ModernHero({ categories = [], banners = [] }) {
         </div>
       </div>
 
-      {/* 2. Main Hero Layout with INCREASED BANNER WIDTH (1536px Container, 9-Column Slider) */}
-      <div className="w-full max-w-[1536px] mx-auto px-3 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3.5 sm:gap-4 items-stretch">
+      {/* 3. Main Hero Banner Slider (Compact & Perfect Full-Width on Mobile, Expansive on Desktop) */}
+      <div className="w-full max-w-[1536px] mx-auto px-2.5 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 items-stretch">
           
-          {/* COLUMN 1: Left Category Sidebar with Black Icons (Desktop) */}
+          {/* COLUMN 1: Left Category Sidebar with Black Icons (Desktop Only) */}
           <aside className="hidden lg:flex lg:col-span-3 flex-col bg-white rounded-2xl border border-zinc-200 shadow-2xs overflow-hidden">
             <div className="bg-[#08542C] text-white px-4 py-3 flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -222,11 +271,11 @@ export default function ModernHero({ categories = [], banners = [] }) {
             </div>
           </aside>
 
-          {/* COLUMN 2: EXPANSIVE WIDE BANNER SLIDER + PROMO STRIP (9 Columns = 75% Width!) */}
-          <div className="lg:col-span-9 flex flex-col justify-between gap-3.5">
+          {/* COLUMN 2: EXPANSIVE WIDE BANNER SLIDER + PROMO STRIP (Full width on Mobile, 9 Columns on Desktop) */}
+          <div className="lg:col-span-9 flex flex-col justify-between gap-3">
             {/* The Main Wide Hero Banner Slider */}
             <div
-              className="relative rounded-2xl overflow-hidden shadow-md min-h-[360px] sm:min-h-[420px] md:min-h-[460px] flex flex-col justify-between bg-zinc-900"
+              className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-xs min-h-[155px] sm:min-h-[220px] md:min-h-[390px] lg:min-h-[420px] flex flex-col justify-between bg-zinc-900"
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
             >
@@ -244,84 +293,59 @@ export default function ModernHero({ categories = [], banners = [] }) {
                         src={slide.image}
                         alt={slide.title || 'Banner'}
                         fill
-                        sizes="(max-width: 1024px) 100vw, 75vw"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 1100px"
                         className="object-cover object-center"
                         priority={idx === 0}
                         unoptimized
                       />
                     )}
                     {/* Contrast Gradient: Darkened smoothly on the text side only, completely clear on right */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/75 to-black/30 md:bg-gradient-to-r md:from-black/95 md:via-black/70 md:via-45% md:to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/30 md:bg-gradient-to-r md:from-black/95 md:via-black/70 md:via-45% md:to-transparent" />
                   </div>
 
-                  {/* Banner Slide Content (Wide layout with generous spacing) */}
-                  <div className="relative z-10 h-full p-6 sm:p-10 md:p-12 flex flex-col justify-between text-white max-w-2xl">
-                    <div className="space-y-3">
-                      <div className="flex flex-wrap items-center gap-2">
+                  {/* Banner Slide Content (Compact on mobile, generous on desktop) */}
+                  <div className="relative z-10 h-full p-2.5 sm:p-6 md:p-10 flex flex-col justify-between text-white max-w-xl">
+                    <div className="space-y-1 sm:space-y-2">
+                      <div className="flex flex-wrap items-center gap-1 sm:gap-2">
                         {slide.badge && (
-                          <span className="inline-block px-3 py-1 rounded-full text-white text-xs font-bold uppercase tracking-wider shadow-xs bg-[#DC2626]">
+                          <span className="inline-block px-1.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-white text-[9px] sm:text-xs font-bold uppercase tracking-wider shadow-xs bg-[#DC2626]">
                             {slide.badge}
                           </span>
                         )}
                         {slide.tag && (
-                          <span className="inline-block px-2.5 py-0.5 rounded-full bg-white/20 backdrop-blur-xs text-[11px] font-semibold text-white">
+                          <span className="hidden sm:inline-block px-2 sm:px-2.5 py-0.5 rounded-full bg-white/20 backdrop-blur-xs text-[10px] sm:text-[11px] font-semibold text-white">
                             {slide.tag}
                           </span>
                         )}
                       </div>
 
-                      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight drop-shadow-sm line-clamp-2">
+                      <h2 className="text-xs sm:text-lg md:text-2xl lg:text-3xl font-black leading-tight drop-shadow-md line-clamp-1 sm:line-clamp-2">
                         {slide.title}
                       </h2>
 
-                      <p className="text-xs sm:text-sm text-white/95 leading-relaxed line-clamp-2 sm:line-clamp-3 drop-shadow-xs">
+                      <p className="text-[10px] sm:text-xs md:text-sm text-white/90 leading-relaxed line-clamp-1 sm:line-clamp-2 hidden sm:block">
                         {slide.subtitle}
                       </p>
                     </div>
 
-                    <div className="space-y-3 pt-3">
-                      {/* Price and Savings Pill */}
-                      {slide.price && (
-                        <div className="inline-flex items-center gap-3 bg-black/40 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/20">
-                          <div>
-                            <span className="text-[10px] text-white/80 uppercase tracking-wider block font-semibold">
-                              অফার মূল্য
-                            </span>
-                            <div className="flex items-baseline gap-2">
-                              <span className="text-lg sm:text-2xl font-black text-[#22C55E]">
-                                {formatBDT(slide.price)}
-                              </span>
-                              {slide.comparePrice && (
-                                <span className="text-xs text-white/60 line-through">
-                                  {formatBDT(slide.comparePrice)}
-                                </span>
-                              )}
-                            </div>
-                          </div>
-                          {slide.discount && (
-                            <span className="badge-sale shadow-xs text-xs font-bold">
-                              {slide.discount}
-                            </span>
-                          )}
-                        </div>
-                      )}
+                    <div className="space-y-1.5 sm:space-y-3 pt-1 sm:pt-2">
 
                       {/* Action CTA Buttons */}
-                      <div className="flex flex-wrap items-center gap-2.5">
+                      <div className="flex items-center gap-2">
                         <Link
                           href={slide.slug?.startsWith('/') ? slide.slug : `/products/${slide.slug || ''}#checkout`}
-                          className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl bg-[#DC2626] hover:bg-[#B91C1C] text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all active:scale-95"
+                          className="inline-flex items-center gap-1 sm:gap-2 px-2.5 py-1 sm:px-5 sm:py-2.5 rounded-md sm:rounded-xl bg-[#DC2626] hover:bg-[#B91C1C] text-white font-bold text-[10px] sm:text-xs md:text-sm shadow-md transition-all active:scale-95"
                         >
-                          <ShoppingBag className="w-4 h-4 text-white" />
-                          <span>এখনই অর্ডার করুন</span>
+                          <ShoppingBag className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" />
+                          <span>অর্ডার করুন</span>
                         </Link>
 
                         <Link
                           href={slide.slug?.startsWith('/') ? slide.slug : `/products/${slide.slug || ''}`}
-                          className="inline-flex items-center gap-1.5 px-4 py-2.5 sm:px-5 sm:py-3 rounded-xl bg-white/15 hover:bg-white/25 border border-white/25 text-white font-semibold text-xs sm:text-sm transition-colors backdrop-blur-xs"
+                          className="hidden sm:inline-flex items-center gap-1 px-3 py-1 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl bg-white/15 hover:bg-white/25 border border-white/25 text-white font-semibold text-[10px] sm:text-xs md:text-sm transition-colors"
                         >
-                          <span>বিস্তারিত দেখুন</span>
-                          <ArrowRight className="w-4 h-4 text-white" />
+                          <span>বিস্তারিত</span>
+                          <ArrowRight className="w-3.5 h-3.5 text-white" />
                         </Link>
                       </div>
                     </div>
@@ -333,35 +357,35 @@ export default function ModernHero({ categories = [], banners = [] }) {
               <button
                 onClick={prevSlide}
                 aria-label="Previous Slide"
-                className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center transition-colors backdrop-blur-xs cursor-pointer"
+                className="absolute left-1 sm:left-3 top-1/2 -translate-y-1/2 z-20 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center transition-colors backdrop-blur-xs cursor-pointer"
               >
-                <ChevronLeft className="w-5 h-5 text-white" />
+                <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
               </button>
               <button
                 onClick={nextSlide}
                 aria-label="Next Slide"
-                className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center transition-colors backdrop-blur-xs cursor-pointer"
+                className="absolute right-1 sm:right-3 top-1/2 -translate-y-1/2 z-20 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center transition-colors backdrop-blur-xs cursor-pointer"
               >
-                <ChevronRight className="w-5 h-5 text-white" />
+                <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
               </button>
 
               {/* Pagination Indicator Dots */}
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5">
+              <div className="absolute bottom-1.5 sm:bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1 sm:gap-1.5">
                 {slides.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => setCurrentSlide(i)}
                     aria-label={`Go to slide ${i + 1}`}
-                    className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                      currentSlide === i ? 'w-6 bg-white' : 'w-1.5 bg-white/40 hover:bg-white'
+                    className={`h-1 sm:h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                      currentSlide === i ? 'w-4 sm:w-6 bg-white' : 'w-1 sm:w-1.5 bg-white/40 hover:bg-white'
                     }`}
                   />
                 ))}
               </div>
             </div>
 
-            {/* 2 Promo Cards Side-by-Side Right Below the Banner */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            {/* 2 Promo Cards Side-by-Side Right Below the Banner (Desktop Only) */}
+            <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               {/* Promo Card 1: Cash on Delivery Guarantee */}
               <div className="bg-white p-3.5 sm:p-4 rounded-xl border border-zinc-200 shadow-2xs flex items-center justify-between gap-3">
                 <div className="space-y-1 min-w-0">
@@ -415,8 +439,8 @@ export default function ModernHero({ categories = [], banners = [] }) {
         </div>
       </div>
 
-      {/* 3. Bottom Modern Value Props Strip (Wider 1536px with Black Icons) */}
-      <div className="w-full max-w-[1536px] mx-auto px-3 sm:px-6 lg:px-8 pt-1">
+      {/* 4. Bottom Modern Value Props Strip (Desktop Only) */}
+      <div className="hidden md:block w-full max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 pt-1">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3 bg-white p-3 sm:p-3.5 rounded-2xl border border-zinc-200 shadow-2xs">
           <div className="flex items-center gap-2.5 p-1.5">
             <div className="w-8 h-8 rounded-lg bg-zinc-100 border border-zinc-200 flex items-center justify-center shrink-0">
