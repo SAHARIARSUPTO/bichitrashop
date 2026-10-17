@@ -9,16 +9,25 @@ import { OFFICIAL_GTM_ID } from '@/lib/gtm';
 export default function GoogleTagManager({ gtmId = '' }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const isFirstRender = useRef(true);
+  const lastTrackedPath = useRef('');
 
   const cleanGtmId = (gtmId || process.env.NEXT_PUBLIC_GTM_ID || OFFICIAL_GTM_ID || 'GTM-T7BT3F2L').trim();
 
-  // Push virtual page_view event ONLY on client route transitions (skip initial mount to avoid duplicate page_view)
+  // Push virtual page_view event ONLY on client route transitions (skip initial SSR landing to avoid duplicate page_view)
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
+    const currentPath = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '');
+
+    // Skip if this exact path has already been tracked
+    if (lastTrackedPath.current === currentPath) return;
+
+    // On initial mount, server <head> script already tracked the landing URL
+    if (!lastTrackedPath.current) {
+      lastTrackedPath.current = currentPath;
       return;
     }
+
+    lastTrackedPath.current = currentPath;
+
     if (!cleanGtmId) return;
 
     if (typeof window !== 'undefined') {
@@ -26,7 +35,7 @@ export default function GoogleTagManager({ gtmId = '' }) {
       window.dataLayer.push({
         event: 'page_view',
         page_location: window.location.href,
-        page_path: pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : ''),
+        page_path: currentPath,
         page_title: typeof document !== 'undefined' ? document.title : ''
       });
     }

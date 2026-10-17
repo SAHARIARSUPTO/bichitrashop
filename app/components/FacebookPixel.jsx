@@ -9,16 +9,25 @@ import { OFFICIAL_FACEBOOK_PIXEL_ID } from '@/lib/pixel';
 export default function FacebookPixel({ pixelId = '' }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const isFirstRender = useRef(true);
+  const lastTrackedPath = useRef('');
 
   const cleanPixelId = (pixelId || process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || OFFICIAL_FACEBOOK_PIXEL_ID || '2204374163789446').trim();
 
-  // Track page view ONLY on client route transitions (skip initial mount to avoid duplicate PageView)
+  // Track page view ONLY on client route transitions (skip initial SSR landing to avoid duplicate PageView)
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
+    const currentPath = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '');
+
+    // Skip if this exact path has already been tracked
+    if (lastTrackedPath.current === currentPath) return;
+
+    // On initial mount, server <head> script already tracked the landing URL
+    if (!lastTrackedPath.current) {
+      lastTrackedPath.current = currentPath;
       return;
     }
+
+    lastTrackedPath.current = currentPath;
+
     if (!cleanPixelId) return;
 
     if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
