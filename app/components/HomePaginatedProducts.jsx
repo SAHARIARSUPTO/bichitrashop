@@ -116,10 +116,10 @@ export default function HomePaginatedProducts({
                 className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold shrink-0 transition-all active:scale-95 cursor-pointer ${
                   isActive
                     ? 'bg-[#08542C] text-white shadow-xs'
-                    : 'bg-white text-zinc-700 hover:text-black border border-zinc-200 hover:border-zinc-400'
+                    : 'bg-white text-zinc-700 hover:text-[#08542C] border border-zinc-200 hover:border-[#08542C]/40'
                 }`}
               >
-                {Icon && <Icon className="w-3.5 h-3.5" />}
+                {Icon && <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-[#08542C]'}`} />}
                 <span>{item.label}</span>
                 {item.badge && (
                   <span
@@ -145,7 +145,7 @@ export default function HomePaginatedProducts({
         </div>
       ) : (
         <div className="bg-white rounded-2xl p-8 text-center border border-zinc-200 text-zinc-500 space-y-2">
-          <ShoppingBag className="w-8 h-8 mx-auto text-zinc-400" />
+          <ShoppingBag className="w-8 h-8 mx-auto text-[#08542C]/50" />
           <p className="font-bold text-sm text-zinc-800">এই ক্যাটাগরিতে পণ্য পাওয়া যায়নি</p>
           <button
             onClick={() => handleTabChange('all')}
@@ -175,7 +175,7 @@ export default function HomePaginatedProducts({
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
               aria-label="Previous Page"
-              className="p-2 rounded-xl bg-white border border-zinc-200 text-zinc-700 disabled:opacity-40 disabled:pointer-events-none hover:bg-zinc-100 transition-colors"
+              className="p-2 rounded-xl bg-white border border-zinc-200 text-[#08542C] disabled:opacity-40 disabled:pointer-events-none hover:bg-[#E8F5EC] transition-colors"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
@@ -189,7 +189,7 @@ export default function HomePaginatedProducts({
                   className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl text-xs font-bold transition-all ${
                     isCurrent
                       ? 'bg-[#08542C] text-white shadow-xs'
-                      : 'bg-white border border-zinc-200 text-zinc-700 hover:bg-zinc-100'
+                      : 'bg-white border border-zinc-200 text-zinc-700 hover:text-[#08542C] hover:bg-[#E8F5EC]'
                   }`}
                 >
                   {p}
@@ -201,7 +201,7 @@ export default function HomePaginatedProducts({
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
               aria-label="Next Page"
-              className="p-2 rounded-xl bg-white border border-zinc-200 text-zinc-700 disabled:opacity-40 disabled:pointer-events-none hover:bg-zinc-100 transition-colors"
+              className="p-2 rounded-xl bg-white border border-zinc-200 text-[#08542C] disabled:opacity-40 disabled:pointer-events-none hover:bg-[#E8F5EC] transition-colors"
             >
               <ChevronRight className="w-4 h-4" />
             </button>

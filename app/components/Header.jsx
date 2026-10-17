@@ -102,10 +102,10 @@ export default function Header({ categories = [], announcement = 'ক্যা�
                 type="button"
                 onClick={handleGoBack}
                 aria-label="পূর্ববর্তী পেজে ফিরে যান"
-                className="md:hidden flex items-center justify-center w-8 h-8 -ml-1 rounded-full text-zinc-800 hover:text-[#08542C] hover:bg-[#E8F5EC] active:bg-[#D5EEDB] active:scale-90 transition-all shrink-0 cursor-pointer"
+                className="md:hidden flex items-center justify-center w-8 h-8 -ml-1 rounded-full text-[#08542C] hover:bg-[#E8F5EC] active:bg-[#D5EEDB] active:scale-90 transition-all shrink-0 cursor-pointer"
                 title="পূর্ববর্তী পেজে ফিরে যান"
               >
-                <ArrowLeft className="w-5 h-5 text-black stroke-[2.5]" />
+                <ArrowLeft className="w-5 h-5 text-[#08542C] stroke-[2.5]" />
               </button>
             )}
 
@@ -159,7 +159,7 @@ export default function Header({ categories = [], announcement = 'ক্যা�
               href="/products"
               className="hidden lg:flex items-center gap-1.5 text-sm font-semibold text-[#0F2417] hover:text-[#08542C] transition-colors px-3 py-2 rounded-lg hover:bg-[#E8F5EC]"
             >
-              <ShoppingBag className="w-4 h-4 text-black stroke-[2]" />
+              <ShoppingBag className="w-4 h-4 text-[#08542C] stroke-[2]" />
               <span>সকল পণ্য</span>
             </Link>
 
@@ -167,7 +167,7 @@ export default function Header({ categories = [], announcement = 'ক্যা�
               href="/products?featured=true"
               className="hidden lg:inline-flex items-center gap-1.5 text-sm font-semibold text-[#0F2417] hover:text-[#08542C] transition-colors px-3 py-2 rounded-lg hover:bg-[#E8F5EC]"
             >
-              <Flame className="w-4 h-4 text-black stroke-[2]" />
+              <Flame className="w-4 h-4 text-[#DC2626] stroke-[2]" />
               <span>হট ডিল</span>
             </Link>
 
@@ -185,9 +185,9 @@ export default function Header({ categories = [], announcement = 'ক্যা�
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle navigation menu"
-              className="md:hidden p-1.5 text-[#0F2417] hover:text-[#08542C] rounded-lg hover:bg-gray-100 cursor-pointer"
+              className="md:hidden p-1.5 text-[#0F2417] hover:text-[#08542C] rounded-lg hover:bg-[#E8F5EC] cursor-pointer"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 text-[#08542C]" /> : <Menu className="w-5 h-5 text-[#08542C]" />}
             </button>
           </div>
         </div>
@@ -220,7 +220,7 @@ export default function Header({ categories = [], announcement = 'ক্যা�
               href="/products"
               className="text-[#08542C] hover:text-[#064423] font-bold shrink-0 flex items-center gap-1.5"
             >
-              <Flame className="w-3.5 h-3.5 text-black stroke-[2]" />
+              <Flame className="w-3.5 h-3.5 text-[#08542C] stroke-[2]" />
               <span>সব কালেকশন</span>
             </Link>
             <Link href="/products?category=mens-fashion" className="hover:text-[#08542C] shrink-0">
@@ -235,8 +235,8 @@ export default function Header({ categories = [], announcement = 'ক্যা�
             <Link href="/products?category=organic-food" className="hover:text-[#08542C] shrink-0">
               অর্গানিক ফুড ও মধু
             </Link>
-            <div className="ml-auto text-xs font-semibold text-zinc-900 flex items-center gap-1.5 shrink-0">
-              <ShieldCheck className="w-4 h-4 text-black stroke-[2]" />
+            <div className="ml-auto text-xs font-semibold text-[#08542C] flex items-center gap-1.5 shrink-0">
+              <ShieldCheck className="w-4 h-4 text-[#08542C] stroke-[2]" />
               <span>১০০% ক্যাশ অন ডেলিভারি</span>
             </div>
           </div>
@@ -252,7 +252,7 @@ export default function Header({ categories = [], announcement = 'ক্যা�
               onClick={handleGoBack}
               className="flex items-center gap-1.5 text-xs font-bold text-[#08542C] hover:text-[#064423] py-1 px-2 rounded-lg hover:bg-[#E8F5EC] transition-colors cursor-pointer"
             >
-              <ArrowLeft className="w-4 h-4 text-black stroke-[2.5]" />
+              <ArrowLeft className="w-4 h-4 text-[#08542C] stroke-[2.5]" />
               <span>পূর্ববর্তী পেজে ফিরে যান</span>
             </button>
             <span className="text-xs font-bold text-[#4B6354] uppercase tracking-wider">
@@ -270,7 +270,7 @@ export default function Header({ categories = [], announcement = 'ক্যা�
               className="flex items-center justify-between p-2.5 rounded-lg bg-[#E8F5EC] text-[#08542C] font-bold text-xs"
             >
               <span>সব পণ্য</span>
-              <ChevronRight className="w-3.5 h-3.5 text-black" />
+              <ChevronRight className="w-3.5 h-3.5 text-[#08542C]" />
             </Link>
             <Link
               href="/products?featured=true"
@@ -278,7 +278,7 @@ export default function Header({ categories = [], announcement = 'ক্যা�
               className="flex items-center justify-between p-2.5 rounded-lg bg-[#FEF2F2] text-[#DC2626] font-bold text-xs"
             >
               <span>হট ডিল অফার</span>
-              <ChevronRight className="w-3.5 h-3.5 text-black" />
+              <ChevronRight className="w-3.5 h-3.5 text-[#DC2626]" />
             </Link>
             <Link
               href="/products?category=mens-fashion"

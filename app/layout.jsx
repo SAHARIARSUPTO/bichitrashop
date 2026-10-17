@@ -23,7 +23,7 @@ export async function generateMetadata() {
   const siteUrl = getSiteUrl();
   const settings = await getStoreSettings();
 
-  const metaTitle = settings?.seo?.metaTitle || 'Bichitra Shop – বিচিত্র শপ | বিশ্বস্ত পণ্য ও স্মার্ট কেনাকাটা';
+  const metaTitle = settings?.seo?.metaTitle || 'Bichitra Shop – বিচিত্রা শপ | বিশ্বস্ত পণ্য ও স্মার্ট কেনাকাটা';
   const metaDescription = settings?.seo?.metaDescription || 'বিচিত্র শপ – প্রিমিয়াম কোটি সেট, পাঞ্জাবি, বোরকা ও আবায়া, খাঁটি অর্গানিক ফুড এবং আধুনিক লাইফস্টাইল পণ্য। ক্যাশ অন ডেলিভারি সারা বাংলাদেশে।';
   
   const rawKeywords = settings?.seo?.keywords;
@@ -32,7 +32,7 @@ export async function generateMetadata() {
     : (typeof rawKeywords === 'string'
         ? rawKeywords.split(',').map((k) => k.trim()).filter(Boolean)
         : [
-            'বিচিত্র শপ',
+            'বিচিত্রা শপ',
             'Bichitra Shop',
             'অনলাইন শপিং বাংলাদেশ',
             'কোটি সেট',

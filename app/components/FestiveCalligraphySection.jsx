@@ -13,7 +13,7 @@ export default function FestiveCalligraphySection({ products = [] }) {
       {/* Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2 border-b border-zinc-200">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-zinc-900 flex items-center justify-center shrink-0 shadow-2xs">
+          <div className="w-8 h-8 rounded-xl bg-[#08542C] flex items-center justify-center shrink-0 shadow-2xs">
             <Sparkles className="w-4 h-4 text-white stroke-[2]" />
           </div>
           <div>
@@ -31,7 +31,7 @@ export default function FestiveCalligraphySection({ products = [] }) {
 
         <Link
           href="/products?category=mens-fashion"
-          className="inline-flex items-center gap-1.5 self-start sm:self-auto text-xs sm:text-sm font-bold text-[#08542C] hover:text-black transition-colors"
+          className="inline-flex items-center gap-1.5 self-start sm:self-auto text-xs sm:text-sm font-bold text-[#08542C] hover:text-[#064423] transition-colors"
         >
           <span>সব ফেস্টিভ কালেকশন</span>
           <ArrowRight className="w-3.5 h-3.5" />
@@ -66,8 +66,8 @@ export default function FestiveCalligraphySection({ products = [] }) {
               key={idx}
               className="flex items-center gap-2.5 p-2.5 sm:p-3 rounded-xl bg-white border border-zinc-200 shadow-2xs"
             >
-              <div className="w-8 h-8 rounded-lg bg-zinc-100 flex items-center justify-center shrink-0 border border-zinc-200">
-                <Icon className="w-4 h-4 text-black stroke-[1.8]" />
+              <div className="w-8 h-8 rounded-lg bg-[#E8F5EC] flex items-center justify-center shrink-0 border border-[#CDE5D4]">
+                <Icon className="w-4 h-4 text-[#08542C] stroke-[1.8]" />
               </div>
               <div className="min-w-0">
                 <h4 className="text-xs sm:text-sm font-bold text-zinc-900 truncate">{badge.title}</h4>

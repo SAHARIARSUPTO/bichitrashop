@@ -86,9 +86,9 @@ export default function ProductCard({ product, onQuickOrder = null }) {
           <div className="mt-2 grid grid-cols-2 gap-1.5">
             <Link
               href={`/products/${product.slug}`}
-              className="flex items-center justify-center gap-1 py-1.5 px-1 sm:px-2 rounded-lg border border-zinc-300 hover:border-black text-zinc-900 hover:text-black hover:bg-zinc-50 text-xs font-bold transition-all text-center"
+              className="flex items-center justify-center gap-1 py-1.5 px-1 sm:px-2 rounded-lg border border-zinc-300 hover:border-[#08542C] text-zinc-900 hover:text-[#08542C] hover:bg-[#E8F5EC]/40 text-xs font-bold transition-all text-center"
             >
-              <Eye className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-black stroke-[2]" />
+              <Eye className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#08542C] stroke-[2]" />
               <span>বিস্তারিত</span>
             </Link>
 

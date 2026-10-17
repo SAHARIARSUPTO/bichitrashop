@@ -38,8 +38,8 @@ export default function TrustBadges() {
                 key={idx}
                 className="flex items-center gap-3 p-3.5 rounded-xl bg-zinc-50 border border-zinc-200 hover:border-zinc-300 transition-colors"
               >
-                <div className="w-10 h-10 rounded-lg bg-zinc-100 border border-zinc-200 flex items-center justify-center shrink-0">
-                  <Icon className="w-4 h-4 text-black stroke-[2]" />
+                <div className="w-10 h-10 rounded-lg bg-[#E8F5EC] border border-[#CDE5D4] flex items-center justify-center shrink-0">
+                  <Icon className="w-4 h-4 text-[#08542C] stroke-[2]" />
                 </div>
                 <div>
                   <h4 className="font-bold text-xs sm:text-sm text-zinc-900 leading-tight">

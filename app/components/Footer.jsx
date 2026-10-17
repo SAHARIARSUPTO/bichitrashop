@@ -12,9 +12,9 @@ export default function Footer() {
       {/* Trust Guarantee Band */}
       <div className="border-b border-zinc-800 bg-zinc-950 py-6 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-[1440px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="flex items-center gap-3.5 p-3.5 rounded-xl bg-zinc-900/90 border border-zinc-800 hover:border-zinc-700 transition-colors">
-            <div className="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center shrink-0">
-              <Truck className="w-5 h-5 text-white stroke-[2]" />
+          <div className="flex items-center gap-3.5 p-3.5 rounded-xl bg-zinc-900/90 border border-zinc-800 hover:border-[#08542C]/60 transition-colors">
+            <div className="w-10 h-10 rounded-lg bg-[#08542C]/25 border border-[#08542C]/50 flex items-center justify-center shrink-0">
+              <Truck className="w-5 h-5 text-[#22C55E] stroke-[2]" />
             </div>
             <div>
               <h4 className="font-bold text-sm text-white">সারা দেশে ডেলিভারি</h4>
@@ -22,9 +22,9 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3.5 p-3.5 rounded-xl bg-zinc-900/90 border border-zinc-800 hover:border-zinc-700 transition-colors">
-            <div className="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center shrink-0">
-              <ShieldCheck className="w-5 h-5 text-white stroke-[2]" />
+          <div className="flex items-center gap-3.5 p-3.5 rounded-xl bg-zinc-900/90 border border-zinc-800 hover:border-[#08542C]/60 transition-colors">
+            <div className="w-10 h-10 rounded-lg bg-[#08542C]/25 border border-[#08542C]/50 flex items-center justify-center shrink-0">
+              <ShieldCheck className="w-5 h-5 text-[#22C55E] stroke-[2]" />
             </div>
             <div>
               <h4 className="font-bold text-sm text-white">ক্যাশ অন ডেলিভারি</h4>
@@ -32,9 +32,9 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3.5 p-3.5 rounded-xl bg-zinc-900/90 border border-zinc-800 hover:border-zinc-700 transition-colors">
-            <div className="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center shrink-0">
-              <RefreshCw className="w-5 h-5 text-white stroke-[2]" />
+          <div className="flex items-center gap-3.5 p-3.5 rounded-xl bg-zinc-900/90 border border-zinc-800 hover:border-[#08542C]/60 transition-colors">
+            <div className="w-10 h-10 rounded-lg bg-[#08542C]/25 border border-[#08542C]/50 flex items-center justify-center shrink-0">
+              <RefreshCw className="w-5 h-5 text-[#22C55E] stroke-[2]" />
             </div>
             <div>
               <h4 className="font-bold text-sm text-white">সহজ এক্সচেঞ্জ পলিসি</h4>
@@ -42,9 +42,9 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3.5 p-3.5 rounded-xl bg-zinc-900/90 border border-zinc-800 hover:border-zinc-700 transition-colors">
-            <div className="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center shrink-0">
-              <Headphones className="w-5 h-5 text-white stroke-[2]" />
+          <div className="flex items-center gap-3.5 p-3.5 rounded-xl bg-zinc-900/90 border border-zinc-800 hover:border-[#08542C]/60 transition-colors">
+            <div className="w-10 h-10 rounded-lg bg-[#08542C]/25 border border-[#08542C]/50 flex items-center justify-center shrink-0">
+              <Headphones className="w-5 h-5 text-[#22C55E] stroke-[2]" />
             </div>
             <div>
               <h4 className="font-bold text-sm text-white">সার্বক্ষণিক সহায়তা</h4>

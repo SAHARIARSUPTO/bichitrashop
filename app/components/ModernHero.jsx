@@ -154,14 +154,14 @@ export default function ModernHero({ categories = [], banners = [] }) {
                   <Link
                     key={idx}
                     href={item.href}
-                    className="group flex items-center justify-between p-2 rounded-xl hover:bg-zinc-50 transition-all duration-150 border border-transparent hover:border-zinc-200"
+                    className="group flex items-center justify-between p-2 rounded-xl hover:bg-[#E8F5EC]/50 transition-all duration-150 border border-transparent hover:border-[#CDE5D4]"
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
-                      <span className="w-7 h-7 rounded-lg bg-zinc-100 group-hover:bg-zinc-200 flex items-center justify-center shrink-0 border border-zinc-200 transition-colors shadow-2xs">
-                        <ItemIcon className="w-3.5 h-3.5 text-black stroke-[1.8]" />
+                      <span className="w-7 h-7 rounded-lg bg-[#E8F5EC] group-hover:bg-[#D5EEDB] flex items-center justify-center shrink-0 border border-[#CDE5D4] text-[#08542C] transition-colors shadow-2xs">
+                        <ItemIcon className="w-3.5 h-3.5 text-[#08542C] stroke-[1.8]" />
                       </span>
                       <div className="truncate">
-                        <span className="font-bold text-zinc-900 group-hover:text-black transition-colors block truncate text-xs">
+                        <span className="font-bold text-zinc-900 group-hover:text-[#08542C] transition-colors block truncate text-xs">
                           {item.name}
                         </span>
                         <span className="text-[10px] text-zinc-500 block truncate">
@@ -174,7 +174,7 @@ export default function ModernHero({ categories = [], banners = [] }) {
                         {item.badge}
                       </span>
                     ) : (
-                      <ChevronRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-black shrink-0 ml-1 group-hover:translate-x-0.5 transition-transform" />
+                      <ChevronRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-[#08542C] shrink-0 ml-1 group-hover:translate-x-0.5 transition-transform" />
                     )}
                   </Link>
                 );
@@ -182,13 +182,13 @@ export default function ModernHero({ categories = [], banners = [] }) {
             </nav>
 
             {/* Helpline Footer in Sidebar */}
-            <div className="p-2.5 bg-zinc-50 border-t border-zinc-200 flex items-center justify-between">
+            <div className="p-2.5 bg-[#F6FAF7] border-t border-[#E2ECE3] flex items-center justify-between">
               <a
                 href="tel:+8801761674164"
-                className="flex items-center gap-2 text-xs font-bold text-zinc-900 hover:text-black"
+                className="flex items-center gap-2 text-xs font-bold text-zinc-900 hover:text-[#08542C]"
               >
-                <div className="w-5 h-5 rounded-full bg-zinc-200 flex items-center justify-center">
-                  <PhoneCall className="w-3 h-3 text-black stroke-[2]" />
+                <div className="w-5 h-5 rounded-full bg-[#E8F5EC] border border-[#CDE5D4] flex items-center justify-center">
+                  <PhoneCall className="w-3 h-3 text-[#08542C] stroke-[2]" />
                 </div>
                 <span>01761-674164</span>
               </a>
@@ -277,8 +277,8 @@ export default function ModernHero({ categories = [], banners = [] }) {
               {/* Promo Card 1: Cash on Delivery Guarantee */}
               <div className="bg-white p-3.5 sm:p-4 rounded-xl border border-zinc-200 shadow-2xs flex items-center justify-between gap-3">
                 <div className="space-y-1 min-w-0">
-                  <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-zinc-100 border border-zinc-200 text-zinc-900 text-[10px] font-bold">
-                    <PackageCheck className="w-3.5 h-3.5 text-black stroke-[2]" />
+                  <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-[#E8F5EC] border border-[#CDE5D4] text-[#08542C] text-[10px] font-bold">
+                    <PackageCheck className="w-3.5 h-3.5 text-[#08542C] stroke-[2]" />
                     <span>ক্যাশ অন ডেলিভারি</span>
                   </div>
                   <h4 className="font-bold text-xs sm:text-sm text-zinc-900 truncate">
@@ -291,7 +291,7 @@ export default function ModernHero({ categories = [], banners = [] }) {
 
                 <a
                   href="tel:+8801761674164"
-                  className="inline-flex items-center gap-1.5 py-2 px-3 rounded-lg bg-zinc-900 hover:bg-black text-white font-bold text-xs shrink-0 transition-colors shadow-2xs"
+                  className="inline-flex items-center gap-1.5 py-2 px-3 rounded-lg bg-[#08542C] hover:bg-[#064423] text-white font-bold text-xs shrink-0 transition-colors shadow-2xs"
                 >
                   <PhoneCall className="w-3 h-3 text-white" />
                   <span className="hidden sm:inline">কল অর্ডার</span>
@@ -302,8 +302,8 @@ export default function ModernHero({ categories = [], banners = [] }) {
               {/* Promo Card 2: Free Delivery Offer */}
               <div className="bg-zinc-50 p-3.5 sm:p-4 rounded-xl border border-zinc-200 shadow-2xs flex items-center justify-between gap-3">
                 <div className="space-y-1 min-w-0">
-                  <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-white border border-zinc-200 text-zinc-900 text-[10px] font-bold">
-                    <Truck className="w-3.5 h-3.5 text-black stroke-[2]" />
+                  <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-[#E8F5EC] border border-[#CDE5D4] text-[#08542C] text-[10px] font-bold">
+                    <Truck className="w-3.5 h-3.5 text-[#08542C] stroke-[2]" />
                     <span>ফ্রি শিপিং</span>
                   </div>
                   <h4 className="font-bold text-xs sm:text-sm text-zinc-900 truncate">
@@ -337,7 +337,7 @@ export default function ModernHero({ categories = [], banners = [] }) {
             </span>
             <Link href="/products" className="text-xs font-bold text-[#08542C] hover:underline flex items-center gap-0.5">
               <span>সব দেখুন</span>
-              <ChevronRight className="w-3 h-3" />
+              <ChevronRight className="w-3 h-3 text-[#08542C]" />
             </Link>
           </div>
 
@@ -357,17 +357,17 @@ export default function ModernHero({ categories = [], banners = [] }) {
                 <Link
                   key={idx}
                   href={item.href}
-                  className="flex flex-col items-center text-center p-1.5 rounded-xl hover:bg-zinc-50 active:scale-95 transition-all group"
+                  className="flex flex-col items-center text-center p-1.5 rounded-xl hover:bg-[#E8F5EC]/50 active:scale-95 transition-all group"
                 >
-                  <div className="relative w-12 h-12 rounded-2xl bg-zinc-100 group-hover:bg-[#E8F5EC] border border-zinc-200 group-hover:border-[#08542C]/40 flex items-center justify-center transition-colors shadow-2xs">
-                    <ItemIcon className="w-5 h-5 text-black stroke-[1.8]" />
+                  <div className="relative w-12 h-12 rounded-2xl bg-[#E8F5EC] group-hover:bg-[#D5EEDB] border border-[#CDE5D4] group-hover:border-[#08542C]/40 flex items-center justify-center transition-colors shadow-2xs">
+                    <ItemIcon className="w-5 h-5 text-[#08542C] stroke-[1.8]" />
                     {item.badge && (
                       <span className="absolute -top-1 -right-1 bg-[#DC2626] text-white text-[10px] font-black px-1.5 rounded-full shadow-2xs leading-tight">
                         {item.badge}
                       </span>
                     )}
                   </div>
-                  <span className="text-xs font-bold text-zinc-800 group-hover:text-black mt-1.5 line-clamp-1 leading-tight">
+                  <span className="text-xs font-bold text-zinc-800 group-hover:text-[#08542C] mt-1.5 line-clamp-1 leading-tight">
                     {item.name}
                   </span>
                 </Link>
@@ -388,12 +388,12 @@ export default function ModernHero({ categories = [], banners = [] }) {
                 href={cat.href}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold shrink-0 transition-all border ${
                   cat.highlight
-                    ? 'bg-white text-zinc-900 border-zinc-900 hover:bg-zinc-50 shadow-2xs'
-                    : 'bg-white text-zinc-800 border-zinc-200 hover:border-zinc-800 hover:text-black shadow-2xs'
+                    ? 'bg-white text-zinc-900 border-[#08542C]/40 hover:bg-[#E8F5EC]/40 shadow-2xs'
+                    : 'bg-white text-zinc-800 border-zinc-200 hover:border-[#08542C]/40 hover:text-[#08542C] shadow-2xs'
                 }`}
               >
-                <span className="w-4 h-4 rounded-full bg-zinc-100 flex items-center justify-center shrink-0 border border-zinc-200">
-                  <Icon className="w-2.5 h-2.5 text-black stroke-[2]" />
+                <span className="w-4 h-4 rounded-full bg-[#E8F5EC] flex items-center justify-center shrink-0 border border-[#CDE5D4]">
+                  <Icon className="w-2.5 h-2.5 text-[#08542C] stroke-[2]" />
                 </span>
                 <span className="tracking-tight text-xs">{cat.name}</span>
               </Link>
@@ -406,8 +406,8 @@ export default function ModernHero({ categories = [], banners = [] }) {
       <div className="hidden md:block w-full max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 pt-1">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3 bg-white p-3 sm:p-3.5 rounded-2xl border border-zinc-200 shadow-2xs">
           <div className="flex items-center gap-2.5 p-1.5">
-            <div className="w-8 h-8 rounded-lg bg-zinc-100 border border-zinc-200 flex items-center justify-center shrink-0">
-              <Truck className="w-3.5 h-3.5 text-black stroke-[2]" />
+            <div className="w-8 h-8 rounded-lg bg-[#E8F5EC] border border-[#CDE5D4] flex items-center justify-center shrink-0">
+              <Truck className="w-4 h-4 text-[#08542C] stroke-[2]" />
             </div>
             <div>
               <span className="font-bold text-xs text-zinc-900 block leading-tight">সারা দেশে ডেলিভারি</span>
@@ -416,8 +416,8 @@ export default function ModernHero({ categories = [], banners = [] }) {
           </div>
 
           <div className="flex items-center gap-2.5 p-1.5">
-            <div className="w-8 h-8 rounded-lg bg-zinc-100 border border-zinc-200 flex items-center justify-center shrink-0">
-              <ShieldCheck className="w-3.5 h-3.5 text-black stroke-[2]" />
+            <div className="w-8 h-8 rounded-lg bg-[#E8F5EC] border border-[#CDE5D4] flex items-center justify-center shrink-0">
+              <ShieldCheck className="w-4 h-4 text-[#08542C] stroke-[2]" />
             </div>
             <div>
               <span className="font-bold text-xs text-zinc-900 block leading-tight">ক্যাশ অন ডেলিভারি</span>
@@ -426,8 +426,8 @@ export default function ModernHero({ categories = [], banners = [] }) {
           </div>
 
           <div className="flex items-center gap-2.5 p-1.5">
-            <div className="w-8 h-8 rounded-lg bg-zinc-100 border border-zinc-200 flex items-center justify-center shrink-0">
-              <CheckCircle2 className="w-3.5 h-3.5 text-black stroke-[2]" />
+            <div className="w-8 h-8 rounded-lg bg-[#E8F5EC] border border-[#CDE5D4] flex items-center justify-center shrink-0">
+              <CheckCircle2 className="w-4 h-4 text-[#08542C] stroke-[2]" />
             </div>
             <div>
               <span className="font-bold text-xs text-zinc-900 block leading-tight">১০০% আসল পণ্য</span>
@@ -436,8 +436,8 @@ export default function ModernHero({ categories = [], banners = [] }) {
           </div>
 
           <div className="flex items-center gap-2.5 p-1.5">
-            <div className="w-8 h-8 rounded-lg bg-zinc-100 border border-zinc-200 flex items-center justify-center shrink-0">
-              <RotateCcw className="w-3.5 h-3.5 text-black stroke-[2]" />
+            <div className="w-8 h-8 rounded-lg bg-[#E8F5EC] border border-[#CDE5D4] flex items-center justify-center shrink-0">
+              <RotateCcw className="w-4 h-4 text-[#08542C] stroke-[2]" />
             </div>
             <div>
               <span className="font-bold text-xs text-zinc-900 block leading-tight">সহজ এক্সচেঞ্জ</span>

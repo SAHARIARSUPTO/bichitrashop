@@ -54,10 +54,10 @@ function MobileBottomNav() {
               href={href}
               aria-current={active ? 'page' : undefined}
               className={`flex flex-col items-center gap-0.5 py-2.5 text-xs font-semibold ${
-                active ? 'text-black' : 'text-zinc-500 hover:text-black'
+                active ? 'text-[#08542C]' : 'text-zinc-500 hover:text-[#08542C]'
               }`}
             >
-              <Icon className="w-5 h-5 text-black stroke-[1.8]" aria-hidden="true" />
+              <Icon className={`w-5 h-5 ${active ? 'text-[#08542C]' : 'text-zinc-500'} stroke-[1.8]`} aria-hidden="true" />
               {label}
             </Link>
           </li>
@@ -270,10 +270,10 @@ export default async function HomePage() {
             {SERVICE_PERKS.map(({ icon: Icon, title, text }) => (
               <li
                 key={title}
-                className="flex items-center gap-2.5 sm:gap-3 rounded-2xl bg-white p-3 sm:p-4 shadow-[0_1px_3px_rgba(15,36,23,0.06)] border border-zinc-100"
+                className="flex items-center gap-2.5 sm:gap-3 rounded-2xl bg-white p-3 sm:p-4 shadow-[0_1px_3px_rgba(15,36,23,0.06)] border border-[#E2ECE3]"
               >
-                <span className="flex h-9 w-9 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-zinc-100 border border-zinc-200 text-black">
-                  <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-black stroke-[1.8]" aria-hidden="true" />
+                <span className="flex h-9 w-9 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-[#E8F5EC] border border-[#CDE5D4] text-[#08542C] shadow-2xs">
+                  <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-[#08542C] stroke-[1.8]" aria-hidden="true" />
                 </span>
                 <div className="min-w-0">
                   <p className="text-xs sm:text-sm font-bold text-[#0F2417] leading-tight truncate">{title}</p>
@@ -306,8 +306,8 @@ export default async function HomePage() {
           <p className="text-xs sm:text-sm text-[#4B6354] mt-1 mb-5 sm:mb-6">অ্যাকাউন্ট ছাড়াই ৩ ধাপে অর্ডার সম্পন্ন হয়।</p>
           <ol className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
             {ORDER_STEPS.map((step, index) => (
-              <li key={step.title} className="flex items-start gap-3 sm:gap-4 rounded-2xl bg-[#F3F7F4] p-3.5 sm:p-4">
-                <span className="flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-full bg-zinc-900 text-xs sm:text-sm font-black text-white">
+              <li key={step.title} className="flex items-start gap-3 sm:gap-4 rounded-2xl bg-[#F3F7F4] p-3.5 sm:p-4 border border-[#E2ECE3]/60">
+                <span className="flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-full bg-[#08542C] text-xs sm:text-sm font-black text-white shadow-xs">
                   {['১', '২', '৩'][index]}
                 </span>
                 <div>

@@ -80,8 +80,8 @@ export default function CalligraphyDealsSection({ banners = [] }) {
     <section className="space-y-4" aria-label="ধামাকা ডিল ও বিজ্ঞাপন অফার">
       <div className="flex items-center justify-between pb-2 border-b border-zinc-200">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl bg-zinc-900 flex items-center justify-center shrink-0">
-            <Flame className="w-4 h-4 text-amber-400 stroke-[2]" />
+          <div className="w-8 h-8 rounded-xl bg-[#08542C] flex items-center justify-center shrink-0 shadow-2xs">
+            <Flame className="w-4 h-4 text-emerald-300 stroke-[2]" />
           </div>
           <div>
             <h2 className="text-lg sm:text-2xl font-black text-zinc-900 tracking-tight">
@@ -95,7 +95,7 @@ export default function CalligraphyDealsSection({ banners = [] }) {
 
         <Link
           href="/products"
-          className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#08542C] hover:text-black transition-colors"
+          className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#08542C] hover:text-[#064423] transition-colors"
         >
           <span>সব অফার</span>
           <ArrowRight className="w-3.5 h-3.5" />
@@ -133,8 +133,8 @@ export default function CalligraphyDealsSection({ banners = [] }) {
 
               <div className="p-3 bg-white flex items-center justify-between border-t border-zinc-100">
                 <div className="flex items-center gap-2 min-w-0">
-                  <span className="w-6 h-6 rounded-md bg-zinc-100 flex items-center justify-center shrink-0">
-                    <Icon className="w-3.5 h-3.5 text-black" />
+                  <span className="w-6 h-6 rounded-md bg-[#E8F5EC] flex items-center justify-center shrink-0 border border-[#CDE5D4]">
+                    <Icon className="w-3.5 h-3.5 text-[#08542C]" />
                   </span>
                   <div className="truncate">
                     <span className="text-xs sm:text-sm font-black text-zinc-900 block truncate group-hover:text-[#08542C] transition-colors">
@@ -144,7 +144,7 @@ export default function CalligraphyDealsSection({ banners = [] }) {
                   </div>
                 </div>
 
-                <span className="shrink-0 inline-flex items-center gap-1 text-xs font-bold text-zinc-900 bg-zinc-100 px-2.5 py-1 rounded-full group-hover:bg-[#08542C] group-hover:text-white transition-colors">
+                <span className="shrink-0 inline-flex items-center gap-1 text-xs font-bold text-[#08542C] bg-[#E8F5EC] px-2.5 py-1 rounded-full group-hover:bg-[#08542C] group-hover:text-white transition-colors">
                   <span>{card.ctaText}</span>
                   <ArrowRight className="w-3 h-3" />
                 </span>

@@ -81,8 +81,8 @@ export default function DeshiAppliancesSection({
               key={idx}
               className="flex items-center gap-2.5 p-2.5 sm:p-3 rounded-xl bg-white border border-zinc-200 shadow-2xs"
             >
-              <div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center shrink-0 border border-amber-200">
-                <Icon className="w-4 h-4 text-black stroke-[1.8]" />
+              <div className="w-8 h-8 rounded-lg bg-[#E8F5EC] flex items-center justify-center shrink-0 border border-[#CDE5D4]">
+                <Icon className="w-4 h-4 text-[#08542C] stroke-[1.8]" />
               </div>
               <div className="min-w-0">
                 <h4 className="text-xs sm:text-sm font-bold text-zinc-900 truncate">{badge.title}</h4>

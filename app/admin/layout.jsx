@@ -2,7 +2,7 @@
 import AdminNav from './AdminNav';
 
 export const metadata = {
-  title: 'অ্যাডমিন ড্যাশবোর্ড | Bichitra Shop (বিচিত্র শপ)',
+  title: 'অ্যাডমিন ড্যাশবোর্ড | Bichitra Shop (বিচিত্রা শপ)',
   robots: {
     index: false,
     follow: false
