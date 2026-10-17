@@ -5,6 +5,7 @@ import TrafficTracker from './components/TrafficTracker';
 import {
   getSiteUrl,
   toAbsoluteUrl,
+  toOgImageUrl,
   getStoreSettings,
   DEFAULT_SOCIAL_POSTER,
   DEFAULT_SITE_ICON,
@@ -38,7 +39,7 @@ export async function generateMetadata() {
             'dropshipping bangladesh'
           ]);
 
-  const socialPosterUrl = toAbsoluteUrl(
+  const socialPosterUrl = toOgImageUrl(
     settings?.seo?.ogImage || settings?.branding?.socialPoster || DEFAULT_SOCIAL_POSTER
   );
 
@@ -101,6 +102,7 @@ export async function generateMetadata() {
           secureUrl: socialPosterUrl,
           width: 1200,
           height: 630,
+          type: 'image/jpeg',
           alt: 'Bichitra Shop – বিচিত্র শপ সোশ্যাল শেয়ার পোস্টার'
         }
       ]

@@ -38,20 +38,23 @@ export default function ProductDetailClient({ product, relatedProducts = [], can
     ? Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)
     : 0;
 
+  const productUrl = canonicalUrl || (product?.slug ? `https://bichitrashop.vercel.app/products/${product.slug}` : '');
+
   const handleShare = async () => {
     if (typeof window !== 'undefined') {
+      const shareUrl = productUrl || window.location.href;
       if (navigator.share) {
         try {
           await navigator.share({
             title: product.name,
             text: product.shortDescription,
-            url: window.location.href
+            url: shareUrl
           });
         } catch (e) {
           // ignore abort
         }
       } else {
-        navigator.clipboard.writeText(window.location.href);
+        navigator.clipboard.writeText(shareUrl);
         setCopiedLink(true);
         setTimeout(() => setCopiedLink(false), 2000);
       }
@@ -65,8 +68,6 @@ export default function ProductDetailClient({ product, relatedProducts = [], can
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
-
-  const productUrl = canonicalUrl || (product?.slug ? `https://bichitrashop.vercel.app/products/${product.slug}` : '');
 
   const whatsappMessage = encodeURIComponent(
     `হ্যালো বিচিত্র শপ! আমি এই পণ্যটি অর্ডার করতে চাই:\n\nপণ্য: ${product.name}\nমূল্য: ৳${product.price}\nসাইজ/ভেরিয়েন্ট: ${selectedSize || 'Standard'}\nলিংক: ${productUrl}`

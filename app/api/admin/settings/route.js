@@ -5,6 +5,7 @@ import { getAdminFromRequest } from '@/lib/auth';
 import { getCollection } from '@/lib/mongodb';
 import { DEFAULT_SHIPPING_RATES } from '@/lib/pricing';
 import { DEFAULT_HERO_BANNERS, DEFAULT_PROMO_BANNERS } from '@/lib/banners';
+import { revalidatePath } from 'next/cache';
 
 export async function GET(request) {
   try {
@@ -117,6 +118,14 @@ export async function POST(request) {
       { $set: updateDoc },
       { upsert: true }
     );
+
+    try {
+      revalidatePath('/', 'page');
+      revalidatePath('/admin/settings');
+      revalidatePath('/admin/banners');
+    } catch (e) {
+      // ignore in tests or non-request context
+    }
 
     return Response.json({
       success: true,

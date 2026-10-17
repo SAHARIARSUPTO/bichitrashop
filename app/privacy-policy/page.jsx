@@ -10,7 +10,7 @@ export const metadata = {
   title: 'প্রাইভেসি পলিসি (Privacy Policy)',
   description: 'বিচিত্র শপ গ্রাহকদের ব্যক্তিগত তথ্যের সর্বোচ্চ সুরক্ষা প্রদান করে। আমরা কোনো তথ্য তৃতীয় পক্ষের কাছে শেয়ার করি না। বিস্তারিত গোপনীয়তা নীতি পড়ুন।',
   alternates: {
-    canonical: 'https://bichitrashop.com/privacy-policy'
+    canonical: 'https://bichitrashop.vercel.app/privacy-policy'
   }
 };
 

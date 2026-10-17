@@ -205,11 +205,12 @@ export default function ModernHero({ categories = [], banners = [] }) {
               onMouseLeave={() => setIsPaused(false)}
             >
               {slides.map((slide, idx) => {
-                const targetLink = slide.slug?.startsWith('/')
-                  ? slide.slug
-                  : slide.slug?.startsWith('http')
-                  ? slide.slug
-                  : `/products/${slide.slug || ''}`;
+                const rawUrl = slide.link || slide.slug || '/products';
+                const targetLink = rawUrl.startsWith('http')
+                  ? rawUrl
+                  : rawUrl.startsWith('/')
+                  ? rawUrl
+                  : `/${rawUrl}`;
 
                 return (
                   <div

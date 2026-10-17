@@ -14,6 +14,7 @@ import { getCollection } from '@/lib/mongodb';
 import { initDatabase } from '@/lib/db-init';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 const DEFAULT_ANNOUNCEMENT = 'ক্যাশ অন ডেলিভারি সুবিধা সারা বাংলাদেশে! ৩টি বা ততোধিক পণ্যে ফ্রি ডেলিভারি।';
 const CATEGORY_FALLBACK_IMAGE = '/categories/mens_fashion.jpg';
@@ -216,7 +217,7 @@ export default async function HomePage() {
         )}
 
         {/* NEW SECTION 2: 3-COLUMN CALLIGRAPHIC PROMO & FLASH DEALS GRID */}
-        <CalligraphyDealsSection />
+        <CalligraphyDealsSection banners={promoBanners} />
 
         {/* NEW SECTION 3: DESHI KITCHEN & HOME APPLIANCES FEATURE ZONE */}
         {applianceProducts.length > 0 && (

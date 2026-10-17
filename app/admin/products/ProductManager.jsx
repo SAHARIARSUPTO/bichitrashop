@@ -1076,7 +1076,7 @@ export default function ProductManager({ initialProducts = [], categories = [] }
                 </span>
                 <div className="bg-white p-3 rounded-xl border border-gray-200 text-left">
                   <p className="text-[11px] text-gray-500 font-mono">
-                    https://bichitrashop.com/products/{formData.slug || 'product-slug'}
+                    https://bichitrashop.vercel.app/products/{formData.slug || 'product-slug'}
                   </p>
                   <h4 className="text-sm font-semibold text-blue-700 hover:underline cursor-pointer">
                     {formData.seoTitle || formData.name || 'Product Title'} | Bichitra Shop

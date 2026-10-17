@@ -13,7 +13,7 @@ import { ChevronRight, Home } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
-import { getSiteUrl, toAbsoluteUrl, DEFAULT_SOCIAL_POSTER } from '@/lib/seo';
+import { getSiteUrl, toAbsoluteUrl, toOgImageUrl, DEFAULT_SOCIAL_POSTER } from '@/lib/seo';
 
 export async function generateMetadata({ params }) {
   await initDatabase();
@@ -32,18 +32,19 @@ export async function generateMetadata({ params }) {
 
   const title = product.seo?.title || `${product.name} | Bichitra Shop (বিচিত্র শপ)`;
   const description = product.seo?.description || product.shortDescription || `${product.name} - সেরা মূল্যে কিনুন বিচিত্র শপ থেকে। ক্যাশ অন ডেলিভারি সারা বাংলাদেশে।`;
-  const canonicalUrl = product.seo?.canonicalUrl || `${siteUrl}/products/${product.slug}`;
+  const canonicalUrl = `${siteUrl}/products/${product.slug}`;
 
-  // Ensure absolute URLs for social crawlers (Facebook, WhatsApp, Twitter, etc.)
+  // Ensure optimized absolute URLs for social crawlers (Facebook, WhatsApp, Twitter, etc.)
   const rawImage = product.images?.[0] || DEFAULT_SOCIAL_POSTER;
-  const primaryImageUrl = toAbsoluteUrl(rawImage);
+  const primaryImageUrl = toOgImageUrl(rawImage);
 
   const ogImages = (Array.isArray(product.images) && product.images.length > 0)
     ? product.images.slice(0, 4).map((img, idx) => ({
-        url: toAbsoluteUrl(img),
-        secureUrl: toAbsoluteUrl(img),
+        url: toOgImageUrl(img),
+        secureUrl: toOgImageUrl(img),
         width: 1200,
         height: 630,
+        type: 'image/jpeg',
         alt: `${product.name} - ছবি ${idx + 1}`
       }))
     : [
@@ -52,15 +53,17 @@ export async function generateMetadata({ params }) {
           secureUrl: primaryImageUrl,
           width: 1200,
           height: 630,
+          type: 'image/jpeg',
           alt: product.name
         }
       ];
 
   return {
+    metadataBase: new URL(siteUrl),
     title,
     description,
     alternates: {
-      canonical: canonicalUrl
+      canonical: `/products/${product.slug}`
     },
     openGraph: {
       title,

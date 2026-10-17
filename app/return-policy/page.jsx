@@ -18,7 +18,7 @@ export const metadata = {
   title: 'রিটার্ন ও রিফান্ড পলিসি (Return & Refund Policy)',
   description: 'বিচিত্র শপ সহজ রিটার্ন ও এক্সচেঞ্জ পলিসি। ডেলিভারির সময় পার্সেল দেখে নেওয়ার সুযোগ এবং ৭ দিনের রিপ্লেসমেন্ট গ্যারান্টি। কোনো সমস্যা হলে তাৎক্ষণিক রিফান্ড সুবিধা।',
   alternates: {
-    canonical: 'https://bichitrashop.com/return-policy'
+    canonical: 'https://bichitrashop.vercel.app/return-policy'
   }
 };
 

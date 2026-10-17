@@ -24,7 +24,7 @@ export const metadata = {
   title: 'আমাদের সম্পর্কে (About Us)',
   description: 'বিচিত্র শপ – বিশ্বস্ত অনলাইন শপিং প্ল্যাটফর্ম। প্রিমিয়াম কোটি, ঐতিহ্যবাহী পাঞ্জাবি, আধুনিক বোরকা ও আবায়া, স্মার্ট গ্যাজেটস এবং খাঁটি খাদ্যপণ্য।',
   alternates: {
-    canonical: 'https://bichitrashop.com/about'
+    canonical: 'https://bichitrashop.vercel.app/about'
   }
 };
 

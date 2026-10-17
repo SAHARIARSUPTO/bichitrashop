@@ -990,7 +990,7 @@ export default function SettingsManager({ initialSettings = {} }) {
                   <div className="w-4 h-4 rounded-full bg-emerald-700 text-white flex items-center justify-center text-[9px] font-black">
                     B
                   </div>
-                  <span className="font-semibold text-zinc-800">bichitrashop.com</span>
+                  <span className="font-semibold text-zinc-800">bichitrashop.vercel.app</span>
                   <span className="text-zinc-400">›</span>
                   <span className="text-zinc-500">home</span>
                 </div>
@@ -1021,7 +1021,7 @@ export default function SettingsManager({ initialSettings = {} }) {
                 </div>
                 <div className="p-3.5 bg-zinc-50 border-t border-zinc-100 space-y-1">
                   <span className="text-[10px] uppercase font-bold text-zinc-400 tracking-wider block">
-                    bichitrashop.com
+                    bichitrashop.vercel.app
                   </span>
                   <h5 className="text-xs font-bold text-zinc-900 line-clamp-1">
                     {seo.metaTitle}

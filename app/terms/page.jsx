@@ -10,7 +10,7 @@ export const metadata = {
   title: 'ব্যবহারের শর্তাবলী (Terms & Conditions)',
   description: 'বিচিত্র শপ ওয়েবসাইট ব্যবহারের নিয়মাবলী, অর্ডার প্রক্রিয়া এবং পেমেন্ট সংক্রান্ত শর্তাবলী। বিস্তারিত তথ্য জানুন।',
   alternates: {
-    canonical: 'https://bichitrashop.com/terms'
+    canonical: 'https://bichitrashop.vercel.app/terms'
   }
 };
 

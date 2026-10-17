@@ -18,7 +18,7 @@ export const metadata = {
   title: 'শিপিং ও ডেলিভারি পলিসি (Shipping & Delivery Policy)',
   description: 'বিচিত্র শপ ডেলিভারি নিয়মাবলী। ঢাকা সিটির ভেতরে ডেলিভারি চার্জ ৳৭০ (২৪-৪৮ ঘণ্টা) এবং বাইরে ৳১৩০ (২-৪ দিন)। ক্যাশ অন ডেলিভারিতে চেক করে টাকা পরিশোধের সুযোগ।',
   alternates: {
-    canonical: 'https://bichitrashop.com/shipping-policy'
+    canonical: 'https://bichitrashop.vercel.app/shipping-policy'
   }
 };
 

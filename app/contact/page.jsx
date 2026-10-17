@@ -19,7 +19,7 @@ export const metadata = {
   title: 'যোগাযোগ ও হেল্পলাইন (Contact Us)',
   description: 'বিচিত্র শপ কাস্টমার সাপোর্ট ও হেল্পলাইন। ফোন: 01761-674164, ইমেইল: support@bichitrashop.com। সকাল ৯টা থেকে রাত ১০টা পর্যন্ত সক্রিয়।',
   alternates: {
-    canonical: 'https://bichitrashop.com/contact'
+    canonical: 'https://bichitrashop.vercel.app/contact'
   }
 };
 

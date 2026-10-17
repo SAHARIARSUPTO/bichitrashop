@@ -1041,7 +1041,7 @@ export default function OrderManager({ initialOrders = [], initialProducts = [] 
                     </div>
                     <p className="text-xs print:text-[11px] font-bold text-zinc-700">বিচিত্র শপ – বিশ্বস্ত পণ্য, স্মার্ট কেনাকাটা</p>
                     <p className="text-[11px] print:text-[10px] text-zinc-500">রহনপুর, চাঁপাইনবাবগঞ্জ • হেল্পলাইন: 01761-674164</p>
-                    <p className="text-[10px] print:text-[9px] text-zinc-400">support@bichitrashop.com • bichitrashop.com</p>
+                    <p className="text-[10px] print:text-[9px] text-zinc-400">support@bichitrashop.com • bichitrashop.vercel.app</p>
                   </div>
                 </div>
 

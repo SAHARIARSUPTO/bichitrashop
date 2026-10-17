@@ -10,7 +10,7 @@ export const metadata = {
   title: 'সচরাচর জিজ্ঞাসিত প্রশ্নাবলী (FAQ)',
   description: 'বিচিত্র শপে কেনাকাটা, ক্যাশ অন ডেলিভারি, ডেলিভারি চার্জ, পার্সেল চেক করা এবং পণ্য পরিবর্তন সংক্রান্ত সকল প্রশ্নের উত্তর।',
   alternates: {
-    canonical: 'https://bichitrashop.com/faq'
+    canonical: 'https://bichitrashop.vercel.app/faq'
   }
 };
 

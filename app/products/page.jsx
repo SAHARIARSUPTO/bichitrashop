@@ -14,7 +14,15 @@ export const metadata = {
   title: 'সকল পণ্য কালেকশন | Bichitra Shop (বিচিত্র শপ)',
   description: 'বিচিত্র শপের সমস্ত প্রিমিয়াম কালেকশন দেখুন – এক্সক্লুসিভ কোটি সেট, ঐতিহ্যবাহী পাঞ্জাবি, দুবাই আবায়া ও খাঁটি অর্গানিক ফুড। ক্যাশ অন ডেলিভারি।',
   alternates: {
-    canonical: 'https://bichitrashop.com/products'
+    canonical: 'https://bichitrashop.vercel.app/products'
+  },
+  openGraph: {
+    title: 'সকল পণ্য কালেকশন | Bichitra Shop (বিচিত্র শপ)',
+    description: 'বিচিত্র শপের সমস্ত প্রিমিয়াম কালেকশন দেখুন – এক্সক্লুসিভ কোটি সেট, ঐতিহ্যবাহী পাঞ্জাবি, দুবাই আবায়া ও খাঁটি অর্গানিক ফুড। ক্যাশ অন ডেলিভারি।',
+    url: 'https://bichitrashop.vercel.app/products',
+    siteName: 'Bichitra Shop – বিচিত্র শপ',
+    locale: 'bn_BD',
+    type: 'website'
   }
 };
 
