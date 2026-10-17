@@ -10,7 +10,8 @@ import {
   DEFAULT_SOCIAL_POSTER,
   DEFAULT_SITE_ICON,
   OFFICIAL_HOTLINE_TEL,
-  OFFICIAL_FACEBOOK_PAGE
+  OFFICIAL_FACEBOOK_PAGE,
+  OFFICIAL_FACEBOOK_PIXEL_ID
 } from '@/lib/seo';
 import { getStoreSettings } from '@/lib/settings-server';
 
@@ -142,7 +143,7 @@ export default async function RootLayout({ children }) {
   const settings = await getStoreSettings();
   const hotline = settings?.contact?.phone || OFFICIAL_HOTLINE_TEL;
   const facebookPage = settings?.social?.facebook || OFFICIAL_FACEBOOK_PAGE;
-  const facebookPixelId = settings?.marketing?.facebookPixelId || settings?.seo?.facebookPixelId || process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || '';
+  const facebookPixelId = settings?.marketing?.facebookPixelId || settings?.seo?.facebookPixelId || process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || OFFICIAL_FACEBOOK_PIXEL_ID;
 
   const jsonLd = {
     '@context': 'https://schema.org',

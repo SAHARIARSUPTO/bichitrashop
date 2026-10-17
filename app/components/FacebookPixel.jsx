@@ -4,12 +4,13 @@
 import { useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
+import { OFFICIAL_FACEBOOK_PIXEL_ID } from '@/lib/pixel';
 
 export default function FacebookPixel({ pixelId = '' }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const cleanPixelId = (pixelId || process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || '').trim();
+  const cleanPixelId = (pixelId || process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || OFFICIAL_FACEBOOK_PIXEL_ID || '2204374163789446').trim();
 
   // Track page view on client route transitions
   useEffect(() => {

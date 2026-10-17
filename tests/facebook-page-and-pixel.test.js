@@ -2,13 +2,14 @@ import { describe, it } from 'node:test';
 import assert from 'node:assert';
 import fs from 'fs';
 import path from 'path';
-import { OFFICIAL_FACEBOOK_PAGE } from '../lib/seo.js';
+import { OFFICIAL_FACEBOOK_PAGE, OFFICIAL_FACEBOOK_PIXEL_ID } from '../lib/seo.js';
 import {
   trackPixelEvent,
   trackViewContent,
   trackAddToCart,
   trackInitiateCheckout,
-  trackPurchase
+  trackPurchase,
+  OFFICIAL_FACEBOOK_PIXEL_ID as PIXEL_ID_FROM_PIXEL_LIB
 } from '../lib/pixel.js';
 
 describe('Facebook Page & Meta Pixel Integration', () => {
@@ -17,6 +18,19 @@ describe('Facebook Page & Meta Pixel Integration', () => {
       OFFICIAL_FACEBOOK_PAGE,
       'https://www.facebook.com/bichitra.shop44',
       'OFFICIAL_FACEBOOK_PAGE must match the user’s Facebook page'
+    );
+  });
+
+  it('exports the user’s exact Meta Pixel ID 2204374163789446', () => {
+    assert.strictEqual(
+      OFFICIAL_FACEBOOK_PIXEL_ID,
+      '2204374163789446',
+      'OFFICIAL_FACEBOOK_PIXEL_ID must match the user’s pixel ID'
+    );
+    assert.strictEqual(
+      PIXEL_ID_FROM_PIXEL_LIB,
+      '2204374163789446',
+      'lib/pixel.js must export the user’s pixel ID'
     );
   });
 

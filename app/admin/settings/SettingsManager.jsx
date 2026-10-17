@@ -33,7 +33,7 @@ import {
 import { DEFAULT_HERO_BANNERS, DEFAULT_PROMO_BANNERS, DEFAULT_KITCHEN_BANNER, SAMPLE_BANNER_IMAGES } from '@/lib/banners';
 import ImageUploader from '@/app/components/ImageUploader';
 import FacebookIcon from '@/app/components/FacebookIcon';
-import { OFFICIAL_FACEBOOK_PAGE } from '@/lib/seo';
+import { OFFICIAL_FACEBOOK_PAGE, OFFICIAL_FACEBOOK_PIXEL_ID } from '@/lib/seo';
 
 export default function SettingsManager({ initialSettings = {} }) {
   const [activeTab, setActiveTab] = useState('banners'); // 'banners' | 'promo' | 'kitchen' | 'shipping' | 'contact' | 'seo' | 'branding'
@@ -45,7 +45,7 @@ export default function SettingsManager({ initialSettings = {} }) {
     email: initialSettings.contact?.email || 'support@bichitrashop.com',
     address: initialSettings.contact?.address || 'রহনপুর, চাঁপাইনবাবগঞ্জ, বাংলাদেশ',
     facebookPage: initialSettings.social?.facebook || OFFICIAL_FACEBOOK_PAGE,
-    facebookPixelId: initialSettings.marketing?.facebookPixelId || initialSettings.seo?.facebookPixelId || '',
+    facebookPixelId: initialSettings.marketing?.facebookPixelId || initialSettings.seo?.facebookPixelId || OFFICIAL_FACEBOOK_PIXEL_ID,
     announcement: initialSettings.announcement || 'ক্যাশ অন ডেলিভারি সুবিধা সারা বাংলাদেশে! ৩টি বা ততোধিক পণ্যে ফ্রি ডেলিভারি।'
   });
 
