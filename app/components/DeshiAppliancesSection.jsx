@@ -4,9 +4,24 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, Utensils, Zap, ShieldCheck, Truck, RotateCcw } from 'lucide-react';
 import ProductCard from './ProductCard';
+import { DEFAULT_KITCHEN_BANNER } from '@/lib/banners';
 
-export default function DeshiAppliancesSection({ products = [] }) {
+export default function DeshiAppliancesSection({
+  products = [],
+  banner = null,
+  bannerImage = null
+}) {
   if (!products || products.length === 0) return null;
+
+  // Resolve dynamic banner image and optional link
+  const bannerSrc =
+    (typeof banner === 'string' && banner.trim() ? banner.trim() : banner?.image) ||
+    (typeof bannerImage === 'string' && bannerImage.trim() ? bannerImage.trim() : null) ||
+    DEFAULT_KITCHEN_BANNER;
+
+  const bannerLink =
+    (typeof banner === 'object' && banner?.link ? banner.link : null) ||
+    '/products?category=home-appliances';
 
   return (
     <section className="space-y-4 sm:space-y-6" aria-label="দেশি কিচেন ও হোম অ্যাপ্লায়েন্স জোন">
@@ -40,9 +55,9 @@ export default function DeshiAppliancesSection({ products = [] }) {
 
       {/* Featured Calligraphy Kitchen Banner */}
       <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xs border border-zinc-200 bg-zinc-950 group">
-        <Link href="/products?category=home-appliances" className="block relative aspect-[16/7] sm:aspect-[21/9] w-full">
+        <Link href={bannerLink} className="block relative aspect-[16/7] sm:aspect-[21/9] w-full">
           <Image
-            src="/banners/bengali_calligraphy_kitchen_banner.jpg"
+            src={bannerSrc}
             alt="দেশি কিচেন ও হোম অ্যাপ্লায়েন্স - খাঁটি মসলা বাটার ব্লেন্ডার"
             fill
             sizes="(max-width: 768px) 100vw, 1500px"

@@ -4,7 +4,7 @@
 import { getAdminFromRequest } from '@/lib/auth';
 import { getCollection } from '@/lib/mongodb';
 import { DEFAULT_SHIPPING_RATES } from '@/lib/pricing';
-import { DEFAULT_HERO_BANNERS, DEFAULT_PROMO_BANNERS } from '@/lib/banners';
+import { DEFAULT_HERO_BANNERS, DEFAULT_PROMO_BANNERS, DEFAULT_KITCHEN_BANNER } from '@/lib/banners';
 import { revalidatePath } from 'next/cache';
 
 export async function GET(request) {
@@ -43,7 +43,8 @@ export async function GET(request) {
         },
         announcement: config?.announcement || 'ক্যাশ অন ডেলিভারি সুবিধা সারা বাংলাদেশে!',
         heroBanners: Array.isArray(config?.heroBanners) ? config.heroBanners : DEFAULT_HERO_BANNERS,
-        promoBanners: Array.isArray(config?.promoBanners) ? config.promoBanners : DEFAULT_PROMO_BANNERS
+        promoBanners: Array.isArray(config?.promoBanners) ? config.promoBanners : DEFAULT_PROMO_BANNERS,
+        kitchenBanner: config?.kitchenBanner || DEFAULT_KITCHEN_BANNER
       }
     });
   } catch (error) {
@@ -110,6 +111,9 @@ export async function POST(request) {
       promoBanners: Array.isArray(body.promoBanners)
         ? body.promoBanners
         : (existing?.promoBanners || DEFAULT_PROMO_BANNERS),
+      kitchenBanner: body.kitchenBanner !== undefined
+        ? (typeof body.kitchenBanner === 'string' ? body.kitchenBanner.trim() : body.kitchenBanner)
+        : (existing?.kitchenBanner || DEFAULT_KITCHEN_BANNER),
       updatedAt: new Date().toISOString()
     };
 

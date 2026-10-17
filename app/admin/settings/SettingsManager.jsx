@@ -27,13 +27,14 @@ import {
   ShieldCheck,
   Search,
   Eye,
-  Check
+  Check,
+  Utensils
 } from 'lucide-react';
-import { DEFAULT_HERO_BANNERS, DEFAULT_PROMO_BANNERS, SAMPLE_BANNER_IMAGES } from '@/lib/banners';
+import { DEFAULT_HERO_BANNERS, DEFAULT_PROMO_BANNERS, DEFAULT_KITCHEN_BANNER, SAMPLE_BANNER_IMAGES } from '@/lib/banners';
 import ImageUploader from '@/app/components/ImageUploader';
 
 export default function SettingsManager({ initialSettings = {} }) {
-  const [activeTab, setActiveTab] = useState('banners'); // 'banners' | 'promo' | 'shipping' | 'contact' | 'seo' | 'branding'
+  const [activeTab, setActiveTab] = useState('banners'); // 'banners' | 'promo' | 'kitchen' | 'shipping' | 'contact' | 'seo' | 'branding'
   
   const [formData, setFormData] = useState({
     insideDhaka: initialSettings.shippingRates?.inside_dhaka ?? 70,
@@ -69,6 +70,10 @@ export default function SettingsManager({ initialSettings = {} }) {
     Array.isArray(initialSettings.promoBanners) && initialSettings.promoBanners.length > 0
       ? initialSettings.promoBanners
       : DEFAULT_PROMO_BANNERS
+  );
+
+  const [kitchenBanner, setKitchenBanner] = useState(
+    initialSettings.kitchenBanner || DEFAULT_KITCHEN_BANNER
   );
 
   const [saving, setSaving] = useState(false);
@@ -191,7 +196,8 @@ export default function SettingsManager({ initialSettings = {} }) {
           seo,
           announcement: formData.announcement.trim(),
           heroBanners: banners,
-          promoBanners: promoBanners
+          promoBanners: promoBanners,
+          kitchenBanner: kitchenBanner
         })
       });
 
@@ -276,6 +282,19 @@ export default function SettingsManager({ initialSettings = {} }) {
         >
           <Sparkles className="w-4 h-4 text-black stroke-[2]" />
           <span>বিজ্ঞাপন ও অফার ব্যানার ({promoBanners.length})</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveTab('kitchen')}
+          className={`flex items-center gap-2 px-4 py-2.5 text-xs font-bold border-b-2 transition-all ${
+            activeTab === 'kitchen'
+              ? 'border-[#EA580C] text-[#EA580C]'
+              : 'border-transparent text-zinc-500 hover:text-zinc-900'
+          }`}
+        >
+          <Utensils className="w-4 h-4 text-[#EA580C] stroke-[2]" />
+          <span>দেশি কিচেন ব্যানার</span>
         </button>
 
         <button
@@ -827,6 +846,116 @@ export default function SettingsManager({ initialSettings = {} }) {
                 ))}
               </div>
             )}
+          </div>
+        )}
+
+        {/* TAB: KITCHEN ZONE BANNER (SINGLE IMAGE UPLOAD) */}
+        {activeTab === 'kitchen' && (
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-zinc-200 shadow-xs space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-100 pb-5">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-xl bg-[#EA580C] text-white flex items-center justify-center shrink-0">
+                    <Utensils className="w-4 h-4 text-white stroke-[2]" />
+                  </div>
+                  <h3 className="text-lg font-black text-zinc-900 tracking-tight">
+                    দেশি কিচেন ও হোম অ্যাপ্লায়েন্স জোন ব্যানার
+                  </h3>
+                  <span className="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 text-xs font-extrabold">
+                    মেগা অফার
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm text-zinc-600">
+                  খাঁটি মসলা বাটা, রাইস কুকার ও দ্রুত পানি গরম করার আধুনিক ও টেকসই কিচেন সরঞ্জাম
+                </p>
+                <p className="text-xs text-emerald-800 font-semibold mt-1">
+                  ✓ ছবির ওপর কোনো লেখার প্রয়োজন নেই — শুধুমাত্র আপনার পছন্দমতো একটি ব্যানার ছবি আপলোড করুন।
+                </p>
+              </div>
+
+              <Link
+                href="/admin/banners"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-zinc-100 hover:bg-zinc-200 text-zinc-800 text-xs font-bold transition-all shrink-0 self-start sm:self-auto"
+              >
+                <span>ব্যানার ম্যানেজার ওপেন করুন</span>
+                <ExternalLink className="w-3.5 h-3.5 text-zinc-600" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+              {/* Left Column: Image Uploader & Presets */}
+              <div className="lg:col-span-5 space-y-4">
+                <ImageUploader
+                  label="কিচেন ব্যানার ছবি আপলোড করুন"
+                  value={kitchenBanner}
+                  onChange={(val) => setKitchenBanner(val)}
+                  multiple={false}
+                  folder="bichitra_shop/banners"
+                />
+
+                {/* Presets */}
+                <div className="space-y-2 pt-3 border-t border-zinc-100">
+                  <span className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block">
+                    রেডিমেড ব্যানার ছবি নির্বাচন করুন:
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      { label: 'আসল ক্যালিগ্রাফি কিচেন ব্যানার', url: '/banners/bengali_calligraphy_kitchen_banner.jpg' },
+                      { label: 'ইলেকট্রিক ব্লেন্ডার ও কিচেন সরঞ্জাম', url: '/banners/kitchen_blender_appliance.jpg' },
+                      { label: 'দেশি খাঁটি মশলা সমাহার', url: '/banners/deshi_aromatic_spices.jpg' }
+                    ].map((preset, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => setKitchenBanner(preset.url)}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
+                          kitchenBanner === preset.url
+                            ? 'bg-[#EA580C] text-white border-[#EA580C] font-bold'
+                            : 'bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400'
+                        }`}
+                      >
+                        {preset.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: Live Preview */}
+              <div className="lg:col-span-7 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider flex items-center gap-1.5">
+                    <Eye className="w-4 h-4 text-[#EA580C]" />
+                    <span>হোমপেজে যেভাবে প্রদর্শিত হবে (লাইভ প্রিভিউ)</span>
+                  </span>
+                  <span className="text-[11px] font-semibold text-zinc-500">অনুপাত: 16:7 / 21:9</span>
+                </div>
+
+                <div className="rounded-2xl border border-zinc-200 overflow-hidden bg-zinc-950 shadow-xs relative aspect-[16/7] sm:aspect-[21/9] group">
+                  <Image
+                    src={kitchenBanner || DEFAULT_KITCHEN_BANNER}
+                    alt="কিচেন ব্যানার প্রিভিউ"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 800px"
+                    className="object-cover object-center group-hover:scale-[1.015] transition-transform duration-500"
+                    unoptimized
+                  />
+                </div>
+
+                <div className="p-3 rounded-xl bg-amber-50/80 border border-amber-200/80 text-amber-950 text-xs flex items-center justify-between">
+                  <span className="truncate">বর্তমান ছবির পথ: <strong className="font-mono">{kitchenBanner}</strong></span>
+                  {kitchenBanner !== DEFAULT_KITCHEN_BANNER && (
+                    <button
+                      type="button"
+                      onClick={() => setKitchenBanner(DEFAULT_KITCHEN_BANNER)}
+                      className="text-xs font-bold text-amber-800 hover:underline shrink-0 ml-2 cursor-pointer"
+                    >
+                      ডিফল্টে রিসেট করুন
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         )}
 

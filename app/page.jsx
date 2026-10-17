@@ -113,6 +113,7 @@ async function getHomeData() {
       announcement: settings?.announcement || DEFAULT_ANNOUNCEMENT,
       heroBanners: settings?.heroBanners || [],
       promoBanners: settings?.promoBanners || [],
+      kitchenBanner: settings?.kitchenBanner || '/banners/bengali_calligraphy_kitchen_banner.jpg',
       flashSaleEndsAt: settings?.flashSaleEndsAt
         ? new Date(settings.flashSaleEndsAt).toISOString()
         : endOfTodayInDhaka(),
@@ -128,6 +129,7 @@ async function getHomeData() {
       announcement: DEFAULT_ANNOUNCEMENT,
       heroBanners: [],
       promoBanners: [],
+      kitchenBanner: '/banners/bengali_calligraphy_kitchen_banner.jpg',
       flashSaleEndsAt: endOfTodayInDhaka(),
     };
   }
@@ -164,8 +166,18 @@ function ProductGrid({ products }) {
 }
 
 export default async function HomePage() {
-  const { allProducts, flashProducts, featuredProducts, latestProducts, categories, announcement, heroBanners, promoBanners, flashSaleEndsAt } =
-    await getHomeData();
+  const {
+    allProducts,
+    flashProducts,
+    featuredProducts,
+    latestProducts,
+    categories,
+    announcement,
+    heroBanners,
+    promoBanners,
+    kitchenBanner,
+    flashSaleEndsAt
+  } = await getHomeData();
 
   const combinedProducts = allProducts.length > 0
     ? allProducts
@@ -221,7 +233,7 @@ export default async function HomePage() {
 
         {/* NEW SECTION 3: DESHI KITCHEN & HOME APPLIANCES FEATURE ZONE */}
         {applianceProducts.length > 0 && (
-          <DeshiAppliancesSection products={applianceProducts} />
+          <DeshiAppliancesSection products={applianceProducts} banner={kitchenBanner} />
         )}
 
 
