@@ -1,7 +1,7 @@
 // app/components/FacebookPixel.jsx
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 import { OFFICIAL_FACEBOOK_PIXEL_ID } from '@/lib/pixel';
@@ -9,11 +9,16 @@ import { OFFICIAL_FACEBOOK_PIXEL_ID } from '@/lib/pixel';
 export default function FacebookPixel({ pixelId = '' }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const isFirstRender = useRef(true);
 
   const cleanPixelId = (pixelId || process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || OFFICIAL_FACEBOOK_PIXEL_ID || '2204374163789446').trim();
 
-  // Track page view on client route transitions
+  // Track page view ONLY on client route transitions (skip initial mount to avoid duplicate PageView)
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     if (!cleanPixelId) return;
 
     if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
@@ -30,16 +35,19 @@ export default function FacebookPixel({ pixelId = '' }) {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
-            !function(f,b,e,v,n,t,s)
-            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)}(window, document,'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '${cleanPixelId}');
-            fbq('track', 'PageView');
+            if (typeof window !== 'undefined' && !window.__fbq_initialized) {
+              window.__fbq_initialized = true;
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '${cleanPixelId}');
+              fbq('track', 'PageView');
+            }
           `
         }}
       />
