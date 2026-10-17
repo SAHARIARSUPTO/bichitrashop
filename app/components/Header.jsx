@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
 import { Search, ShoppingBag, PhoneCall, Menu, X, ShieldCheck, ChevronRight, Flame, ArrowLeft } from 'lucide-react';
+import FacebookIcon from './FacebookIcon';
 
 export default function Header({ categories = [], announcement = 'ক্যাশ অন ডেলিভারি সুবিধা সারা বাংলাদেশে!' }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -67,6 +68,16 @@ export default function Header({ categories = [], announcement = 'ক্যা�
             <span>{announcement.replace(/[🎉✨🔥🚚]/g, '').trim()}</span>
           </p>
           <div className="flex items-center gap-4 text-xs font-semibold">
+            <a
+              href="https://www.facebook.com/bichitra.shop44"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 hover:text-white/80 transition-colors py-0.5 px-2.5 rounded-full bg-white/10"
+              title="বিচিত্র শপ অফিসিয়াল ফেসবুক পেজ"
+            >
+              <FacebookIcon className="w-3.5 h-3.5 fill-current" />
+              <span>Facebook Page</span>
+            </a>
             <a
               href="tel:+8801761674164"
               className="flex items-center gap-1.5 hover:text-white/80 transition-colors py-0.5 px-2.5 rounded-full bg-white/10"
@@ -300,6 +311,15 @@ export default function Header({ categories = [], announcement = 'ক্যা�
           </div>
 
           <div className="pt-3 border-t border-gray-100 flex flex-col gap-2">
+            <a
+              href="https://www.facebook.com/bichitra.shop44"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 p-2.5 rounded-lg bg-[#1877F2] hover:bg-[#166fe5] text-white font-bold text-xs shadow-xs transition-colors"
+            >
+              <FacebookIcon className="w-4 h-4 fill-current" />
+              <span>অফিসিয়াল ফেসবুক পেজ ভিজিট করুন</span>
+            </a>
             <a
               href="tel:+8801761674164"
               className="flex items-center justify-center gap-2 p-2.5 rounded-lg bg-[#08542C] text-white font-bold text-xs"

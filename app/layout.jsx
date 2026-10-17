@@ -2,15 +2,17 @@ import { Suspense } from 'react';
 import './globals.css';
 import ClientNavigationLoader from './components/ClientNavigationLoader';
 import TrafficTracker from './components/TrafficTracker';
+import FacebookPixel from './components/FacebookPixel';
 import {
   getSiteUrl,
   toAbsoluteUrl,
   toOgImageUrl,
-  getStoreSettings,
   DEFAULT_SOCIAL_POSTER,
   DEFAULT_SITE_ICON,
-  OFFICIAL_HOTLINE_TEL
+  OFFICIAL_HOTLINE_TEL,
+  OFFICIAL_FACEBOOK_PAGE
 } from '@/lib/seo';
+import { getStoreSettings } from '@/lib/settings-server';
 
 export const dynamic = 'force-dynamic';
 
@@ -139,6 +141,8 @@ export default async function RootLayout({ children }) {
   const siteUrl = getSiteUrl();
   const settings = await getStoreSettings();
   const hotline = settings?.contact?.phone || OFFICIAL_HOTLINE_TEL;
+  const facebookPage = settings?.social?.facebook || OFFICIAL_FACEBOOK_PAGE;
+  const facebookPixelId = settings?.marketing?.facebookPixelId || settings?.seo?.facebookPixelId || process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || '';
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -152,6 +156,9 @@ export default async function RootLayout({ children }) {
           '@type': 'ImageObject',
           url: toAbsoluteUrl(settings?.branding?.logo || DEFAULT_SITE_ICON)
         },
+        sameAs: [
+          facebookPage
+        ],
         contactPoint: {
           '@type': 'ContactPoint',
           telephone: hotline,
@@ -196,6 +203,7 @@ export default async function RootLayout({ children }) {
         <Suspense fallback={null}>
           <ClientNavigationLoader />
           <TrafficTracker />
+          <FacebookPixel pixelId={facebookPixelId} />
         </Suspense>
         {children}
       </body>

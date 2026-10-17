@@ -1,7 +1,5 @@
-// app/products/[slug]/ProductDetailClient.jsx
 'use client';
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -23,12 +21,19 @@ import {
 import ProductGallery from '../../components/ProductGallery';
 import CheckoutForm from '../../components/CheckoutForm';
 import { formatBDT } from '@/lib/pricing';
+import { trackViewContent, trackAddToCart } from '@/lib/pixel';
 
 export default function ProductDetailClient({ product, relatedProducts = [], canonicalUrl = '' }) {
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState(product?.variants?.sizes?.[0] || '');
   const [selectedColor, setSelectedColor] = useState(product?.variants?.colors?.[0] || '');
   const [copiedLink, setCopiedLink] = useState(false);
+
+  useEffect(() => {
+    if (product) {
+      trackViewContent(product);
+    }
+  }, [product]);
 
   if (!product) return null;
 
@@ -63,6 +68,7 @@ export default function ProductDetailClient({ product, relatedProducts = [], can
 
   const scrollToCheckout = (e) => {
     e?.preventDefault();
+    trackAddToCart(product, quantity);
     const target = document.getElementById('checkout');
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });

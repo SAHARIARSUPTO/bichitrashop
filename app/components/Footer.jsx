@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, Mail, MapPin, ShieldCheck, Truck, RefreshCw, Headphones, Heart } from 'lucide-react';
+import FacebookIcon from './FacebookIcon';
 
 export default function Footer() {
   return (
@@ -80,6 +81,23 @@ export default function Footer() {
             <div className="text-xs text-[#22C55E] font-semibold flex items-center gap-1.5">
               <Heart className="w-3.5 h-3.5 text-[#DC2626] fill-[#DC2626]" />
               <span>আপনার বিশ্বস্ততাই আমাদের অনুপ্রেরণা</span>
+            </div>
+            <div className="pt-1">
+              <a
+                href="https://www.facebook.com/bichitra.shop44"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white/5 hover:bg-[#1877F2]/15 border border-zinc-800 hover:border-[#1877F2]/40 text-white text-xs font-semibold transition-all group"
+                title="বিচিত্র শপ অফিসিয়াল ফেসবুক পেজ"
+              >
+                <div className="w-6 h-6 rounded-lg bg-[#1877F2] text-white flex items-center justify-center shrink-0 shadow-xs">
+                  <FacebookIcon className="w-3.5 h-3.5 fill-current" />
+                </div>
+                <div className="flex flex-col text-left">
+                  <span className="text-[10px] text-zinc-400 group-hover:text-zinc-300">অফিসিয়াল ফেসবুক পেজ</span>
+                  <span className="text-white text-xs font-bold group-hover:text-[#1877F2] transition-colors">facebook.com/bichitra.shop44</span>
+                </div>
+              </a>
             </div>
           </div>
 
@@ -188,6 +206,19 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
+                <div className="w-4 h-4 rounded-full bg-[#1877F2] text-white flex items-center justify-center shrink-0 mt-0.5">
+                  <FacebookIcon className="w-2.5 h-2.5 fill-current" />
+                </div>
+                <a
+                  href="https://www.facebook.com/bichitra.shop44"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#1877F2] transition-colors"
+                >
+                  facebook.com/bichitra.shop44
+                </a>
+              </li>
+              <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#22C55E] shrink-0 mt-0.5" />
                 <span>রহনপুর, চাঁপাইনবাবগঞ্জ, বাংলাদেশ</span>
               </li>
@@ -200,9 +231,21 @@ export default function Footer() {
       <div className="border-t border-zinc-800 bg-black py-4 px-4 text-center text-xs text-zinc-500">
         <div className="w-full max-w-[1440px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
           <p>© 2026 Bichitra Shop (বিচিত্র শপ). সর্বস্বত্ব সংরক্ষিত।</p>
-          <p className="text-xs text-zinc-600">
-            নিরাপদ ক্যাশ অন ডেলিভারি ও দ্রুততম হোম ডেলিভারি সার্ভিস।
-          </p>
+          <div className="flex items-center gap-3">
+            <a
+              href="https://www.facebook.com/bichitra.shop44"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-zinc-400 hover:text-[#1877F2] transition-colors font-medium text-xs"
+            >
+              <FacebookIcon className="w-3.5 h-3.5 fill-current" />
+              <span>Facebook Page</span>
+            </a>
+            <span className="text-zinc-700">|</span>
+            <p className="text-xs text-zinc-500">
+              নিরাপদ ক্যাশ অন ডেলিভারি সার্ভিস
+            </p>
+          </div>
         </div>
       </div>
     </footer>

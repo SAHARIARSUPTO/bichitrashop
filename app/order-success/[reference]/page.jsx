@@ -10,6 +10,7 @@ import { verifyConfirmationToken } from '@/lib/order-ref';
 import { formatBDT } from '@/lib/pricing';
 import { cookies } from 'next/headers';
 import { CheckCircle, Truck, PhoneCall, ShoppingBag, AlertTriangle, ShieldCheck, Clock, MapPin } from 'lucide-react';
+import OrderSuccessTracker from './OrderSuccessTracker';
 
 export const dynamic = 'force-dynamic';
 
@@ -119,6 +120,7 @@ export default async function OrderSuccessPage({ params, searchParams }) {
       <Header />
 
       <main className="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-14 flex-1 w-full space-y-8">
+        <OrderSuccessTracker order={order} />
         {/* Success Checkmark Banner */}
         <div className="text-center space-y-3 bg-white p-8 rounded-3xl border border-[#E2ECE3] shadow-sm">
           <div className="w-20 h-20 rounded-full bg-[#E8F5EC] border-4 border-[#22C55E]/30 flex items-center justify-center mx-auto text-[#08542C] animate-in zoom-in duration-300">

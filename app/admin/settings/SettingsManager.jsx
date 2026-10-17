@@ -32,6 +32,8 @@ import {
 } from 'lucide-react';
 import { DEFAULT_HERO_BANNERS, DEFAULT_PROMO_BANNERS, DEFAULT_KITCHEN_BANNER, SAMPLE_BANNER_IMAGES } from '@/lib/banners';
 import ImageUploader from '@/app/components/ImageUploader';
+import FacebookIcon from '@/app/components/FacebookIcon';
+import { OFFICIAL_FACEBOOK_PAGE } from '@/lib/seo';
 
 export default function SettingsManager({ initialSettings = {} }) {
   const [activeTab, setActiveTab] = useState('banners'); // 'banners' | 'promo' | 'kitchen' | 'shipping' | 'contact' | 'seo' | 'branding'
@@ -42,6 +44,8 @@ export default function SettingsManager({ initialSettings = {} }) {
     phone: initialSettings.contact?.phone || '01761674164',
     email: initialSettings.contact?.email || 'support@bichitrashop.com',
     address: initialSettings.contact?.address || 'রহনপুর, চাঁপাইনবাবগঞ্জ, বাংলাদেশ',
+    facebookPage: initialSettings.social?.facebook || OFFICIAL_FACEBOOK_PAGE,
+    facebookPixelId: initialSettings.marketing?.facebookPixelId || initialSettings.seo?.facebookPixelId || '',
     announcement: initialSettings.announcement || 'ক্যাশ অন ডেলিভারি সুবিধা সারা বাংলাদেশে! ৩টি বা ততোধিক পণ্যে ফ্রি ডেলিভারি।'
   });
 
@@ -192,8 +196,19 @@ export default function SettingsManager({ initialSettings = {} }) {
             email: formData.email.trim(),
             address: formData.address.trim()
           },
+          social: {
+            facebook: (formData.facebookPage || '').trim(),
+            whatsapp: formData.phone.trim()
+          },
+          marketing: {
+            facebookPixelId: (formData.facebookPixelId || '').trim(),
+            googleAnalyticsId: (seo.googleAnalyticsId || '').trim()
+          },
           branding,
-          seo,
+          seo: {
+            ...seo,
+            facebookPixelId: (formData.facebookPixelId || '').trim()
+          },
           announcement: formData.announcement.trim(),
           heroBanners: banners,
           promoBanners: promoBanners,
@@ -1088,6 +1103,39 @@ export default function SettingsManager({ initialSettings = {} }) {
                     required
                   />
                 </div>
+
+                <div className="sm:col-span-2 pt-2 border-t border-zinc-100">
+                  <div className="flex items-center justify-between mb-1">
+                    <label className="text-xs font-bold text-zinc-900 flex items-center gap-1.5">
+                      <div className="w-4 h-4 rounded-full bg-[#1877F2] text-white flex items-center justify-center shrink-0">
+                        <FacebookIcon className="w-2.5 h-2.5 fill-current" />
+                      </div>
+                      <span>অফিসিয়াল ফেসবুক পেজ URL (Facebook Page Link)</span>
+                    </label>
+                    {formData.facebookPage && (
+                      <a
+                        href={formData.facebookPage}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[11px] text-[#1877F2] hover:underline flex items-center gap-1 font-semibold"
+                      >
+                        <span>পেজটি ভিজিট করে পরীক্ষা করুন</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    )}
+                  </div>
+                  <input
+                    type="url"
+                    value={formData.facebookPage}
+                    onChange={(e) => setFormData({ ...formData, facebookPage: e.target.value })}
+                    placeholder="https://www.facebook.com/bichitra.shop44"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 text-xs font-mono focus:border-zinc-900 outline-none"
+                    required
+                  />
+                  <p className="text-[11px] text-zinc-500 mt-1">
+                    হেডার বার, মোবাইল মেনু, ফুটার এবং যোগাযোগ পেজের ফেসবুক আইকনগুলোতে এই লিংকটি কাজ করবে।
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -1300,6 +1348,81 @@ export default function SettingsManager({ initialSettings = {} }) {
                   />
                   <p className="text-[10px] text-zinc-500 mt-1">
                     Google Analytics ৪ মেজারমেন্ট আইডি থাকলে এখানে ইনপুট দিন।
+                  </p>
+                </div>
+              </div>
+
+              {/* Meta (Facebook) Pixel Configuration Card */}
+              <div className="pt-5 border-t border-zinc-100 space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-8 h-8 rounded-xl bg-[#1877F2] text-white flex items-center justify-center shrink-0 shadow-xs">
+                      <FacebookIcon className="w-4 h-4 fill-current" />
+                    </div>
+                    <div>
+                      <h4 className="text-xs font-bold text-zinc-900">
+                        মেটা / ফেসবুক পিক্সেল সেটআপ (Meta Facebook Pixel)
+                      </h4>
+                      <p className="text-[11px] text-zinc-500">
+                        অ্যাড চালানোর আগেই পিক্সেল সেটআপ করে ভিজিটর ও ক্রেতাদের ডাটা ট্র্যাকিং চালু রাখুন
+                      </p>
+                    </div>
+                  </div>
+                  {formData.facebookPixelId ? (
+                    <span className="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-bold inline-flex items-center gap-1.5 self-start sm:self-auto">
+                      <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+                      পিক্সেল কনফিগার করা আছে
+                    </span>
+                  ) : (
+                    <span className="px-2.5 py-1 rounded-full bg-zinc-100 text-zinc-600 border border-zinc-200 text-[10px] font-semibold self-start sm:self-auto">
+                      পিক্সেল আইডি দেওয়া হয়নি
+                    </span>
+                  )}
+                </div>
+
+                {/* Educational guidance on why setting up pixel without running ads is recommended */}
+                <div className="p-4 rounded-2xl bg-gradient-to-r from-blue-50/80 to-indigo-50/60 border border-blue-200/80 text-blue-950 text-xs space-y-2">
+                  <div className="flex items-center gap-2 font-bold text-blue-900">
+                    <Sparkles className="w-4 h-4 text-blue-700 shrink-0" />
+                    <span>কেন এখনই অ্যাড না চালালেও ফেসবুক পিক্সেল সেটআপ রাখা লাভজনক? (Pixel Warming)</span>
+                  </div>
+                  <ul className="list-disc list-inside space-y-1.5 text-[11px] text-blue-900/90 leading-relaxed pl-1">
+                    <li>
+                      <strong>অর্গানিক ভিজিটর ডাটা সংগ্রহ:</strong> আপনার ওয়েবসাইটে ক্রেতারা কোন কোন প্রোডাক্ট দেখছেন (ViewContent), কোনটি কার্টে নিচ্ছেন (AddToCart) এবং অর্ডার করছেন (Purchase) তা মেটার এআই সিস্টেমে ডাটা হিসেবে সঞ্চিত হতে থাকে।
+                    </li>
+                    <li>
+                      <strong>মেটার অ্যালগরিদম প্রশিক্ষণ:</strong> আপনি যখনই ভবিষ্যতে অ্যাড চালাবেন, মেটার অ্যালগরিদম ইতিমধ্যেই জানে আপনার গ্রাহক কারা। এতে অ্যাড টেস্ট করতে বাড়তি টাকা অপচয় হয় না।
+                    </li>
+                    <li>
+                      <strong>কম খরচে হাই কনভার্সন (Lower CPA):</strong> প্রস্তুত পিক্সেলের মাধ্যমে মেটা সরাসরি কেনাকাটায় আগ্রহী অডিয়েন্সদের টার্গেট করে অ্যাড দেখাতে পারে, যার ফলে বিজ্ঞাপনের রিটার্ন অন অ্যাড স্পেন্ড (ROAS) অনেক বেড়ে যায়।
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-zinc-900 mb-1">
+                    মেটা পিক্সেল আইডি (Meta Pixel ID / Dataset ID)
+                  </label>
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={formData.facebookPixelId}
+                      onChange={(e) => setFormData({ ...formData, facebookPixelId: e.target.value })}
+                      placeholder="যেমন: 123456789012345 (১৫-১৬ ডিজিটের আইডি)"
+                      className="flex-1 px-3.5 py-2.5 rounded-xl border border-zinc-200 text-xs font-mono focus:border-zinc-900 outline-none"
+                    />
+                    {formData.facebookPixelId && (
+                      <button
+                        type="button"
+                        onClick={() => setFormData({ ...formData, facebookPixelId: '' })}
+                        className="px-3 py-2 rounded-xl border border-zinc-200 text-xs text-zinc-600 hover:text-red-600 hover:bg-zinc-50 cursor-pointer"
+                      >
+                        ক্লিয়ার
+                      </button>
+                    )}
+                  </div>
+                  <p className="text-[10px] text-zinc-500 mt-1">
+                    Meta Events Manager &gt; Data Sources &gt; Pixel / Dataset ID কপি করে এখানে পেস্ট করুন এবং উপরে <strong>সকল পরিবর্তন সংরক্ষণ করুন</strong> বাটনে ক্লিক করুন।
                   </p>
                 </div>
               </div>

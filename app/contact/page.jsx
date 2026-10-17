@@ -10,8 +10,11 @@ import {
   MessageSquare,
   ShieldCheck,
   Send,
-  HelpCircle
+  HelpCircle,
+  ExternalLink
 } from 'lucide-react';
+import FacebookIcon from '../components/FacebookIcon';
+import { OFFICIAL_FACEBOOK_PAGE } from '@/lib/seo';
 import { getCollection } from '@/lib/mongodb';
 import { initDatabase } from '@/lib/db-init';
 
@@ -119,6 +122,32 @@ export default async function ContactPage() {
                 </p>
                 <p className="text-[11px] text-zinc-500 mt-0.5">
                   সপ্তাহের ৭ দিনই আমাদের গ্রাহক সহায়তা চালু থাকে।
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-white to-[#F0F6FF] rounded-2xl p-5 border border-[#1877F2]/30 hover:border-[#1877F2] shadow-2xs flex items-start gap-4 transition-all group">
+              <div className="w-10 h-10 rounded-xl bg-[#1877F2] text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform">
+                <FacebookIcon className="w-5 h-5 fill-current" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="text-xs font-bold text-zinc-500 uppercase">অফিসিয়াল ফেসবুক পেজ</h3>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#1877F2]/10 text-[#1877F2]">
+                    ভেরিফাইড পেজ
+                  </span>
+                </div>
+                <a
+                  href={OFFICIAL_FACEBOOK_PAGE}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm sm:text-base font-bold text-[#1877F2] hover:underline flex items-center gap-1.5 mt-0.5 truncate"
+                >
+                  <span className="truncate">facebook.com/bichitra.shop44</span>
+                  <ExternalLink className="w-3.5 h-3.5 shrink-0" />
+                </a>
+                <p className="text-[11px] text-zinc-600 mt-1">
+                  ফেসবুক মেসেঞ্জারে সরাসরি কথা বলুন, নতুন অফারের খবর পান ও কমেন্টে রিভিউ দেখুন।
                 </p>
               </div>
             </div>

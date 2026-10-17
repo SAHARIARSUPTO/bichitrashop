@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Truck, ShieldCheck, ShoppingBag, Loader2, AlertCircle, CheckCircle } from 'lucide-react';
 import { formatBDT } from '@/lib/pricing';
+import { trackInitiateCheckout, trackPurchase } from '@/lib/pixel';
 
 export default function CheckoutForm({ product, initialVariant = null, onSuccess = null }) {
   const router = useRouter();
@@ -45,6 +46,13 @@ export default function CheckoutForm({ product, initialVariant = null, onSuccess
   const deliveryCharge = deliveryZone === 'inside_dhaka' ? 70 : 130;
   const subtotal = unitPrice * quantity;
   const total = subtotal + deliveryCharge;
+
+  // Track InitiateCheckout when buyer views or enters checkout form
+  useEffect(() => {
+    if (product) {
+      trackInitiateCheckout([product], total);
+    }
+  }, [product?.slug]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -107,6 +115,11 @@ export default function CheckoutForm({ product, initialVariant = null, onSuccess
       }
 
       // Order created successfully!
+      trackPurchase({
+        items: [{ productId: product._id ? product._id.toString() : product.slug, slug: product.slug }],
+        total
+      });
+
       if (onSuccess) {
         onSuccess(data);
       } else {

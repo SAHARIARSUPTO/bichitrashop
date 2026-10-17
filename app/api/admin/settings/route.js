@@ -5,6 +5,7 @@ import { getAdminFromRequest } from '@/lib/auth';
 import { getCollection } from '@/lib/mongodb';
 import { DEFAULT_SHIPPING_RATES } from '@/lib/pricing';
 import { DEFAULT_HERO_BANNERS, DEFAULT_PROMO_BANNERS, DEFAULT_KITCHEN_BANNER } from '@/lib/banners';
+import { OFFICIAL_FACEBOOK_PAGE } from '@/lib/seo';
 import { revalidatePath } from 'next/cache';
 
 export async function GET(request) {
@@ -27,6 +28,14 @@ export async function GET(request) {
           phone: '01761674164',
           email: 'support@bichitrashop.com',
           address: 'রহনপুর, চাঁপাইনবাবগঞ্জ, বাংলাদেশ'
+        },
+        social: config?.social || {
+          facebook: config?.social?.facebook || OFFICIAL_FACEBOOK_PAGE,
+          whatsapp: '01761674164'
+        },
+        marketing: config?.marketing || {
+          facebookPixelId: config?.marketing?.facebookPixelId || config?.seo?.facebookPixelId || process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || '',
+          googleAnalyticsId: config?.marketing?.googleAnalyticsId || config?.seo?.googleAnalyticsId || ''
         },
         branding: config?.branding || {
           favicon: '/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png',
@@ -77,6 +86,24 @@ export async function POST(request) {
         phone: '01761674164',
         email: 'support@bichitrashop.com',
         address: 'রহনপুর, চাঁপাইনবাবগঞ্জ, বাংলাদেশ'
+      }),
+      social: body.social ? {
+        facebook: body.social?.facebook?.trim() || existing?.social?.facebook || OFFICIAL_FACEBOOK_PAGE,
+        whatsapp: body.social?.whatsapp?.trim() || existing?.social?.whatsapp || '01761674164'
+      } : (existing?.social || {
+        facebook: OFFICIAL_FACEBOOK_PAGE,
+        whatsapp: '01761674164'
+      }),
+      marketing: body.marketing ? {
+        facebookPixelId: body.marketing?.facebookPixelId !== undefined
+          ? body.marketing.facebookPixelId.trim()
+          : (existing?.marketing?.facebookPixelId || ''),
+        googleAnalyticsId: body.marketing?.googleAnalyticsId !== undefined
+          ? body.marketing.googleAnalyticsId.trim()
+          : (existing?.marketing?.googleAnalyticsId || '')
+      } : (existing?.marketing || {
+        facebookPixelId: '',
+        googleAnalyticsId: ''
       }),
       branding: body.branding ? {
         favicon: body.branding?.favicon || existing?.branding?.favicon || '/Bichitra_Shop_Green_Badge_Logo-removebg-preview.png',
