@@ -3,6 +3,7 @@ import './globals.css';
 import ClientNavigationLoader from './components/ClientNavigationLoader';
 import TrafficTracker from './components/TrafficTracker';
 import FacebookPixel from './components/FacebookPixel';
+import GoogleTagManager from './components/GoogleTagManager';
 import {
   getSiteUrl,
   toAbsoluteUrl,
@@ -11,7 +12,8 @@ import {
   DEFAULT_SITE_ICON,
   OFFICIAL_HOTLINE_TEL,
   OFFICIAL_FACEBOOK_PAGE,
-  OFFICIAL_FACEBOOK_PIXEL_ID
+  OFFICIAL_FACEBOOK_PIXEL_ID,
+  OFFICIAL_GTM_ID
 } from '@/lib/seo';
 import { getStoreSettings } from '@/lib/settings-server';
 
@@ -144,6 +146,7 @@ export default async function RootLayout({ children }) {
   const hotline = settings?.contact?.phone || OFFICIAL_HOTLINE_TEL;
   const facebookPage = settings?.social?.facebook || OFFICIAL_FACEBOOK_PAGE;
   const facebookPixelId = settings?.marketing?.facebookPixelId || settings?.seo?.facebookPixelId || process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || OFFICIAL_FACEBOOK_PIXEL_ID;
+  const googleTagManagerId = settings?.marketing?.googleTagManagerId || settings?.seo?.googleTagManagerId || process.env.NEXT_PUBLIC_GTM_ID || OFFICIAL_GTM_ID;
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -201,10 +204,21 @@ export default async function RootLayout({ children }) {
         />
       </head>
       <body className="min-h-full flex flex-col bg-[#F6FAF7] text-[#0F2417]" suppressHydrationWarning>
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${googleTagManagerId}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+        {/* End Google Tag Manager (noscript) */}
         <Suspense fallback={null}>
           <ClientNavigationLoader />
           <TrafficTracker />
           <FacebookPixel pixelId={facebookPixelId} />
+          <GoogleTagManager gtmId={googleTagManagerId} />
         </Suspense>
         {children}
       </body>

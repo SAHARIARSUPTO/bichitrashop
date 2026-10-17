@@ -5,7 +5,7 @@ import { getAdminFromRequest } from '@/lib/auth';
 import { getCollection } from '@/lib/mongodb';
 import { DEFAULT_SHIPPING_RATES } from '@/lib/pricing';
 import { DEFAULT_HERO_BANNERS, DEFAULT_PROMO_BANNERS, DEFAULT_KITCHEN_BANNER } from '@/lib/banners';
-import { OFFICIAL_FACEBOOK_PAGE, OFFICIAL_FACEBOOK_PIXEL_ID } from '@/lib/seo';
+import { OFFICIAL_FACEBOOK_PAGE, OFFICIAL_FACEBOOK_PIXEL_ID, OFFICIAL_GTM_ID } from '@/lib/seo';
 import { revalidatePath } from 'next/cache';
 
 export async function GET(request) {
@@ -35,6 +35,7 @@ export async function GET(request) {
         },
         marketing: config?.marketing || {
           facebookPixelId: config?.marketing?.facebookPixelId || config?.seo?.facebookPixelId || process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || OFFICIAL_FACEBOOK_PIXEL_ID,
+          googleTagManagerId: config?.marketing?.googleTagManagerId || config?.seo?.googleTagManagerId || process.env.NEXT_PUBLIC_GTM_ID || OFFICIAL_GTM_ID,
           googleAnalyticsId: config?.marketing?.googleAnalyticsId || config?.seo?.googleAnalyticsId || ''
         },
         branding: config?.branding || {
@@ -97,12 +98,16 @@ export async function POST(request) {
       marketing: body.marketing ? {
         facebookPixelId: body.marketing?.facebookPixelId !== undefined
           ? body.marketing.facebookPixelId.trim()
-          : (existing?.marketing?.facebookPixelId || ''),
+          : (existing?.marketing?.facebookPixelId || OFFICIAL_FACEBOOK_PIXEL_ID),
+        googleTagManagerId: body.marketing?.googleTagManagerId !== undefined
+          ? body.marketing.googleTagManagerId.trim()
+          : (existing?.marketing?.googleTagManagerId || OFFICIAL_GTM_ID),
         googleAnalyticsId: body.marketing?.googleAnalyticsId !== undefined
           ? body.marketing.googleAnalyticsId.trim()
           : (existing?.marketing?.googleAnalyticsId || '')
       } : (existing?.marketing || {
         facebookPixelId: OFFICIAL_FACEBOOK_PIXEL_ID,
+        googleTagManagerId: OFFICIAL_GTM_ID,
         googleAnalyticsId: ''
       }),
       branding: body.branding ? {

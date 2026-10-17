@@ -33,7 +33,7 @@ import {
 import { DEFAULT_HERO_BANNERS, DEFAULT_PROMO_BANNERS, DEFAULT_KITCHEN_BANNER, SAMPLE_BANNER_IMAGES } from '@/lib/banners';
 import ImageUploader from '@/app/components/ImageUploader';
 import FacebookIcon from '@/app/components/FacebookIcon';
-import { OFFICIAL_FACEBOOK_PAGE, OFFICIAL_FACEBOOK_PIXEL_ID } from '@/lib/seo';
+import { OFFICIAL_FACEBOOK_PAGE, OFFICIAL_FACEBOOK_PIXEL_ID, OFFICIAL_GTM_ID } from '@/lib/seo';
 
 export default function SettingsManager({ initialSettings = {} }) {
   const [activeTab, setActiveTab] = useState('banners'); // 'banners' | 'promo' | 'kitchen' | 'shipping' | 'contact' | 'seo' | 'branding'
@@ -46,6 +46,7 @@ export default function SettingsManager({ initialSettings = {} }) {
     address: initialSettings.contact?.address || 'রহনপুর, চাঁপাইনবাবগঞ্জ, বাংলাদেশ',
     facebookPage: initialSettings.social?.facebook || OFFICIAL_FACEBOOK_PAGE,
     facebookPixelId: initialSettings.marketing?.facebookPixelId || initialSettings.seo?.facebookPixelId || OFFICIAL_FACEBOOK_PIXEL_ID,
+    googleTagManagerId: initialSettings.marketing?.googleTagManagerId || initialSettings.seo?.googleTagManagerId || OFFICIAL_GTM_ID,
     announcement: initialSettings.announcement || 'ক্যাশ অন ডেলিভারি সুবিধা সারা বাংলাদেশে! ৩টি বা ততোধিক পণ্যে ফ্রি ডেলিভারি।'
   });
 
@@ -202,12 +203,14 @@ export default function SettingsManager({ initialSettings = {} }) {
           },
           marketing: {
             facebookPixelId: (formData.facebookPixelId || '').trim(),
+            googleTagManagerId: (formData.googleTagManagerId || '').trim(),
             googleAnalyticsId: (seo.googleAnalyticsId || '').trim()
           },
           branding,
           seo: {
             ...seo,
-            facebookPixelId: (formData.facebookPixelId || '').trim()
+            facebookPixelId: (formData.facebookPixelId || '').trim(),
+            googleTagManagerId: (formData.googleTagManagerId || '').trim()
           },
           announcement: formData.announcement.trim(),
           heroBanners: banners,
@@ -1317,27 +1320,27 @@ export default function SettingsManager({ initialSettings = {} }) {
                 </div>
               </div>
 
-              {/* Google Search Console & Analytics Verification */}
-              <div className="pt-4 border-t border-zinc-100 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Google Search Console, Tag Manager & Analytics Verification */}
+              <div className="pt-4 border-t border-zinc-100 grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-zinc-900 mb-1">
-                    গুগল সার্চ কনসোল ভেরিফিকেশন কোড (Google Site Verification)
+                    গুগল ট্যাগ ম্যানেজার (GTM Container ID)
                   </label>
                   <input
                     type="text"
-                    value={seo.googleVerification}
-                    onChange={(e) => setSeo({ ...seo, googleVerification: e.target.value })}
-                    placeholder="যেমন: EOaABPHPI_eAaNXucQ1HhkIJaDn3uocSezsHHmnAI-A"
+                    value={formData.googleTagManagerId}
+                    onChange={(e) => setFormData({ ...formData, googleTagManagerId: e.target.value })}
+                    placeholder="যেমন: GTM-T7BT3F2L"
                     className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 text-xs font-mono focus:border-zinc-900 outline-none"
                   />
                   <p className="text-[10px] text-zinc-500 mt-1">
-                    Google Search Console &gt; Settings &gt; Ownership Verification &gt; HTML tag-এর content কোডটি দিন।
+                    GTM কন্টেইনার আইডি দিলে হেড স্ক্রিপ্ট ও নোস্ক্রিপ্ট আইফ্রেম স্বয়ংক্রিয়ভাবে লোড হবে।
                   </p>
                 </div>
 
                 <div>
                   <label className="block text-xs font-bold text-zinc-900 mb-1">
-                    গুগল অ্যানালিটিক্স / জিটিএম আইডি (GA4 ID)
+                    গুগল অ্যানালিটিক্স ৪ (GA4 ID)
                   </label>
                   <input
                     type="text"
@@ -1348,6 +1351,22 @@ export default function SettingsManager({ initialSettings = {} }) {
                   />
                   <p className="text-[10px] text-zinc-500 mt-1">
                     Google Analytics ৪ মেজারমেন্ট আইডি থাকলে এখানে ইনপুট দিন।
+                  </p>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-zinc-900 mb-1">
+                    গুগল সাইট ভেরিফিকেশন কোড
+                  </label>
+                  <input
+                    type="text"
+                    value={seo.googleVerification}
+                    onChange={(e) => setSeo({ ...seo, googleVerification: e.target.value })}
+                    placeholder="যেমন: EOaABPHPI_eAaNXucQ1HhkIJaDn3uocSezsHHmnAI-A"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 text-xs font-mono focus:border-zinc-900 outline-none"
+                  />
+                  <p className="text-[10px] text-zinc-500 mt-1">
+                    Google Search Console Ownership HTML tag content কোড।
                   </p>
                 </div>
               </div>
